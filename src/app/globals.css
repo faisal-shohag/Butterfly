@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* --------- class added by robius sani ---------------- */
+.blurBg {
+  background: rgba(255, 255, 255, 0.158);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ---------  */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -24,4 +33,59 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* login button style  */ 
+.button {
+  border: none;
+  display: block;
+  position: relative;
+  /* padding: 10px ; */
+  /* font-size: 18px; */
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  color: rgb(31, 184, 184);
+  z-index: 1;
+  font-family: inherit;
+  /* font-weight: 500; */
+}
+
+.button span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+  border: 4px solid rgb(31, 184, 184);
+}
+
+.button span::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8%;
+  height: 500%;
+  background: var(--lightgray);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-60deg);
+  transition: all 0.3s;
+}
+
+.button:hover span::before {
+  transform: translate(-50%, -50%) rotate(-90deg);
+  width: 100%;
+  background: rgb(31, 184, 184);
+}
+
+.button:hover {
+  color: white;
+}
+
+.button:active span::before {
+  background: rgb(31, 184, 184);
 }
