@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  transition: 0.3s;
+}
+
 /* --------- class added by robius sani ---------------- */
 .blurBg {
   background: rgba(255, 255, 255, 0.158);
