@@ -2,6 +2,8 @@
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
+import GoogleAuth from "../(SocialAuth)/GoogleAuth";
+import FaceBookAuth from "../(SocialAuth)/FaceBookAuth";
 
 export default function LoginForm() {
   const {
@@ -113,16 +115,10 @@ export default function LoginForm() {
         {/* Social Login Options */}
         <div className="grid grid-cols-2 justify-center items-center gap-4">
           {/* Google Login */}
-          <button className="flex items-center bg-gray-100 rounded-full text-gray-500 justify-center px-4 py-2 border border-gray-300 w-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
-            <FaGoogle className="text-red-500 mr-2" />
-            Google
-          </button>
+          <GoogleAuth></GoogleAuth>
 
           {/* Facebook Login */}
-          <button className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-full text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
-            <FaFacebookF className="text-blue-600 mr-2" />
-            Facebook
-          </button>
+          <FaceBookAuth></FaceBookAuth>
         </div>
       </div>
     </div>
