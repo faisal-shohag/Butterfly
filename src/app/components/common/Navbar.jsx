@@ -1,11 +1,8 @@
 "use client"
 import Link from "next/link";
-import { useState } from "react";
-import { BsCart4 } from "react-icons/bs";
-import { GrMenu } from "react-icons/gr";
-import { TbHomeEco } from "react-icons/tb";
-import { HiOutlineX } from "react-icons/hi";
-// import { useRouter } from "next/router"; 
+import { useState } from "react"; 
+import { GrMenu } from "react-icons/gr"; 
+import { HiOutlineX } from "react-icons/hi"; 
 import { GoX } from "react-icons/go";
 import { MdLogout } from "react-icons/md";
 import { useRouter } from "next/navigation";

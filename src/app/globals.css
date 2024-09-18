@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* --------- class added by robius sani ---------------- */
+.blurBg {
+  background: rgba(255, 255, 255, 0.158);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ---------  */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
