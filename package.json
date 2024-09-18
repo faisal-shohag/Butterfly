@@ -13,10 +13,7 @@
     "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18",
-<<<<<<< HEAD
-=======
     "react-hook-form": "^7.53.0",
->>>>>>> bb387e516c7af9d90836f0a616569c68b229c980
     "react-icons": "^5.3.0"
   },
   "devDependencies": {
