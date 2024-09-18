@@ -2,8 +2,8 @@
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
-import GoogleAuth from "../(SocialAuth)/GoogleAuth";
-import FaceBookAuth from "../(SocialAuth)/FaceBookAuth";
+import GoogleAuth from "../Social/GoogleAuth";
+import FaceBookAuth from "../Social/FaceBookAuth";
 
 export default function RegistrationForm() {
   const {

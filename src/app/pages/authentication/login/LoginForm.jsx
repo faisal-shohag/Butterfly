@@ -2,8 +2,8 @@
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
-import GoogleAuth from "../(SocialAuth)/GoogleAuth";
-import FaceBookAuth from "../(SocialAuth)/FaceBookAuth";
+import GoogleAuth from "../Social/GoogleAuth";
+import FaceBookAuth from "../Social/FaceBookAuth";
 
 export default function LoginForm() {
   const {
@@ -90,7 +90,7 @@ export default function LoginForm() {
         {/* Sign-Up Button */}
         <div className="text-start mt-4">
           <p className="text-sm text-gray-600">
-            Don't have an account?{" "}
+            Don&apos;t have an account?
             <button
               onClick={() => router.push("/pages/registration")}
               className="text-orange-600 hover:underline"

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import BgImage from "../../../_images/authBg.gif";
-import image from "../../../_images/AuthImage.gif";
+import BgImage from "@/_images/authBg.gif";
+import image from "@/_images/AuthImage.gif";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
