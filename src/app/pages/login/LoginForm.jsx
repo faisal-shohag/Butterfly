@@ -111,15 +111,15 @@ export default function LoginForm() {
         </div>
 
         {/* Social Login Options */}
-        <div className="flex justify-center space-x-4">
+        <div className="grid grid-cols-2 justify-center items-center gap-4">
           {/* Google Login */}
-          <button className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
+          <button className="flex items-center bg-gray-100 rounded-full text-gray-500 justify-center px-4 py-2 border border-gray-300 w-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
             <FaGoogle className="text-red-500 mr-2" />
             Google
           </button>
 
           {/* Facebook Login */}
-          <button className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
+          <button className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-full text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
             <FaFacebookF className="text-blue-600 mr-2" />
             Facebook
           </button>
