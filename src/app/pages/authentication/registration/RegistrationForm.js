@@ -19,7 +19,7 @@ export default function RegistrationForm() {
 
   return (
     <div className="w-full relative blurBg flex justify-center items-center">
-      <div className="w-full mx-auto p-10 sm:px-10 px-5 rounded-lg blurBg bg-white dark:bg-gray-800">
+      <div className="w-full mx-auto p-10 sm:px-10 px-5  blurBg bg-white dark:bg-gray-800">
         {/* Title */}
         <h2 className="text-2xl sm:font-3xl font-semibold text-center mb-6 text-gray-700 dark:text-gray-200">
           Welcome
@@ -120,7 +120,7 @@ export default function RegistrationForm() {
             </label>
             <button
               onClick={() => router.push("/forgot-password")}
-              className="text-sm text-[#18181b] dark:text-[#333335] hover:underline"
+              className="text-sm text-[#18181b] dark:text-gray-300 hover:underline"
             >
               Forgot Password?
             </button>
@@ -141,7 +141,7 @@ export default function RegistrationForm() {
             Already have an account?{" "}
             <button
               onClick={() => router.push("/pages/authentication/login")}
-              className="text-[#18181b] hover:underline"
+              className="text-[#18181b] dark:text-gray-300 hover:underline"
             >
               Login
             </button>

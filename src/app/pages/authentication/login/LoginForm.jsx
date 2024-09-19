@@ -76,7 +76,7 @@ export default function LoginForm() {
             </label>
             <button
               onClick={() => router.push("/forgot-password")}
-              className="text-sm text-[#18181b] dark:text-[#333335] hover:underline"
+              className="text-sm text-[#18181b] dark:text-gray-300 hover:underline"
             >
               Forgot Password?
             </button>
@@ -85,7 +85,7 @@ export default function LoginForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 rounded-full bg-[#18181b] text-white hover:bg-[#333335] focus:outline-none focus:ring-2 focus:ring-[#18181b]"
+            className="w-full py-2 rounded-full  bg-[#18181b] text-white hover:bg-[#333335] focus:outline-none focus:ring-2 focus:ring-[#18181b]"
           >
             Login
           </button>
@@ -97,7 +97,7 @@ export default function LoginForm() {
             Don&apos;t have an account?
             <button
               onClick={() => router.push("/pages/authentication/registration")}
-              className="text-[#18181b] dark:text-[#333335] hover:underline"
+              className="text-[#18181b] dark:text-gray-300 hover:underline"
             >
               Registration
             </button>
