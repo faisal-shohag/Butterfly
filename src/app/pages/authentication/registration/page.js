@@ -12,7 +12,7 @@ const Registration = () => {
             alt="this is image"
             className="min-w-full absolute hidden sm:block min-h-full"
           />
-        </div>
+        </div> 
         <RegistrationForm />
       </div>
     </div>
