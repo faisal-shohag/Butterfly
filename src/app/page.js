@@ -6,11 +6,9 @@ export default function Home() {
   return (
     <>
       <div className="section">
-     
       <Banner/>
       <BookShowWithCategory/>
       </div>
-  
     </>
   );
 }
