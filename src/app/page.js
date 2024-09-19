@@ -6,11 +6,11 @@ export default function Home() {
   return (
     <>
       <div className="section">
-      <Navbar/>
+     
       <Banner/>
       <BookShowWithCategory/>
       </div>
-     <Footer/>
+  
     </>
   );
 }
