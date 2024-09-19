@@ -35,7 +35,7 @@ export default function LoginForm() {
             </label>
             <input
               type="email"
-              className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 rounded-full px-4 py-2 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 rounded-full px-4 py-2 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#18181b]"
               placeholder="Enter your email"
               {...register("email", { required: "Email is required" })}
             />
@@ -53,7 +53,7 @@ export default function LoginForm() {
             </label>
             <input
               type="password"
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#18181b]"
               placeholder="Enter your password"
               {...register("password", { required: "Password is required" })}
             />
@@ -69,14 +69,14 @@ export default function LoginForm() {
             <label className="flex items-center text-gray-600 dark:text-gray-300 text-sm">
               <input
                 type="checkbox"
-                className="mr-2 rounded focus:ring-orange-500"
+                className="mr-2 rounded focus:ring-[#18181b]"
                 {...register("rememberMe")}
               />
               Remember Me
             </label>
             <button
               onClick={() => router.push("/forgot-password")}
-              className="text-sm text-orange-600 dark:text-orange-400 hover:underline"
+              className="text-sm text-[#18181b] dark:text-[#333335] hover:underline"
             >
               Forgot Password?
             </button>
@@ -85,7 +85,7 @@ export default function LoginForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 rounded-full bg-orange-600 text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="w-full py-2 rounded-full bg-[#18181b] text-white hover:bg-[#333335] focus:outline-none focus:ring-2 focus:ring-[#18181b]"
           >
             Login
           </button>
@@ -97,7 +97,7 @@ export default function LoginForm() {
             Don&apos;t have an account?
             <button
               onClick={() => router.push("/pages/authentication/registration")}
-              className="text-orange-600 dark:text-orange-400 hover:underline"
+              className="text-[#18181b] dark:text-[#333335] hover:underline"
             >
               Registration
             </button>
