@@ -15,7 +15,7 @@ const Footer = () => {
                     <div className="flex flex-col items-start">
                         <Image src="https://i.postimg.cc/nrSMfQDf/image.png" alt="Butterfly Logo" width={80} height={80} />
                         <h2 className="mt-2 text-xl font-bold text-gray-900 dark:text-white">Butterfly</h2>
-                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">"Let your book fly"</p>
+                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">Let your book fly</p>
                     </div>
 
                     {/* Quick Links */}
