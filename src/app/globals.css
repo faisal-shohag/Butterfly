@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -68,7 +67,6 @@
   }
 }
 
-
 .section {
   max-width: 1280px;
   margin: 0 auto;
@@ -77,13 +75,14 @@
   /* height: 100vh; */
 }
 
-
-
 /* --------- class added by robius sani ---------------- */
 .blurBg {
   background: rgba(255, 255, 255, 0.158);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+* {
+  transition: 0.3s;
 }
 
 /* ---------  */
@@ -101,7 +100,7 @@
   }
 }
 
-/* login button style  */ 
+/* login button style  */
 .button {
   border: none;
   display: block;
