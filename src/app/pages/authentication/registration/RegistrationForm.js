@@ -20,7 +20,7 @@ export default function RegistrationForm() {
 
   return (
     <div className="w-full relative blurBg flex justify-center items-center">
-      <div className="w-full mx-auto p-10 rounded-lg shadow-lg blurBg">
+      <div className="w-full mx-auto p-10 sm:px-10 px-5 rounded-lg  blurBg">
         {/* Title */}
         <h2 className="text-2xl sm:font-3xl font-semibold text-center mb-6 text-gray-700">
           Welcome
@@ -136,7 +136,7 @@ export default function RegistrationForm() {
           <p className="text-sm text-gray-600">
             Already have an account?{" "}
             <button
-              onClick={() => router.push("/pages/login")}
+              onClick={() => router.push("/pages/authentication/login")}
               className="text-orange-600 hover:underline"
             >
               Login
@@ -157,7 +157,7 @@ export default function RegistrationForm() {
         </div>
 
         {/* Social Login Options */}
-        <div className="grid md:grid-cols-2 justify-center items-center gap-4">
+        <div className="flex justify-center items-center gap-4">
           {/* Google Login */}
           <GoogleAuth></GoogleAuth>
 

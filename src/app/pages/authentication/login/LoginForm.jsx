@@ -19,8 +19,8 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="w-full relative blurBg flex justify-center items-center">
-      <div className="w-full mx-auto p-10 rounded-lg shadow-lg blurBg">
+    <div className="w-full relative blurBg  flex justify-center items-center">
+      <div className="w-full mx-auto p-10 sm:px-10 px-5 rounded-lg  blurBg">
         {/* Title */}
         <h2 className="text-2xl sm:font-3xl font-semibold text-center mb-6 text-gray-700">
           Welcome
@@ -92,7 +92,7 @@ export default function LoginForm() {
           <p className="text-sm text-gray-600">
             Don&apos;t have an account?
             <button
-              onClick={() => router.push("/pages/registration")}
+              onClick={() => router.push("/pages/authentication/registration")}
               className="text-orange-600 hover:underline"
             >
               Sign up
