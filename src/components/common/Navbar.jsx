@@ -56,7 +56,9 @@ const Navbar = () => {
                                 <DropdownMenuContent align="end">
                                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Link href={"/pages/profile"}>Profile</Link>
+                                    </DropdownMenuItem>
                                     <DropdownMenuItem>Settings</DropdownMenuItem>
                                     <DropdownMenuItem>Sign out</DropdownMenuItem>
                                 </DropdownMenuContent>
