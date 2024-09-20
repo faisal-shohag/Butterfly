@@ -8,7 +8,7 @@ import FaceBookAuth from "../Social/FaceBookAuth";
 export default function LoginForm() {
   const {
     register,
-    handleSubmit,
+    handleSubmit, 
     formState: { errors },
   } = useForm();
   const router = useRouter();

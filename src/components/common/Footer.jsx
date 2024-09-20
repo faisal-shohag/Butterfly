@@ -1,16 +1,15 @@
 "use client"
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const Footer = () => {
+const Footer = () => { 
     return (
-        <footer className="bg-gray-100 dark:bg-gray-800 pt-12 pb-8">
+        <footer className="bg-gray-100 dark:bg-gray-800 pt-12 pb-8 scroll-mt-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8"> 
                     {/* Logo and Motto */}
                     <div className="flex flex-col items-start">
                         <Image src="https://i.postimg.cc/nrSMfQDf/image.png" alt="Butterfly Logo" width={80} height={80} />
@@ -27,7 +26,7 @@ const Footer = () => {
                             <li><Link href="/faq" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">FAQ</Link></li>
                             <li><Link href="/contact" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact Us</Link></li>
                         </ul>
-                    </div>
+                    </div> 
 
                     {/* Legal */}
                     <div>

@@ -5,7 +5,7 @@ import GoogleAuth from "../Social/GoogleAuth";
 import FaceBookAuth from "../Social/FaceBookAuth";
 
 export default function RegistrationForm() {
-  const {
+  const {  
     register,
     handleSubmit,
     formState: { errors },
