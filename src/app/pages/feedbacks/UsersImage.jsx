@@ -5,11 +5,11 @@ import user from "@/_images/user.jpg";
 
 export default function UsersImage() {
   return (
-    <div className="bg-white w-full rounded-md shadow-md flex p-3 gap-2 overflow-x-auto">
+    <div className="bg-white w-full min-h-[85px] rounded-md shadow-md flex p-3 gap-2 overflow-x-auto">
       {Array.from({ length: 10 }).map((_, index) => (
         <div
           key={index}
-          className="min-w-[60px] h-[60px] rounded-full overflow-hidden"
+          className="min-w-[60px] min-h-[60px] rounded-full overflow-hidden"
         >
           <Image
             src={user}

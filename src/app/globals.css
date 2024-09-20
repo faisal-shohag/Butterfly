@@ -81,7 +81,9 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
-
+.scrollnone::-webkit-scrollbar {
+  display: none;
+}
 /* ---------  */
 
 @media (prefers-color-scheme: dark) {
