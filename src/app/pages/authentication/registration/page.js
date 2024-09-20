@@ -7,7 +7,7 @@ const Registration = () => {
       <div className="blurBg w-full sm:max-w-[1000px]  sm:border sm:shadow-md sm:rounded-md mx-auto relative overflow-hidden z-100 grid grid-cols-1 sm:grid-cols-2">
         <div className="w-full relative h-full overflow-hidden">
           <Image
-            src="https://i.postimg.cc/xd1JXkkX/image.png"
+            src='https://i.postimg.cc/xd1JXkkX/image.png'
             alt="this is image"
             className="min-w-full absolute hidden sm:block min-h-full"
           />
