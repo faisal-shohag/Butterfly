@@ -75,6 +75,17 @@
   /* height: 100vh; */
 }
 
+.custom-glass{
+  @apply dark:bg-zinc-900 dark:border-zinc-800;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.4px);
+  -webkit-backdrop-filter: blur(6.4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
 /* --------- class added by robius sani ---------------- */
 .blurBg {
   background: rgba(255, 255, 255, 0.158);
