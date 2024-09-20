@@ -9,6 +9,8 @@ const Registration = () => {
           <Image
             src='https://i.postimg.cc/xd1JXkkX/image.png'
             alt="this is image"
+            height={500}
+            width={500}
             className="min-w-full absolute hidden sm:block min-h-full"
           />
         </div> 

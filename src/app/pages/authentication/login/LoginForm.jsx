@@ -22,8 +22,8 @@ export default function LoginForm() {
     <div className="w-full relative blurBg flex justify-center items-center">
       <div className="w-full mx-auto p-10 sm:px-10 px-5 rounded-lg blurBg bg-white dark:bg-gray-800">
         {/* Title */}
-        <h2 className="text-2xl sm:font-3xl font-semibold text-center mb-6 text-gray-700 dark:text-gray-200">
-          Welcome
+        <h2 className="text-2xl font-semibold sm:font-3xl font-semibold text-center mb-6 text-gray-700 dark:text-gray-200">
+          Login
         </h2>
 
         {/* Login Form */}
@@ -99,7 +99,7 @@ export default function LoginForm() {
               onClick={() => router.push("/pages/authentication/registration")}
               className="text-[#18181b] dark:text-gray-300 hover:underline"
             >
-              Registration
+               Registration
             </button>
           </p>
         </div>

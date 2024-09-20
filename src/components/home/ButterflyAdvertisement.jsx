@@ -7,10 +7,10 @@ import butterflyHandAnimation from '@/lottie/butterfly-hand.json';
 
 const ButterflyAdvertisement = () => {
   return (
-    <div className="relative py-5 flex flex-col items-center justify-center text-center w-full rounded-xl shadow-2xl border bg-cover bg-center" style={{backgroundImage: "url('https://i.postimg.cc/d19ndy1C/image.png')"}}>
+    <div className="relative text-white py-5 flex flex-col items-center justify-center text-center w-full rounded-xl shadow-2xl border bg-cover bg-center" style={{backgroundImage: "url('https://i.postimg.cc/d19ndy1C/image.png')"}}>
   
       
-      <div className="left-0 top-0 absolute h-[80px] shadow-2xl flex justify-center items-center border w-[80px] rounded-full">
+      <div className="right-0 top-0 absolute h-[80px] shadow-2xl flex justify-center items-center  w-[80px] rounded-full">
         <Image alt="Butterfly logo" height="70" width="70" className="h-[70px] p-2" src="https://i.postimg.cc/nrSMfQDf/image.png"/>
       </div>
 
