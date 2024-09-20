@@ -14,15 +14,15 @@ import { Button } from "@/components/ui/button";
 import { SendHorizonal } from "lucide-react";
 
 export default function PostCard() {
-  return (
+  return ( 
     <div className="w-full custom-glass rounded-xl shadow-md">
       <div className="w-full flex px-4 py-2 dark:border-gray-700 justify-between items-center">
-        <div className="flex gap-2">
+        <div className="flex gap-2">  
           <Avatar><AvatarImage src="https://i.postimg.cc/5tqhtjwH/image.png" /></Avatar>
           <div className="flex flex-col">
             <strong className="dark:text-gray-200">FANTASTIC SIX</strong>
             <small className="text-gray-600 dark:text-gray-400">
-              Book name
+              Book
             </small>
           </div>
         </div>

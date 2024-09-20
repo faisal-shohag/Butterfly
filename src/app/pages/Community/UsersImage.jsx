@@ -10,7 +10,7 @@ export default function UsersImage() {
         <div
           key={index}
           className="min-w-[60px] min-h-[60px] rounded-full overflow-hidden"
-        >
+        > 
           <Image
             src={user}
             alt="user image"
