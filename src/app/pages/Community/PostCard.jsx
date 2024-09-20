@@ -11,7 +11,7 @@ import { MdOutlineAddReaction } from "react-icons/md";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { SendHorizonal } from "lucide-react";
+import { SendHorizonal } from "lucide-react"; 
 
 export default function PostCard() {
   return ( 
