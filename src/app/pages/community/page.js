@@ -1,6 +1,6 @@
-import CreatePostSection from "./CreatePostSection";
-import PostCard from "./PostCard";
-import UsersImage from "./UsersImage";
+import CreatePostSection from "./createPost";
+import PostCard from "./post";
+
 
 export default function FeedBackPage() {
   return (
