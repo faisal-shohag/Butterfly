@@ -12,7 +12,7 @@ export default function CreatePostSection() {
             <ImageN 
               src='https://i.postimg.cc/GmY0ZXtx/image.png' 
               alt='avatar'
-              width={40}
+              width={40} 
               height={40}
               className="w-10 h-10 rounded-full object-cover border-2 border-zinc-400"
             />
