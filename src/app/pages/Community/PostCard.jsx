@@ -66,7 +66,7 @@ export default function PostCard() {
             <input
               type="text"
               placeholder="write a comment"
-              className="max-w-[130px] sm:w-[300px] p-1 px-2 border bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 rounded-full"
+              className="max-w-[130px] sm:min-w-[300px] p-1 px-2 border bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 rounded-full"
             />
             <button
               type="submit"
