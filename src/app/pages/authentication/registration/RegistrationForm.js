@@ -21,8 +21,8 @@ export default function RegistrationForm() {
     <div className="w-full relative blurBg flex justify-center items-center">
       <div className="w-full mx-auto p-10 sm:px-10 px-5  blurBg bg-white dark:bg-gray-800">
         {/* Title */}
-        <h2 className="text-2xl sm:font-3xl font-semibold text-center mb-6 text-gray-700 dark:text-gray-200">
-          Welcome
+        <h2 className="text-2xl font-semibold sm:font-3xl font-semibold text-center mb-6 text-gray-700 dark:text-gray-200">
+         Register
         </h2>
 
         {/* Registration Form */}

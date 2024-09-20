@@ -1,10 +1,22 @@
+import CreatePostSection from "./CreatePostSection";
+import PostCard from "./PostCard";
+import UsersImage from "./UsersImage";
 
-const Community = () => {
-    return (
-        <div>
-            <h1>Community</h1>
+export default function FeedBackPage() {
+  return (
+    <div className="w-full min-h-screen">
+      {/* ---------- Title field ---------------  */}
+     
+      {/* ------------------- main content start from here --------------  */}
+      <div className="w-full flex justify-center">
+        <div className="w-[700px] flex flex-col  justify-start items-center gap-5">
+          <CreatePostSection />
+          {/* <UsersImage /> */}
+          {Array.from({ length: 10 }).map((_, index) => (
+            <PostCard key={index} />
+          ))}
         </div>
-    );
-};
-
-export default Community;
+      </div>
+    </div>
+  );
+}
