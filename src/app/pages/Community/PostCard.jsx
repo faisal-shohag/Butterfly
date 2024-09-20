@@ -13,8 +13,8 @@ import { MdOutlineAddReaction } from "react-icons/md";
 
 export default function PostCard() {
   return (
-    <div className="w-full  bg-white rounded-md shadow-md">
-      <div className="w-full flex p-3 border-b justify-between items-center">
+    <div className="w-full bg-white dark:bg-gray-800 rounded-md shadow-md">
+      <div className="w-full flex p-3 border-b dark:border-gray-700 justify-between items-center">
         {/* ------ profile part ------  */}
         <div className="flex gap-2">
           <Image
@@ -23,15 +23,17 @@ export default function PostCard() {
             className="w-[45px] h-[45px] rounded-full"
           ></Image>
           <div className="flex flex-col">
-            <strong>@User-name</strong>
-            <small className="text-gray-600">Book name</small>
+            <strong className="dark:text-gray-200">@User-name</strong>
+            <small className="text-gray-600 dark:text-gray-400">
+              Book name
+            </small>
           </div>
         </div>
-        <BsThreeDots />
+        <BsThreeDots className="dark:text-gray-300" />
       </div>
       {/* ---------------- post part ----------------  */}
-      <div className="w-full pt-3 px-3 border-b">
-        <p>
+      <div className="w-full pt-3 px-3 border-b dark:border-gray-700">
+        <p className="dark:text-gray-300">
           I recently finished reading "The Art of Learning" by Josh Waitzkin,
           and I must say it’s a captivating read. The book takes you through
           Waitzkin’s journey as a chess prodigy and martial artist, offering
@@ -40,7 +42,7 @@ export default function PostCard() {
         <div className="w-full p-2">
           <Image src={postimage} alt="post image" className="w-full" />
         </div>
-        <div className="w-full p-2 flex justify-between items-center">
+        <div className="w-full p-2 flex justify-between items-center dark:text-gray-300">
           <div className="flex justify-center items-center gap-1">
             <SlLike /> <span>250</span>
           </div>
@@ -58,31 +60,31 @@ export default function PostCard() {
           <Image
             src={user}
             alt="user image "
-            className="w-[30px] h-[30px] rounded-full "
+            className="w-[30px] h-[30px] rounded-full"
           />
           <form className="flex justify-center items-center">
             <input
               type="text"
               placeholder="write a comment"
-              className="w-[300px] p-1 px-2 border bg-gray-100 rounded-full"
+              className="max-w-[130px] sm:w-[300px] p-1 px-2 border bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 rounded-full"
             />
             <button
               type="submit"
-              className="bg-gray-100 ml-2 border rounded-full p-1  flex justify-center items-center outline-0"
+              className="bg-gray-100 dark:bg-gray-700 ml-2 border dark:border-gray-600 rounded-full p-1 flex justify-center items-center outline-0"
             >
-              <IoIosSend className="text-blue-600 text-2xl" />
+              <IoIosSend className="text-blue-600 text-2xl dark:text-blue-400" />
             </button>
           </form>
         </div>
         <div className="flex justify-center items-center gap-2">
-          <button className="p-2 rounded-full border outline-0 bg-gray-100 flex justify-center items-center">
-            <FaLink className="text-xl" />
+          <button className="p-[6px] rounded-full border outline-0 bg-gray-100 dark:bg-gray-700 dark:border-gray-600 flex justify-center items-center">
+            <FaLink className="text-xl dark:text-gray-300" />
           </button>
-          <button className="p-2 rounded-full border outline-0 bg-gray-100 flex justify-center items-center">
-            <RiShareForward2Fill className="text-xl" />
+          <button className="p-[6px] rounded-full border outline-0 bg-gray-100 dark:bg-gray-700 dark:border-gray-600 flex justify-center items-center">
+            <RiShareForward2Fill className="text-xl dark:text-gray-300" />
           </button>
-          <button className="p-2 rounded-full border outline-0 bg-gray-100 flex justify-center items-center">
-            <MdOutlineAddReaction className="text-xl" />
+          <button className="p-[6px] rounded-full border outline-0 bg-gray-100 dark:bg-gray-700 dark:border-gray-600 flex justify-center items-center">
+            <MdOutlineAddReaction className="text-xl dark:text-gray-300" />
           </button>
         </div>
       </div>
