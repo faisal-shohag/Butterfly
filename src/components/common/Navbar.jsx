@@ -30,7 +30,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
                         <Link href="/" className="flex-shrink-0">
-                            <Image width={50} height={50} src="https://i.postimg.cc/nrSMfQDf/image.png" alt="Butterfly logo" className="h-8 w-auto"/>
+                            <Image width={50} height={50} src="https://i.postimg.cc/nrSMfQDf/image.png" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="Butterfly logo" className="h-8 w-auto"/>
                         </Link>
                         <div className="hidden md:block">
                             <div className="ml-10 flex items-baseline space-x-4">
