@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
 import GoogleAuth from "../Social/GoogleAuth";
 import FaceBookAuth from "../Social/FaceBookAuth";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function LoginForm() {
   const {
@@ -11,7 +13,6 @@ export default function LoginForm() {
     handleSubmit, 
     formState: { errors },
   } = useForm();
-  const router = useRouter();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -19,10 +20,10 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="w-full relative blurBg flex justify-center items-center">
-      <div className="w-full mx-auto p-10 sm:px-10 px-5 rounded-lg blurBg bg-white dark:bg-gray-800">
+  
+      <div className="w-full mx-auto p-10 sm:px-10 px-5 rounded-lg  custom-glass">
         {/* Title */}
-        <h2 className="text-2xl font-semibold sm:font-3xl font-semibold text-center mb-6 text-gray-700 dark:text-gray-200">
+        <h2 className="text-2xl  sm:font-3xl font-semibold text-center mb-6">
           Login
         </h2>
 
@@ -33,9 +34,9 @@ export default function LoginForm() {
             <label className="block mb-2 text-gray-600 dark:text-gray-300 text-sm font-medium">
               Email*
             </label>
-            <input
+            <Input
               type="email"
-              className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 rounded-full px-4 py-2 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#18181b]"
+            
               placeholder="Enter your email"
               {...register("email", { required: "Email is required" })}
             />
@@ -51,10 +52,9 @@ export default function LoginForm() {
             <label className="block mb-2 text-gray-600 dark:text-gray-300 text-sm font-medium">
               Password*
             </label>
-            <input
+            <Input
               type="password"
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#18181b]"
-              placeholder="Enter your password"
+            
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && (
@@ -83,12 +83,12 @@ export default function LoginForm() {
           </div>
 
           {/* Submit Button */}
-          <button
+          <Button
             type="submit"
-            className="w-full py-2 rounded-full  bg-[#18181b] text-white hover:bg-[#333335] focus:outline-none focus:ring-2 focus:ring-[#18181b]"
+            className="w-full custom-glass text-black dark:text-zinc-200 hover:bg-zinc-950 hover:text-white"
           >
             Login
-          </button>
+          </Button>
         </form>
 
         {/* Sign-Up Button */}
@@ -125,6 +125,6 @@ export default function LoginForm() {
           <FaceBookAuth></FaceBookAuth>
         </div>
       </div>
-    </div>
+    
   );
 }

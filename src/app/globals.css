@@ -67,10 +67,27 @@
   }
 }
 
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+
+
 .section {
   max-width: 1280px;
   margin: 0 auto;
-  /* padding: 2rem; */
+  @apply pl-1 pr-1
   /* text-align: center; */
   /* height: 100vh; */
 }
@@ -85,25 +102,83 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-
-/* --------- class added by robius sani ---------------- */
-.blurBg {
-  background: rgba(255, 255, 255, 0.158);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.custom-glass-2{
+  @apply dark:bg-zinc-900 dark:border-zinc-800;
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.4px);
+  -webkit-backdrop-filter: blur(6.4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* ---------  */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+
+@property  --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+  }
+
+.g-card {
+  @apply bg-white dark:bg-[#1c1f2b] text-slate-500 dark:text-slate-300 shadow-xl border;
+  position: relative;
+  margin: 0 auto;
+  /* padding: 2em; */
+  border-radius: 10px;
+  
+  text-align: center;
+}
+
+.g-card::after, .g-card::before{
+  content: '';
+  position: absolute;
+  height: 104.5%;
+  width: 100.5%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  border-radius: 10px;
+  background-image: conic-gradient(from var(--angle), transparent 70%, indigo, purple, red, deeppink, purple, indigo);
+  animation: 10s gspin linear infinite;
+  
+}
+
+.g-card::before {
+  filter: blur(1.5rem);
+  /* opacity: 0.5; */
+}
+
+@keyframes gspin {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+
+.shimmer {
+  color: grey;
+  display: inline-block;
+  mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+  animation: shimmer 2.5s infinite;
+  font-size: 50px;
+  max-width: 200px;
+}
+
+@keyframes shimmer {
+  100% {
+    mask-position: left
   }
 }
 

@@ -3,6 +3,7 @@ import {Poppins} from 'next/font/google';
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import NextTopLoader from "nextjs-toploader";
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
@@ -18,8 +19,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body  className={`${poppins.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light">
-        <div className="section">
+        <NextTopLoader color="#F83859"/>
         <Navbar/>
+        <div className="section">
+       
         {children}
         </div>
       <Footer/>
