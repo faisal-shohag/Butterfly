@@ -3,18 +3,9 @@ import LoginForm from "./LoginForm";
 
 const Login = () => {
   return (
-    <div className="w-full min-h-screen py-0 sm:p-3 md:py-10 relative  flex justify-center items-center">
-      {/* Content */}
-      <div className="text-white w-full sm:max-w-[1000px] min-h-full sm:h-auto sm:border sm:shadow-md sm:rounded-md mx-auto relative overflow-hidden z-100 grid grid-cols-1 sm:grid-cols-2">
-        <div className="w-full h-full overflow-hidden">
-          <Image
-            src="https://i.postimg.cc/xd1JXkkX/image.png"
-            alt="this is image"
-            height={500}
-            width={500}
-            className="min-w-full hidden sm:block min-h-full"
-          />
-        </div>
+    <div className="w-full py-0 sm:p-3  relative  flex justify-center items-center">
+      <div className="">
+        
         <LoginForm></LoginForm>
       </div>
     </div>

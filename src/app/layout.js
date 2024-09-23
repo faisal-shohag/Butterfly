@@ -20,8 +20,9 @@ export default function RootLayout({ children }) {
       <body  className={`${poppins.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light">
         <NextTopLoader color="#F83859"/>
-        <div className="section">
         <Navbar/>
+        <div className="section">
+       
         {children}
         </div>
       <Footer/>
