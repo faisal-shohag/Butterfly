@@ -1,11 +1,9 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { ModeToggle } from "./ThemeToggle";
-import { Search, User, Menu, User2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,84 +12,93 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Avatar, AvatarImage } from "../ui/avatar";
+import { MdOutlineHive } from "react-icons/md";
+import { Home, Repeat } from "lucide-react";
+import { TbButterfly } from "react-icons/tb";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-    return (
-        <nav className="bg-background border-b mb-5 shadow-lg rounded-full px-5">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
-                    <div className="flex items-center">
-                        <Link href="/" className="flex-shrink-0">
-                            <Image width={50} height={50} src="https://i.postimg.cc/nrSMfQDf/image.png" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="Butterfly logo" className="h-8 w-auto"/>
-                        </Link>
-                        <div className="hidden md:block">
-                            <div className="ml-10 flex items-baseline space-x-4">
-                                <Link href="/" className="text-foreground hover:bg-accent hover:text-accent-foreground px-3 py-2 rounded-md text-sm font-medium">Home</Link>
-                                <Link href="/pages/forum" className="text-foreground hover:bg-accent hover:text-accent-foreground px-3 py-2 rounded-md text-sm font-medium">Community</Link>
-                                <Link href="/pages/authentication/login" className="text-foreground hover:bg-accent hover:text-accent-foreground px-3 py-2 rounded-md text-sm font-medium">Login</Link>
-                                <Link href="/pages/authentication/registration" className="text-foreground hover:bg-accent hover:text-accent-foreground px-3 py-2 rounded-md text-sm font-medium">Registration</Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="hidden md:block">
-                        <div className="ml-4 flex items-center md:ml-6 gap-5">
-                            <div className="relative">
-                                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                                <Input type="text" placeholder="Search" className="pl-8 w-[200px]" />
-                            </div>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button size="icon" variant="ghost" className="ml-3 relative rounded-full">
-                                        <User2  size={20}/>
-                                    </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem>
-                                        <Link href={"/pages/profile"}>Profile</Link>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>Settings</DropdownMenuItem>
-                                    <DropdownMenuItem>Sign out</DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                            <ModeToggle />
-                        </div>
-                    </div>
-                    <Sheet>
-                        <SheetTrigger asChild>
-                            <Button variant="ghost" className="md:hidden">
-                                <Menu className="h-5 w-5" />
-                                <span className="sr-only">Open menu</span>
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side="left">
-                            <SheetHeader>
-                                <SheetTitle>Menu</SheetTitle>
-                                <SheetDescription>
-                                    Navigate through our site
-                                </SheetDescription>
-                            </SheetHeader>
-                            <div className="mt-4 space-y-4">
-                                <Link href="/" className="block text-foreground hover:text-accent-foreground">Home</Link>
-                                <Link href="/about" className="block text-foreground hover:text-accent-foreground">About</Link>
-                                <Link href="/services" className="block text-foreground hover:text-accent-foreground">Services</Link>
-                                <Link href="/contact" className="block text-foreground hover:text-accent-foreground">Contact</Link>
-                            </div>
-                        </SheetContent>
-                    </Sheet>
+    const currentPath = usePathname()
+
+  return (
+    <nav className="bg-background border-b mb-5 custom-glass-2  py-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          <div className="">
+            <div className="flex items-center">
+              <Link
+                href="/"
+                className="flex-shrink-0 flex items-center gap-2 font-bold text-xl"
+              >
+                <Image
+                  width={50}
+                  height={50}
+                  src="https://i.postimg.cc/nrSMfQDf/image.png"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  alt="Butterfly logo"
+                  className="h-8 w-auto"
+                />
+                <div className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-pink-500 to-red-500">
+                  Butterfly
                 </div>
+              </Link>
             </div>
-        </nav>
-    );
+          </div>
+
+        <div className="hidden lg:block md:block">
+          <div className="flex  gap-10 items-center text-slate-600">
+            <Link className={`${currentPath == '/' && 'g-card px-2 py-1 font-semibold'} flex items-center gap-1`} href="/">
+              <Home size={20} /> Home
+            </Link>
+
+            <Link className={`${currentPath == '/pages/exchanges' && 'g-card px-2 py-1 font-semibold'} flex items-center gap-1`}  href="/pages/exchanges">
+              <Repeat size={20} />
+              Exchanges
+            </Link>
+
+            <Link className={`${currentPath == '/pages/store' && 'g-card px-2 py-1 font-semibold'} flex items-center gap-1`}  href="/pages/store">
+              <TbButterfly size={20} />
+              Butterfly Store
+            </Link>
+
+            <Link className={`${currentPath == '/pages/forum' && 'g-card px-2 py-1 font-semibold'} flex items-center gap-1`} href="/pages/forum">
+              <MdOutlineHive size={20} /> Hive
+            </Link>
+          </div>
+          </div>
+
+          <div className="">
+            <div className="ml-4 flex items-center md:ml-6 gap-5">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className=" relative rounded-full"
+                  >
+                    <Avatar>
+                      <AvatarImage src="https://i.postimg.cc/GmY0ZXtx/image.png" />
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <Link href={"/pages/profile"}><DropdownMenuItem>
+             Profile
+                  </DropdownMenuItem></Link>
+                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <DropdownMenuItem>Sign out</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <ModeToggle />
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;

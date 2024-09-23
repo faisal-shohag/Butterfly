@@ -3,8 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Book } from 'lucide-react';
-import Lottie from "react-lottie-player";
-import butterflyAnimation from '@/lottie/butterfly.json'; 
+
 
 const mockData = [
   {
@@ -33,14 +32,6 @@ const mockData = [
 const FeaturedCommunityMembers = () => {
   return (
     <div className="py-12 relative custom-glass rounded-xl mb-10 mt-10">
-          <div className="absolute right-[-100px] top-[-120px] w-60 h-60 z-10">
-        <Lottie
-          loop
-          animationData={butterflyAnimation}
-          play
-          style={{ width: '100%', height: '100%' }}
-        />
-      </div>
       
       <div className="max-w-7xl py-5 mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-extrabold  mb-6">Featured Community Members</h2>
