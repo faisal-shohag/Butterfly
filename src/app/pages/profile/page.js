@@ -40,19 +40,19 @@ const Profile = () => {
         <div className="custom-glass flex w-full p-2 mb-3 rounded-md">
           <button
             onClick={() => setCallOptions("user")}
-            className="custom-glass px-4 font-bold text-gray-600 border !py-1 mr-2 rounded-md"
+            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1 mr-2 rounded-md"
           >
             About User
           </button>
           <button
             onClick={() => setCallOptions("book")}
-            className="custom-glass px-4 font-bold text-gray-600 border !py-1 mr-2 rounded-md"
+            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1 mr-2 rounded-md"
           >
             Add Book
           </button>
           <button
             onClick={() => setCallOptions("exchange")}
-            className="custom-glass px-4 font-bold text-gray-600 border !py-1 mr-2 rounded-md"
+            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1 mr-2 rounded-md"
           >
             Exchanges
           </button>
