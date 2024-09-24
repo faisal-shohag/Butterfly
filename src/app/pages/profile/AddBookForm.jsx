@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export default function ExchangeForm() {
+export default function AddBookForm() {
   const [callNext, setCallNext] = useState(false);
   // Use react-hook-form
   const {
@@ -19,7 +19,7 @@ export default function ExchangeForm() {
   return (
     <div className="w-full p-5">
       <h1 className="text-2xl font-bold text-center text-gray-600 mb-5">
-        Fill the form to exchange a book
+        Add a book on your profile
       </h1>
       <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5">
