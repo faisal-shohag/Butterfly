@@ -1,4 +1,18 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    experimental: {
+      missingSuspenseWithCSRBailout: false,
+    },
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'i.postimg.cc',
+          port: '',
+          pathname: '/**',
+        },
+      ],
+    },
+  };
+  
+  export default nextConfig;

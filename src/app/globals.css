@@ -2,19 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --------- class added by robius sani ---------------- */
-.blurBg {
-  background: rgba(255, 255, 255, 0.158);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
 }
 
-/* ---------  */
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -23,19 +75,114 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
-/* login button style  */ 
+
+
+
+.section {
+  max-width: 1280px;
+  margin: 0 auto;
+  @apply pl-1 pr-1
+  /* text-align: center; */
+  /* height: 100vh; */
+}
+
+.custom-glass{
+  @apply dark:bg-zinc-900 dark:border-zinc-800;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.4px);
+  -webkit-backdrop-filter: blur(6.4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.custom-glass-2{
+  @apply dark:bg-zinc-900 dark:border-zinc-800;
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.4px);
+  -webkit-backdrop-filter: blur(6.4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+
+@property  --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+  }
+
+.g-card {
+  @apply bg-white dark:bg-[#1c1f2b] text-slate-500 dark:text-slate-300 shadow-xl border;
+  position: relative;
+  margin: 0 auto;
+  /* padding: 2em; */
+  border-radius: 10px;
+  
+  text-align: center;
+}
+
+.g-card::after, .g-card::before{
+  content: '';
+  position: absolute;
+  height: 104.5%;
+  width: 100.5%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  border-radius: 10px;
+  background-image: conic-gradient(from var(--angle), transparent 70%, indigo, purple, red, deeppink, purple, indigo);
+  animation: 10s gspin linear infinite;
+  
+}
+
+.g-card::before {
+  filter: blur(1.5rem);
+  /* opacity: 0.5; */
+}
+
+@keyframes gspin {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
+
+.shimmer {
+  color: grey;
+  display: inline-block;
+  mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+  animation: shimmer 2.5s infinite;
+  font-size: 50px;
+  max-width: 200px;
+}
+
+@keyframes shimmer {
+  100% {
+    mask-position: left
+  }
+}
+
+/* login button style  */
 .button {
   border: none;
   display: block;

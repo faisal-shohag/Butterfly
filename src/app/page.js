@@ -1,19 +1,18 @@
-import Navbar from "./components/common/Navbar";
-import Footer from "./components/common/Footer";
-import Banner from "./components/home/Banner";
-import Link from "next/link";
-
+import Banner from "../components/home/Banner";
+import BookShowWithCategory from "@/components/Books/BookShowWithCategory";
+import FeaturedCommunityMembers from "@/components/home/FeaturedCommunityMembers";
+import ButterflyAdvertisement from "@/components/home/ButterflyAdvertisement";
+import TopExchanger from "@/components/home/TopExchanger";
 export default function Home() {
   return (
-    <div className="max-w-3xl mx-auto">
-      <Navbar/>
-      <Banner/>
-     <Footer/>
-      
-      <div className="border p-6 flex items-center gap-5">
-        <Link href="/pages/login">Login</Link>
-        <Link href="/pages/registration">Registration</Link>
+    <>
+      <div className="">
+      {/* <Banner/> */}
+      <TopExchanger/>
+      <FeaturedCommunityMembers/>
+      {/* <BookShowWithCategory/> */}
+      <ButterflyAdvertisement/>
       </div>
-    </div>
+    </>
   );
 }
