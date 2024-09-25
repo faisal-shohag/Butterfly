@@ -1,14 +1,14 @@
 "use server"
 import { createClient } from '@/utils/supabase/server'
 
-export const userNav = async () => {
+export const getUser = async () => {
   const supabase = createClient();
   const { data: { user }, error } = await supabase.auth.getUser();
-  // console.log(user)
+  // console.log(user)s
   if (error) {
     console.error('Error fetching user:', error);
     return null;
   }
 
-  return user; // Return user data to be fetched by the client component
+  return user; 
 };
