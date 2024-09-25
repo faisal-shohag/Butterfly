@@ -8,7 +8,7 @@ export default function ProfileBookCard() {
   return (
     <div className="w-full p-4 border rounded-lg bg-white dark:bg-gray-800 shadow-md transition-all duration-300 ease-in-out hover:shadow-lg custom-glass">
       {/* Flex container for book image and information */}
-      <div className="w-full flex flex-col md:flex-row justify-center gap-4 items-center">
+      <div className="w-full flex  justify-center gap-4 items-center">
         {/* Book Image */}
         <div className="w-full md:w-1/3 h-[120px] rounded-md overflow-hidden">
           <Image

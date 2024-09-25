@@ -1,4 +1,7 @@
 import PostCard from "../forum/PostCard";
+import { BsFileEarmarkPostFill } from "react-icons/bs";
+import { MdOutlineRateReview, MdOutlineFeedback } from "react-icons/md";
+import { GiCardExchange } from "react-icons/gi";
 
 export default function UsersPosts() {
   return (
@@ -8,20 +11,24 @@ export default function UsersPosts() {
         <h3 className="font-bold opacity-70">Posts</h3>
       </div>
 
-      <div className="w-full flex gap-3">
+      <div className="w-full flex flex-col sm:flex-row gap-3">
         {/* Sidebar with category buttons (All Posts, Reviews, Exchange, Feedback) */}
         <div className="w-full sm:w-[250px] mb-3 flex sm:flex-col gap-3">
-          <button className="w-full custom-glass rounded-md py-1 font-bold opacity-70 ">
-            All Posts
+          <button className="w-full custom-glass flex justify-center items-center gap-1 rounded-md py-1 font-bold opacity-70 ">
+            <BsFileEarmarkPostFill />
+            <p className="hidden sm:block">All Posts</p>
           </button>
-          <button className="w-full custom-glass rounded-md py-1 font-bold opacity-70 ">
-            Reviews
+          <button className="w-full custom-glass flex justify-center items-center gap-1 rounded-md py-1 font-bold opacity-70 ">
+            <MdOutlineRateReview />
+            <p className="hidden sm:block">Reviews</p>
           </button>
-          <button className="w-full custom-glass rounded-md py-1 font-bold opacity-70 ">
-            Exchange
+          <button className="w-full custom-glass flex justify-center items-center gap-1 rounded-md py-1 font-bold opacity-70 ">
+            <GiCardExchange />
+            <p className="hidden sm:block">Exchange</p>
           </button>
-          <button className="w-full custom-glass rounded-md py-1 font-bold opacity-70 ">
-            Feedback
+          <button className="w-full custom-glass flex justify-center items-center gap-1 rounded-md py-1 font-bold opacity-70 ">
+            <MdOutlineFeedback />
+            <p className="hidden sm:block">Feedback</p>
           </button>
         </div>
 

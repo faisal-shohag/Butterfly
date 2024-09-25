@@ -29,7 +29,12 @@ export default function AboutUSer() {
         <hr />
 
         {/* Display a list of exchanged book pairs using flexbox for responsiveness */}
-        <div className="w-full gap-3 py-2 pt-4 flex items-center flex-wrap">
+        <div
+          className="w-full gap-3 py-2 pt-4 grid md:flex md:flex-wrap items-center"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+          }}
+        >
           {/* Create 5 pairs of exchanged books using Array.map */}
           {Array.from({ length: 5 }).map((_, i) => (
             <div
