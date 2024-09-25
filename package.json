@@ -49,9 +49,6 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
-<<<<<<< HEAD
-    "react-icons": "^5.3.0"
-=======
     "react-icons": "^5.3.0",
     "react-lottie-player": "^2.1.0",
     "sonner": "^1.5.0",
@@ -59,7 +56,6 @@
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.4",
     "zod": "^3.23.8"
->>>>>>> f8959f4c6763709e05216c6b6c2d1ab6a9a7c06a
   },
   "devDependencies": {
     "daisyui": "^4.12.10",
