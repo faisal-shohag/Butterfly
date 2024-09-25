@@ -1,11 +1,9 @@
 import { ThemeProvider } from "@/providers/theme-provider";
-import { SessionProvider } from "next-auth/react";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import NextTopLoader from "nextjs-toploader";
-import { AuthProvider } from "@/providers/authProvider";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
