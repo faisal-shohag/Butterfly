@@ -135,49 +135,21 @@ export default function AddBookForm() {
             )}
           </div>
 
-          {/* Opinion */}
-          {callNext ? (
-            <div className="w-full col-span-1 sm:col-span-2">
-              <label className="text-gray-500 font-medium">Opinion*</label>
-              <textarea
-                className="w-full mt-1 rounded-md py-1 px-3 border outline-0"
-                placeholder="Your Opinion"
-                {...register("opinion", { required: "Opinion is required" })}
-              />
-              {errors.opinion && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.opinion.message}
-                </p>
-              )}
-            </div>
-          ) : (
-            <div
-              onClick={() => setCallNext(!callNext)}
-              className="w-full col-span-1 sm:col-span-2 flex justify-end items-end"
-            >
-              <button className="custom-glass px-4 w-[120px] font-bold !bg-gray-900 !dark:bg-gray-100 !text-gray-200 !dark:text-gray-900 !py-1 rounded-md">
-                Next
-              </button>
-            </div>
-          )}
-
           {/* Submit Button */}
-          {callNext ? (
-            <div className="w-full col-span-1 sm:col-span-2 flex justify-between items-center">
-              <button
-                type="submit"
-                className="custom-glass px-4 w-[120px] font-bold !bg-gray-900 !dark:bg-gray-100 !text-gray-200 !dark:text-gray-900 !py-1 rounded-md"
-              >
-                Submit
-              </button>
-              <button
-                type="reset"
-                className="custom-glass px-4 w-[120px] font-bold !bg-gray-900 !dark:bg-gray-100 !text-gray-200 !dark:text-gray-900 !py-1 rounded-md"
-              >
-                Clear
-              </button>
-            </div>
-          ) : null}
+          <div className="w-full col-span-1 sm:col-span-2 flex justify-between items-center">
+            <button
+              type="submit"
+              className="custom-glass px-4 w-[120px] font-bold !bg-gray-900 !dark:bg-gray-100 !text-gray-200 !dark:text-gray-900 !py-1 rounded-md"
+            >
+              Submit
+            </button>
+            <button
+              type="reset"
+              className="custom-glass px-4 w-[120px] font-bold !bg-gray-900 !dark:bg-gray-100 !text-gray-200 !dark:text-gray-900 !py-1 rounded-md"
+            >
+              Clear
+            </button>
+          </div>
         </div>
       </form>
     </div>

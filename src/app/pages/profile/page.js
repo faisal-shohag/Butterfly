@@ -5,12 +5,15 @@ import ExchangeForm from "./ExchangeForm";
 import { useState } from "react";
 import AddBookForm from "./AddBookForm";
 import AboutUSer from "./AboutUSer";
+import UsersPosts from "./UsersPosts";
 
 const Profile = () => {
+  // useState hook to handle the current selected option (user, book, exchange)
   const [callOptions, setCallOptions] = useState("user");
 
   return (
     <div className="mx-auto mt-[-20px]">
+      {/* Banner section with profile information */}
       <div
         style={{
           backgroundImage: "url('https://i.postimg.cc/05wQx63s/image.png')",
@@ -22,6 +25,7 @@ const Profile = () => {
         }}
         className="custom-glass-2 h-32 relative mb-28"
       >
+        {/* Profile image with border and rounded corners */}
         <div className="absolute bottom-[-70px] left-[10px] border-4 rounded-full dark:border-zinc-900 border-white">
           <Image
             src="https://i.postimg.cc/5tqhtjwH/image.png"
@@ -31,12 +35,17 @@ const Profile = () => {
             className="rounded-full"
           />
         </div>
+
+        {/* User name and email below the profile picture */}
         <div className="absolute left-32 -bottom-16">
           <div className="text-2xl font-bold">Jabir Ibn Haiyan</div>
           <div className="font-semibold">jabir.haiyan@gmail.com</div>
         </div>
       </div>
+
+      {/* Main content container */}
       <div className="container mx-auto px-2">
+        {/* Navigation buttons to switch between sections (About User, Add Book, Exchanges) */}
         <div className="custom-glass flex w-full p-2 mb-3 rounded-md">
           <button
             onClick={() => setCallOptions("user")}
@@ -57,12 +66,19 @@ const Profile = () => {
             Exchanges
           </button>
         </div>
+
+        {/* Display the section based on the current selected option */}
         <div className="custom-glass w-full p-2 rounded-md">
-          {callOptions === "user" && <AboutUSer />}
-          {callOptions === "book" && <AddBookForm />}
-          {callOptions === "exchange" && <ExchangeForm />}
+          {callOptions === "user" && <AboutUSer />}{" "}
+          {/* Show About User section */}
+          {callOptions === "book" && <AddBookForm />} {/* Show Add Book form */}
+          {callOptions === "exchange" && <ExchangeForm />}{" "}
+          {/* Show Exchanges form */}
         </div>
       </div>
+
+      {/* User's posts displayed below */}
+      <UsersPosts />
     </div>
   );
 };
