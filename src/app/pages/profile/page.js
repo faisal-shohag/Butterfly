@@ -47,28 +47,28 @@ const Profile = () => {
       {/* Main content container */}
       <div className="container mx-auto px-2">
         {/* Navigation buttons to switch between sections (About User, Add Book, Exchanges) */}
-        <div className="custom-glass flex flex-wrap justify-center items-center sm:justify-start w-full p-2 mb-3 rounded-md">
+        <div className="custom-glass flex flex-wrap justify-center items-center gap-2 sm:justify-start w-full p-2 mb-3 rounded-md">
           <button
             onClick={() => setCallOptions("user")}
-            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1 mr-2 rounded-md"
+            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1  rounded-md"
           >
             About User
           </button>
           <button
             onClick={() => setCallOptions("book")}
-            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1 mr-2 rounded-md"
+            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1  rounded-md"
           >
             Add Book
           </button>
           <button
             onClick={() => setCallOptions("exchange")}
-            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1 mr-2 rounded-md"
+            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1  rounded-md"
           >
             Exchanges
           </button>
           <button
             onClick={() => setCallOptions("settings")}
-            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1 mr-2 rounded-md"
+            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1  rounded-md"
           >
             Settings
           </button>
