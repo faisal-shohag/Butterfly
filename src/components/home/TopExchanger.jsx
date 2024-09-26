@@ -38,6 +38,8 @@ const TopExchanger = () => {
         }
     };
 
+    
+
     return (
         <div className="relative">
             <Heading icon={<RiSwap2Fill />} title={"Latest Exchanges"}/>

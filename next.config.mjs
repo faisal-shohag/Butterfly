@@ -4,6 +4,7 @@ const nextConfig = {
       missingSuspenseWithCSRBailout: false,
     },
     images: {
+      domains: ['miro.medium.com'],
       remotePatterns: [
         {
           protocol: 'https',
