@@ -19,7 +19,7 @@ export default function UpdateUserInfo() {
     <div className="w-full">
       {/* Header Section */}
       <div className="w-full pb-2 flex justify-between border-dashed border-b-2">
-        <h3 className="font-bold">User Info</h3>
+        <h3 className="font-bold">Update User Informetion</h3>
       </div>
 
       {/* Form Section */}

@@ -95,8 +95,8 @@ export default function Page() {
           </div>
 
           {/* Main content area where forms are displayed based on the selected option */}
-          <div className="w-full  mb-3 p-3 rounded-md">
-            <div className="w-full custom-glass">
+          <div className="w-full  mb-3  ">
+            <div className="w-full custom-glass p-3 rounded-md">
               {/* Conditional rendering based on the selected settings option */}
               {callSettingsForm === "Profile" && <UpdateProfile />}
               {callSettingsForm === "UserInfo" && <UpdateUserInfo />}
