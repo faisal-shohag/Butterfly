@@ -1,4 +1,5 @@
 "use client";
+import { useAuth } from "@/providers/authProvider";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -10,12 +11,12 @@ export default function ExchangeForm() {
     formState: { errors },
     reset,
   } = useForm();
-
+  const userdata = useAuth();
+  console.log(userdata.user.id);
   // Submit handler
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // Generating the formatted data
     const formattedData = {
-      id: 4, // This should ideally be dynamic, depending on your system
       title: data.title,
       isbn: data.isbn,
       publishedYear: data.publishedYear,
@@ -23,7 +24,7 @@ export default function ExchangeForm() {
       description: data.description,
       cover: data.cover,
       genre: data.genre,
-      userId: "65463587632165465563",
+      userId: userdata.user.id,
       author: data.author,
       lookingFor: {
         cover: data.lookingCover,
@@ -35,6 +36,33 @@ export default function ExchangeForm() {
     };
     console.log("Formatted Data:", formattedData);
     reset(); // Resetting the form after submission
+
+    try {
+      // Sending the POST request using fetch
+      const response = await fetch(
+        "https://butterfly-backend.vercel.app/books",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formattedData),
+        }
+      );
+
+      // Check if the response is ok (status in the range 200-299)
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      console.log("Success:", responseData);
+
+      // Reset the form after successful submission
+      reset();
+    } catch (error) {
+      console.error("Error submitting the form:", error.message);
+    }
   };
 
   return (
@@ -44,7 +72,7 @@ export default function ExchangeForm() {
       </h1>
       <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
         {/* Title */}
-        <div className="w-full">
+        <div className="w-full mb-4">
           <label className="text-gray-500 font-medium">Title*</label>
           <input
             type="text"
