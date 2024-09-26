@@ -36,7 +36,6 @@ export default function CreatePostSection() {
                   
                   className={`px-2 py-2 rounded-full transition-colors duration-200 ease-in-out bg-black text-white dark:bg-zinc-700`}
                 >
-            
                     <SendHorizonal size={15} />
                 </button>
               </div>
