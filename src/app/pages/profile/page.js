@@ -6,6 +6,7 @@ import { useState } from "react";
 import AddBookForm from "./AddBookForm";
 import AboutUSer from "./AboutUSer";
 import UsersPosts from "./UsersPosts";
+import Settings from "./Settings";
 
 const Profile = () => {
   // useState hook to handle the current selected option (user, book, exchange)
@@ -46,7 +47,7 @@ const Profile = () => {
       {/* Main content container */}
       <div className="container mx-auto px-2">
         {/* Navigation buttons to switch between sections (About User, Add Book, Exchanges) */}
-        <div className="custom-glass flex w-full p-2 mb-3 rounded-md">
+        <div className="custom-glass flex flex-wrap justify-center items-center sm:justify-start w-full p-2 mb-3 rounded-md">
           <button
             onClick={() => setCallOptions("user")}
             className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1 mr-2 rounded-md"
@@ -65,6 +66,12 @@ const Profile = () => {
           >
             Exchanges
           </button>
+          <button
+            onClick={() => setCallOptions("settings")}
+            className="custom-glass px-4 font-bold text-gray-600 dark:text-gray-200 border !py-1 mr-2 rounded-md"
+          >
+            Settings
+          </button>
         </div>
 
         {/* Display the section based on the current selected option */}
@@ -73,6 +80,7 @@ const Profile = () => {
           {/* Show About User section */}
           {callOptions === "book" && <AddBookForm />} {/* Show Add Book form */}
           {callOptions === "exchange" && <ExchangeForm />}{" "}
+          {callOptions === "settings" && <Settings />}{" "}
           {/* Show Exchanges form */}
         </div>
       </div>
