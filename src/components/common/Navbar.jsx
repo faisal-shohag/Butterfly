@@ -37,7 +37,7 @@ const Navbar = () => {
     await signOut(); 
   };
 
-  console.log(user)
+  
   return (
     <nav className="bg-background border-b mb-5 custom-glass-2  py-3">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

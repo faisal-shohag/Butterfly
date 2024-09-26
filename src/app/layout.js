@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import NextTopLoader from "nextjs-toploader";
+import { AuthProvider } from "@/providers/authProvider";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -22,9 +23,11 @@ export default async function RootLayout({ children }) {
        
         <ThemeProvider attribute="class" defaultTheme="light">
           <NextTopLoader color="#F83859" />
+         <AuthProvider>
           <Navbar />
           <div className="section">{children}</div>
           <Footer />
+          </AuthProvider>
         </ThemeProvider>
       
       </body>

@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from 'react';
-import { supabase, getSession } from '../lib/supabaseClient';
-
+import { supabase } from '@/lib/supabase';
+import { getUser } from '@/hooks/useUser';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -10,17 +10,18 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadSession = async () => {
-      const session = await getSession();
-      if (session) {
-        setUser(session.user);
+    const fetchUser = async () => {
+      const userData = await getUser();
+      if (userData){
+        setUser(userData);
       } else {
         setUser(null);
       }
       setLoading(false);
     };
 
-    loadSession();
+
+    fetchUser();
 
     // Supabase auth state listener
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
