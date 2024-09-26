@@ -9,11 +9,11 @@ const SingleBook = ({book}) => {
     return (
         <div className='border p-2 rounded-md shadow-md group'>
            <div className=' flex gap-2 justify-center items-center mt-3'>
-           <Image src= {cover} alt="image" width={60} height={60} className=' mb-3 md:mb-0 h-20 w-20 rounded-full group-hover:scale-105'/>
+           <Image src= {cover} alt="image" width={96} height={96} className=' mb-3 md:mb-0 h-24 w-24 rounded-md group-hover:scale-105'/>
            <div className="text-3xl text-green-600">
                                 <MdOutlineSwapCalls />
                             </div>
-           <Image src= {lookingCover} alt="image" width={60} height={60} className=' mb-3 md:mb-0 h-20 w-20 rounded-full group-hover:scale-105'/>
+           <Image src= {lookingCover} alt="image" width={96} height={96} className=' mb-3 md:mb-0 h-24 w-24 rounded-md group-hover:scale-105'/>
            </div>
            <div className='mt-3'>
             <h2 className="font-bold text-sm">{title}</h2>
