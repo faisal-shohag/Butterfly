@@ -11,7 +11,7 @@ export function OAuthButtons () {
         }
     ]
 
-    return <>
+    return <div className="flex flex-col justify-center">
         {
             oAuthProvider.map((provider) => (
                 <Button onClick={async () => {
@@ -23,6 +23,8 @@ export function OAuthButtons () {
                     </span>
                 </Button>
             ))
+        
         }
-    </>
+       
+    </div>
 }

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <div className="">
-      {/* <Banner/> */}
+      <Banner/>
       <TopExchanger/>
       <FeaturedCommunityMembers/>
       {/* <BookShowWithCategory/> */}
