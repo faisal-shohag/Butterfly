@@ -5,7 +5,7 @@ export const getURL = (path='') => {
     process?.env.NEXT_PUBLIC_VERCEL_URL &&
     process.env.NEXT_PUBLIC_VERCEL_URL.trim() !== ''
     ? process.env.NEXT_PUBLIC_VERCEL_URL
-    : 'http://localhost:3000/'
+    : 'https://butterfly-books.vercel.app/'
 
     url = url.replace(/\/+$/, '')
     url = url.includes('http') ? url : `https://${url}`
