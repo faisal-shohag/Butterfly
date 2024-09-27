@@ -22,7 +22,7 @@ export default function PostCard() {
           <div className="flex flex-col">
             <strong className="dark:text-gray-200">FANTASTIC SIX</strong>
             <small className="text-gray-600 dark:text-gray-400">
-              Book
+              Book 
             </small>
           </div>
         </div>
