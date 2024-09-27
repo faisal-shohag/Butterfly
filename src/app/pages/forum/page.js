@@ -1,5 +1,7 @@
+"use client"
 import CreatePostSection from "./CreatePostSection";
 import PostCard from "./PostCard";
+import { useState,useEffect } from 'react';
 
 export default function Hive() {
   return (
@@ -7,8 +9,11 @@ export default function Hive() {
       <div className="w-full flex justify-center">
         <div className="w-[700px] flex flex-col  justify-start items-center gap-5">
           <CreatePostSection />
-          {Array.from({ length: 10 }).map((_, index) => (
-            <PostCard key={index} />
+
+          
+
+          {Array.from({ length: 1 }).map((_, index) => (
+            <PostCard key={index} postId={index} />
           ))}
         </div>
       </div>
