@@ -78,11 +78,7 @@ const Banner = () => {
                 {slide.description}
               </p>
               <Button 
-                variant="outline" 
                 size="lg" 
-                className={`text-white border-white hover:bg-white hover:text-black transition-all duration-300 ${
-                  index === current ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-                }`}
               >
                 Exchange Now
               </Button>

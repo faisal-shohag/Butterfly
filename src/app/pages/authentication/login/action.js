@@ -126,3 +126,5 @@ export async function insertUserData(supabase, userData) {
     console.error('Error inserting user data:', error)
   }
 }
+
+
