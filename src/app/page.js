@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <div className="">
-      {/* <Banner/> */}
+      <Banner/>
       <TopExchanger/>
       {/* User Data  */}
       <Users></Users>

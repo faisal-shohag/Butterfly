@@ -19,26 +19,16 @@ import { TbButterfly } from "react-icons/tb";
 import { usePathname } from "next/navigation";
 import { userNav } from "./userNav"; 
 import { signOut } from "@/app/pages/authentication/login/action";
-// import { useAuth } from "@/providers/authProvider";
+import { useAuth } from "@/providers/authProvider";
 const Navbar = () => {
   const currentPath = usePathname();
-  const [user, setUser] = useState(null); 
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const userData = await userNav();
-      setUser(userData); 
-    };
-
-    fetchUser();
-  }, []);
+ const { user } = useAuth();
 
   const handleSignOut = async () => {
     await signOut(); 
   };
 
-  
-  return (
+return (
     <nav className="bg-background border-b mb-5 custom-glass-2  py-3">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -119,12 +109,12 @@ const Navbar = () => {
                       className=" relative rounded-full"
                     >
                       <Avatar>
-                        <AvatarImage src="https://i.postimg.cc/GmY0ZXtx/image.png" />
+                        <AvatarImage src={user.avatar_url} />
                       </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>{user.user_metadata.full_name}</DropdownMenuLabel>
+                    <DropdownMenuLabel>{user.full_name}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <Link href={"/pages/profile"}>
                       <DropdownMenuItem>Profile</DropdownMenuItem>

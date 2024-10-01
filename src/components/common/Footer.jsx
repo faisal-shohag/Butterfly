@@ -1,4 +1,4 @@
-"use client"
+"use server"
 import Image from 'next/image';
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
@@ -9,9 +9,9 @@ const Footer = () => {
     return (
         <footer className="bg-zinc-100 dark:bg-zinc-900 pt-12 pb-8 mt-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8"> 
+                <div className="grid grid-cols-1 place-content-center text-center md:grid-cols-4 gap-8"> 
                     {/* Logo and Motto */}
-                    <div className="flex flex-col items-start">
+                    <div className="flex flex-col lg:items-start items-center">
                         <Image src="https://i.postimg.cc/nrSMfQDf/image.png" alt="Butterfly Logo" width={80} height={80} />
                         <h2 className="mt-2 text-xl font-bold text-gray-900 dark:text-white">Butterfly</h2>
                         <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">Let your book fly</p>
