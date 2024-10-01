@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-      missingSuspenseWithCSRBailout: false,
-    },
+    // experimental: {
+      // missingSuspenseWithCSRBailout: false,
+      // staleTimes: {
+      //   dynamic: 30
+      // }
+    // },
     images: {
       remotePatterns: [
         {
@@ -42,6 +45,12 @@ const nextConfig = {
           port: '',
           pathname: '/**',
         
+        },
+        {
+          protocol: 'https',
+          hostname: 'lh3.googleusercontent.com',
+          port: '',
+          pathname: '/**',
         }
        
         
