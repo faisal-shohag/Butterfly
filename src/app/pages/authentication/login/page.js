@@ -44,6 +44,7 @@ const Login = () => {
       } else {
         await login(formData);
       }
+      // window.location.reload()
     } catch (error) {
       setServerError(error.message || "An error occurred. Please try again.");
     } finally {
@@ -52,7 +53,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex  justify-center">
       <Suspense fallback={<div>Loading...</div>}>
         {searchParams.get("error") === "verify" ? (
           <div className="custom-glass-2 p-10 rounded-xl flex flex-col justify-center items-center text-center gap-3">
@@ -66,7 +67,7 @@ const Login = () => {
             </div>
           </div>
         ) : (
-          <Card>
+          <Card className="w-96 custom-glass">
             <CardHeader>
               <CardTitle>
                 {searchParams.get("error")
@@ -157,22 +158,21 @@ const Login = () => {
                     </Alert>
                   )}
                 </div>
-                <CardFooter className="flex justify-between mt-6">
-                  <Button type="submit" disabled={loading}>
+                <CardFooter className="flex flex-col justify-center gap-2 items-center mt-6">
+                  <Button variant="outline" className="w-full" type="submit" disabled={loading}>
                     {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                     {isSignup ? "Sign Up" : "Login"}
                   </Button>
-                  <Button
-                    variant="outline"
-                    type="button"
+                  Or
+                  <div
+                   
+                    className="text-sm font-medium cursor-pointer underline"
                     onClick={() => setIsSignup(!isSignup)}
                     disabled={loading}
                   >
                     {isSignup ? "Switch to Login" : "Switch to Sign Up"}
-                  </Button>
-                  <Button variant="outline" disabled={loading}>
-                    Forgot Password?
-                  </Button>
+                  </div>
+                  
                 </CardFooter>
               </form>
               <OAuthButtons />
