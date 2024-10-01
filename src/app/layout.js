@@ -5,6 +5,9 @@ import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import NextTopLoader from "nextjs-toploader";
 import { AuthProvider } from "@/providers/authProvider";
+import ReactQueryProvider from "@/providers/reactQueryProvider";
+import BottomNavBar from "@/components/common/BottomNavBar";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -16,6 +19,9 @@ export const metadata = {
   description: "A book exchange app. Share your books with other.",
 };
 
+
+
+
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -23,11 +29,16 @@ export default async function RootLayout({ children }) {
        
         <ThemeProvider attribute="class" defaultTheme="light">
           <NextTopLoader color="#F83859" />
+      <ReactQueryProvider>
          <AuthProvider>
+         <Toaster/>
           <Navbar />
           <div className="section">{children}</div>
+          <div className="lg:hidden md:hidden block"><BottomNavBar/></div>
           <Footer />
           </AuthProvider>
+          </ReactQueryProvider>
+        
         </ThemeProvider>
       
       </body>
