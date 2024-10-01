@@ -1,0 +1,190 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id         String    @id @default(uuid())
+  name       String
+  username   String? @unique
+  email      String    @unique
+  password   String?
+  emailVerified DateTime?
+  image  String?
+  coverPhoto String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  role String?
+  accounts      Account[]
+  sessions      Session[]
+  books      Book[]
+  comments   Comment[]
+  likes      Like[]
+  posts      Post[]
+  replies    Reply[]
+    followers     Follows[] @relation("following")
+  following     Follows[] @relation("follower")
+
+
+  @@map("users")
+}
+
+
+model Follows {
+  follower    User     @relation("follower", fields: [followerId], references: [id])
+  followerId  String
+  following   User     @relation("following", fields: [followingId], references: [id])
+  followingId String
+  createdAt   DateTime @default(now())
+
+  @@id([followerId, followingId])
+  @@map("follows")
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+  @@map("accounts")
+}
+
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Book {
+  id            Int               @id @default(autoincrement())
+  title         String
+  isbn          String?
+  publishedYear String?
+  publisher     String?
+  description   String?
+  cover         String?
+  genre         String
+  userId        String
+  lookingFor    Json
+  author        String
+  user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  samplePhotos  BookSamplePhoto[]
+}
+
+model BookSamplePhoto {
+  id     Int    @id @default(autoincrement())
+  url    String
+  bookId Int
+  book   Book   @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  @@index([bookId])
+}
+
+model Post {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  content   String
+  authorId  String
+  type      String?
+  comments  Comment[]
+  images    Image[]   @relation("PostImages")
+  likes     Like[]
+  author    User      @relation(fields: [authorId], references: [id])
+
+  @@index([authorId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  authorId  String
+  postId    Int
+  author    User     @relation(fields: [authorId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+  images    Image[]  @relation("CommentImages")
+  likes     Like[]
+  replies   Reply[]
+
+  @@index([authorId])
+  @@index([postId])
+}
+
+model Reply {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  content   String
+  authorId  String
+  commentId Int
+  likes     Like[]
+  author    User     @relation(fields: [authorId], references: [id])
+  comment   Comment  @relation(fields: [commentId], references: [id])
+
+  @@index([authorId])
+  @@index([commentId])
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  postId    Int?
+  commentId Int?
+  replyId   Int?
+  comment   Comment? @relation(fields: [commentId], references: [id])
+  post      Post?    @relation(fields: [postId], references: [id])
+  reply     Reply?   @relation(fields: [replyId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, postId, commentId, replyId])
+  @@index([userId])
+}
+
+model Image {
+  id        Int      @id @default(autoincrement())
+  url       String
+  fileId    String? 
+  postId    Int?
+  commentId Int?
+  comment   Comment? @relation("CommentImages", fields: [commentId], references: [id], onDelete: Cascade)
+  post      Post?    @relation("PostImages", fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@index([commentId])
+}
