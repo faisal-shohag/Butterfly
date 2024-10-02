@@ -7,6 +7,7 @@ import { FaBookMedical } from "react-icons/fa";
 
 import { FaBookmark, FaShare } from 'react-icons/fa6';
 import Loading from '@/components/common/Loading';
+import UserAvatar from '@/components/common/UserAvatar';
 
 const BookDetailsPage = ({ params }) => {
   const { exchangeId: id } = params;
@@ -92,15 +93,9 @@ const BookDetailsPage = ({ params }) => {
             <div className="mt-6">
               <h2 className="text-2xl font-semibold text-slate-500">Book Owner</h2>
               <div className="mt-4 flex items-center">
-                <Image
-                  src={book.user.avatar_url}
-                  alt={book.user.full_name}
-                  width={50}
-                  height={50}
-                  className="h-12 w-12 rounded-full"
-                />
+              <UserAvatar image={book.user.image} name={book.user.name}/>
                 <div className="ml-4">
-                  <h3 className="text-lg font-semibold">{book.user.full_name}</h3>
+                  <h3 className="text-lg font-semibold">{book.user.name}</h3>
                   <p className="text-gray-600">{book.user.email}</p>
                 </div>
               </div>

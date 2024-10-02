@@ -11,6 +11,7 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import './styles.css'
+import UserAvatar from "@/components/common/UserAvatar";
 
 const CreatePost = ({user}) => {
   const axiosSecure = useAxiosSecure();
@@ -139,12 +140,7 @@ const CreatePost = ({user}) => {
         <div className="shadow-sm mb-10 border dark:bg-[#141414] bg-white px-4 py-4 rounded-2xl max-w-2xl mx-auto">
           <div></div>
           <div className="flex items-start gap-4 font-kalpurush">
-           {user && <Image
-            height={10} width={10} 
-              src={!user.image ? "https://i.postimg.cc/bY39DvGm/image.png": user.image} 
-              alt={user.name} 
-              className="w-10 h-10 rounded-full object-cover border-2 border-zinc-400"
-            />}
+           {user && <UserAvatar image={user.image} name={user.name}/>}
             <div className="flex-grow relative rounded-xl border-2 shadow-sm pb-5 dark:bg-zinc-900">
              <EditorContent className="w-full p-3 max-h-[20rem] overflow-y-auto border-none" editor={editor}/>
               {selectedImages.length > 0 && (
