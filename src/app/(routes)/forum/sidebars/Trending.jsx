@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import UserAvatar from "@/components/common/UserAvatar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
@@ -50,7 +51,7 @@ async function WhoToFollow () {
 
 
 
-    return  <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
+    return  <div className="space-y-5 rounded-2xl bg-card dark:bg-zinc-900 p-5 shadow-sm">
     <div className="text-xl font-bold">Who to follow</div>
     {usersToFollow.map((u) => (
       <div key={u.id} className="flex items-center justify-between gap-3">
@@ -58,15 +59,7 @@ async function WhoToFollow () {
           href={`/users/${u.name}`}
           className="flex items-center gap-3"
         >
-      <Avatar>
-                <AvatarImage
-                  src={u.image}
-                  alt={u.name}
-                />
-                <AvatarFallback>
-                  {u.name.charAt(0)}
-                </AvatarFallback>
-              </Avatar>
+         <UserAvatar image={u.image} name={u.name}/>
           <div>
             <div className="line-clamp-1 text-sm break-all font-semibold hover:underline">
               {u.name}
@@ -120,7 +113,7 @@ const TrendingTopics = async () => {
     const trendingTopics = await getTrendingTopics();
     // console.log(trendingTopics);
      return (
-    <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm mt-10">
+    <div className="space-y-5 rounded-2xl bg-card dark:bg-zinc-900 p-5 shadow-sm mt-10">
       <div className="text-xl font-bold">Trending topics</div>
       {trendingTopics.map(({ hashtag, count }) => {
         const title = hashtag;

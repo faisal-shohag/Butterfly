@@ -17,7 +17,7 @@ export default async function Hive() {
         </div>
 
         <div className="lg:block hidden">
-          <TrendsSidebar className="fixed dark:bg-zinc-900 right-[5.25rem] top-[5.25rem] hidden h-fit flex-none  sm:block lg:px-5 xl:w-80" />
+          <TrendsSidebar className="fixed  right-[5.25rem] top-[5.25rem] hidden h-fit flex-none  sm:block lg:px-5 xl:w-80" />
       </div>
       
 

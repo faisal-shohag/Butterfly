@@ -29,3 +29,21 @@ export const signUpSchema = signInSchema.extend({
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
+
+
+
+  export const bookSchema = z.object({
+    title: z.string().min(1, "Title is required"),
+    author: z.string().min(1, "Author is required"),
+    isbn: z.string().optional(),
+    publishedYear: z.string().optional(),
+    publisher: z.string().optional(),
+    cover: z.string().url("Invalid URL").optional(),
+    description: z.string().optional(),
+    genre: z.string().min(1, "Genre is required"),
+    lookingForTitle: z.string().optional(),
+    lookingForAuthor: z.string().optional(),
+    lookingForCover: z.string().url("Invalid URL").optional(),
+    lookingForGenre: z.string().optional(),
+    lookingForDescription: z.string().optional(),
+  });

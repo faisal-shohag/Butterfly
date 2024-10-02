@@ -18,6 +18,7 @@ import { TbButterfly } from "react-icons/tb";
 import { usePathname } from "next/navigation";
 import { Input } from "../ui/input";
 import { signOut, useSession } from "next-auth/react";
+import UserAvatar from "./UserAvatar";
 
 const Navbar = () => {
   const currentPath = usePathname();
@@ -43,7 +44,10 @@ return (
                   className="h-8 w-auto"
                 />
                 <div className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-indigo-500 to-blue-500">
-                  {currentPath == "/forum" ? "Hive" : "Butterfly"}
+                  {currentPath == "/forum" ? "Hive" : <div>
+                    <div>Butterfly</div>
+                    <div className="text-xs -mt-2">Let your book fly!</div>
+                    </div>}
                 </div>
               </Link>
               <div className="flex items-center">
@@ -110,9 +114,7 @@ return (
                       variant="ghost"
                       className=" relative rounded-full"
                     >
-                      <Avatar>
-                        <AvatarImage src={user.image === null ? 'https://i.postimg.cc/bY39DvGm/image.png': user.image} />
-                      </Avatar>
+                     <UserAvatar image={user.image} name={user.name}/>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
