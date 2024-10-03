@@ -12,7 +12,7 @@ import {
 export default function UserProfile() {
   return (
     <div className="w-full col-span-1 sm:col-span-2">
-      <div className="w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+      <div className="w-full bg-white dark:bg-gray-900 shadow-lg rounded-lg p-6">
         <div className="text-center">
           {/* Profile Icon with Text */}
           <p className="text-3xl text-gray-700 dark:text-gray-300 mb-2">📚📖</p>
@@ -77,7 +77,7 @@ export default function UserProfile() {
           </div>
 
           {/* Books Exchanged */}
-          <div className="mt-4 flex flex-col space-y-2 text-gray-600 dark:text-gray-300">
+          <div className="mt-4 flex flex-col  space-y-2 text-gray-600 dark:text-gray-300">
             <h3 className="text-lg font-semibold">Books Exchanged:</h3>
             <div className="flex items-center">
               <FaBook className="mr-2" />

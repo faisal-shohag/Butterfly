@@ -4,7 +4,7 @@ import UserExchanges from "./UserExchanges";
 
 export default function PostSection() {
   return (
-    <div className="w-full bg-white p-2 mt-3 rounded-md shadow-md">
+    <div className="w-full bg-white dark:bg-gray-900 p-2 mt-3 rounded-md shadow-md">
       <Tabs defaultValue="Posts" className="w-full ">
         <TabsList className="w-full ">
           <TabsTrigger value="Posts" className="w-full">
