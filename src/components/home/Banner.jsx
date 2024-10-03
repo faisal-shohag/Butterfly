@@ -58,8 +58,8 @@ const Banner = () => {
           <Image
             src={slide.image}
             alt={slide.title}
-            layout="fill"
-            objectFit="cover"
+            fill
+            
             priority
             className={`transition-transform duration-1000 ease-in-out ${
               index === current ? 'scale-100' : 'scale-110'
@@ -78,11 +78,7 @@ const Banner = () => {
                 {slide.description}
               </p>
               <Button 
-                variant="outline" 
                 size="lg" 
-                className={`text-white border-white hover:bg-white hover:text-black transition-all duration-300 ${
-                  index === current ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-                }`}
               >
                 Exchange Now
               </Button>
