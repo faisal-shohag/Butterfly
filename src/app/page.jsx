@@ -9,10 +9,11 @@ export default function Home() {
     <>
       <div className="">
       <Banner/>
-      <LatestExchangePosts/>
       <MostCoinedUser/>
-      <PopularPosts/>
+      <LatestExchangePosts/>
       <HiveHunters/>
+      <PopularPosts/>
+    
      
       </div>
     </>

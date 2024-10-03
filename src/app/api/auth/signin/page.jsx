@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from "@/components/ui/button"
@@ -21,18 +21,16 @@ import { CredentialSignIn } from '../actions/action'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 
-
-
-// export const metadata = {
-//     title: 'Sign In',
-// }
-
-
-
 const SignInForm = () => {
 
   const session = useSession()
   const router = useRouter()
+  
+  useEffect(() => {
+    if(session.status==="authenticated"){
+      router.replace('/')
+    }
+  }, [session, router])
 
     const form = useForm({
         resolver: zodResolver(signInSchema),
