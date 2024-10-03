@@ -1,5 +1,6 @@
 "use server";
 
+import SuggestionsPeople from "./SuggestionsPeople";
 import UserProfile from "./UserProfile";
 
 const Profile = () => {
@@ -8,13 +9,8 @@ const Profile = () => {
       {/* Main profile section */}
       <UserProfile />
 
-      {/* Placeholder for additional content or ads */}
-      <div className="w-full col-span-1 sm:col-span-2">
-      <div className="w-full  bg-white dark:bg-gray-900 shadow-md rounded-md">
-        <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300 p-3">People may you know</h3><hr />
-        <div className="p-3"></div>
-      </div>
-      </div>
+      {/* Suggestions people */}
+      <SuggestionsPeople />
     </div>
   );
 };
