@@ -5,33 +5,15 @@ import Heading from "../common/Heading";
 import { unstable_cache } from "next/cache";
 import UserAvatar from "../common/UserAvatar";
 import { MdHive } from "react-icons/md";
-import prisma from "@/lib/prisma";
-const getMostPostUser = unstable_cache(
-  async () => {
+
+const getMostPostUser = async () => {
     try {
-      const topPostUser = await prisma.user.findMany({
-        include: {
-          _count: {
-            select: {
-              posts: true,
-            },
-          },
-        },
-        orderBy: {
-          posts: {
-            _count: "desc",
-          },
-        },
-        take: 5,
-      });
+      const topPostUser = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/hive-hunters`).then(res => res.json());
       return topPostUser;
     } catch (error) {
       console.log(error);
     }
-  },
-  ["most-post-users"],
-  { revalidate: 10 }
-);
+  };
 
 const HiveHuntersCard = async () => {
   let top_post_users = await getMostPostUser();

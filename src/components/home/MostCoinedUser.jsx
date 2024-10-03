@@ -2,40 +2,20 @@
 
 import { TbCoinBitcoinFilled } from "react-icons/tb";
 import Heading from "../common/Heading";
-import { unstable_cache } from "next/cache";
 import UserAvatar from "../common/UserAvatar";
-import prisma from "@/lib/prisma";
 
-const getMostCoinedUser = unstable_cache(
-  async () => {
+const getMostCoinedUser = async () => {
     try {
-      const topCoinGainers = await prisma.user.findMany({
-        include: {
-          _count: {
-            select: {
-              coins: true,
-            },
-          },
-        },
-        orderBy: {
-          coins: {
-            _count: "desc",
-          },
-        },
-        take: 5,
-      });
+      const topCoinGainers = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/most-coined-users`).then(res => res.json());
+     
       return topCoinGainers;
     } catch (error) {
       console.log(error);
     }
-  },
-  ["most-coined-users"],
-  { revalidate: 10 }
-);
+  }
 
 const MostCoinedUserCard = async () => {
-  let top_coin_gainers = await getMostCoinedUser();
-  top_coin_gainers = top_coin_gainers ? top_coin_gainers: []
+  const top_coin_gainers = await getMostCoinedUser() || [];
   return (
     <div className="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-4 gap-5">
       {top_coin_gainers.map((user, index) => (
