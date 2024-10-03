@@ -7,6 +7,13 @@ import Image from "next/image";
 import { Heart, Plus, Repeat } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Separator } from "../ui/separator";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
+
+
 const getLatestExchangePosts = unstable_cache(async () => {
     const books = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/latest-books/${undefined}`).then(res => res.json());
   
@@ -18,13 +25,25 @@ const LatestExchangePosts = async () => {
     let {books} = await getLatestExchangePosts();
     books = books? books: []
     return (
-        <div className="mb-10">
+        <div className="mb-10 custom-glass rounded-xl overflow-hidden">
                <Heading icon={<GiCardExchange />} title={"Latest Exchange Posts"} />
-               <div className="flex justify-center lg:px-0 md:px-0 px-5">
+               <div className="flex justify-center">
             {books &&
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+            
+              // <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+              <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+
+             
+              
+              >
+                 <CarouselContent>
                 {   books?.map((book) => (
-                    <div key={book.id}  className="flex-shrink-0  space-y-1 custom-glass-2 rounded-xl p-3">
+                  <CarouselItem key={book.id} className="md:basis-1/4 basis-1/3 lg:basis-1/5">
+                    <div  className="flex-shrink-0  space-y-1 custom-glass-2 rounded-xl p-3">
                     <Link  href={`/exchanges/${book.id}`}>  
                     <div className="flex mb-4 items-center justify-center gap-1">
       
@@ -80,8 +99,12 @@ const LatestExchangePosts = async () => {
                       </div>
                      </div>
                     </div>
+                    </CarouselItem>
                   ))}
-              </div>
+                  </CarouselContent>
+              </Carousel>
+              // </div>
+
             }
         </div>
         </div>

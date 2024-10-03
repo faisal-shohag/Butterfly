@@ -118,7 +118,11 @@ return (
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
+                    <DropdownMenuLabel className="">
+                   <div> {user.name}</div>
+                   <span className="text-xs text-green-500"> @{user?.username}</span>
+
+                    </DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <Link href={"/profile"}>
                       <DropdownMenuItem>Profile</DropdownMenuItem>
