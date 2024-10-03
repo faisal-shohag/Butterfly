@@ -14,11 +14,15 @@ import {
 } from "@/components/ui/carousel"
 
 
-const getLatestExchangePosts = unstable_cache(async () => {
-    const books = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/latest-books/${undefined}`).then(res => res.json());
-  
+const getLatestExchangePosts = async () => {
+    try {
+      const books = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/latest-books/${undefined}`).then(res => res.json());
     return books
-}, ["latest-exchange-posts"], {revalidate: 5*60})
+    } catch (error) {
+      console.error('Error fetching latest exchange posts:', error);
+      throw new Error('Failed to fetch latest exchange posts', error);
+    }
+}
 
 
 const LatestExchangePosts = async () => {
@@ -75,9 +79,9 @@ const LatestExchangePosts = async () => {
                       </Avatar>
                       <div>
                       <h3 className="font-semibold text-sm truncate">{book.user.name}</h3>
-                      <p className="text-xs text-gray-500 flex items-center gap-2">
+                      <div className="text-xs text-gray-500 flex items-center gap-2 line-clamp-1">
                           {book.genre.toUpperCase()} <Repeat size="12"/> {book.lookingFor.genre.toUpperCase()}
-                      </p>
+                      </div>
                     
                       </div>
                       
