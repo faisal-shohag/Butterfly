@@ -1,5 +1,4 @@
 import React from 'react'
-import PostList from '../forum/PostList'
 import UserPostList from './UserPostList'
 
 export default function UserAllPosts() {

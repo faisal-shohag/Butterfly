@@ -1,25 +1,38 @@
 import {
-    Card,
-    CardHeader,
-    CardContent,
-    CardFooter,
-  } from "@/components/ui/card";
-  import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-  import { Button } from "@/components/ui/button";
-  import { MessageSquare, Share2, MoreVertical, Trash2, Sparkles,  Bookmark } from "lucide-react";
-  import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu";;
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import {
+  MessageSquare,
+  Share2,
+  MoreVertical,
+  Trash2,
+  Sparkles,
+  Bookmark,
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { PiHandsClappingFill } from "react-icons/pi";
 import formatTimeAgo from "../forum/TimeAgo";
 import ImageDisplay from "../forum/ImageDisplay";
 import CustomRenderer from "@/components/common/CustomRenderer";
 import { Separator } from "@/components/ui/separator";
 
-const UserPostCard = ({ post, user, handleLikeClick, handleDeletePost, handleShare }) => {
+const UserPostCard = ({
+  post,
+  user,
+  handleLikeClick,
+  handleDeletePost,
+  handleShare,
+}) => {
   return (
     <Card key={post.id} className="mb-4 max-w-2xl mx-auto dark:bg-[#141414]">
       <CardHeader className="flex flex-row justify-between items-start">
@@ -82,10 +95,12 @@ const UserPostCard = ({ post, user, handleLikeClick, handleDeletePost, handleSha
                 : "hover:text-black dark:hover:text-white"
             } border rounded-full  hover:bg-transparent `}
           >
-            <PiHandsClappingFill className="mr-2 h-4 w-4" /> {post.likeCount || ""}
+            <PiHandsClappingFill className="mr-2 h-4 w-4" />{" "}
+            {post.likeCount || ""}
           </Button>
           <Button className="border rounded-full" variant="ghost" size="sm">
-            <MessageSquare className="mr-2 h-4 w-4" /> {post.commentCount || ""} Comments
+            <MessageSquare className="mr-2 h-4 w-4" /> {post.commentCount || ""}{" "}
+            Comments
           </Button>
           <Button
             onClick={() => handleShare(post, post.id)}

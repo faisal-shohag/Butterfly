@@ -43,6 +43,8 @@
     "babel-plugin-react-compiler": "^0.0.0-experimental-23b8160-20240916",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "8.0.0-rc15",
+    "embla-carousel-react": "8.0.0-rc15",
     "framer-motion": "^11.5.5",
     "handlebars": "^4.7.8",
     "imagekit": "^5.2.0",

@@ -11,6 +11,7 @@ const ImageDisplay = ({ images }) => {
         <Image
         height={300}
         width={500}
+        priority 
           src={images[0].url}
           alt="Post image"
           className="max-h-[24rem] w-full object-contain"
