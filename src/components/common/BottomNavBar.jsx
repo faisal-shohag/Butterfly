@@ -1,10 +1,6 @@
 "use client"
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { BiSolidWidget } from "react-icons/bi";
-import { FaChartPie } from "react-icons/fa";
-import { FaBoltLightning } from "react-icons/fa6";
-import { GiCircleClaws } from "react-icons/gi";
 import { Home, Repeat } from "lucide-react";
 import { TbButterfly } from "react-icons/tb";
 import { MdOutlineHive } from "react-icons/md";
@@ -20,17 +16,17 @@ const BottomNavBar = () => {
             <span className="text-sm">Home</span>
           </Link>
           
-          <Link href="/pages/exchanges" className={`w-[80px] rounded-2xl dark:border-zinc-800 nav-item flex flex-col justify-center items-center gap-1 py-2 shadow-1 font-semibold ${currentPath === '/pages/exchanges' ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
+          <Link href="/exchanges" className={`w-[80px] rounded-2xl dark:border-zinc-800 nav-item flex flex-col justify-center items-center gap-1 py-2 shadow-1 font-semibold ${currentPath === '/exchanges' ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
           <Repeat size={20} />
             <span className="text-sm">Exchanges</span>
           </Link>
           
-          <Link href="/pages/store" className={`w-[80px] rounded-2xl dark:border-zinc-800 nav-item flex flex-col justify-center items-center gap-1 py-2 shadow-1 font-semibold ${currentPath === '/pages/store' ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
+          <Link href="/store" className={`w-[80px] rounded-2xl dark:border-zinc-800 nav-item flex flex-col justify-center items-center gap-1 py-2 shadow-1 font-semibold ${currentPath === '/store' ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
           <TbButterfly size={20} />
             <span className="text-sm">Store</span>
           </Link>
           
-          <Link href="/pages/forum" className={`w-[80px] rounded-2xl dark:border-zinc-800 nav-item flex flex-col justify-center items-center gap-1 py-2 shadow-1 font-semibold ${currentPath === '/pages/forum' ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
+          <Link href="/forum" className={`w-[80px] rounded-2xl dark:border-zinc-800 nav-item flex flex-col justify-center items-center gap-1 py-2 shadow-1 font-semibold ${currentPath === '/forum' ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
           <MdOutlineHive size={20} />
             <span className="text-sm">Hive</span>
           </Link>
