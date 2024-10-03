@@ -5,6 +5,11 @@ import { unstable_cache } from "next/cache";
 import PopularPostCard from "./PopularPostCard";
 import Heading from "../common/Heading";
 import { MdOutlineHive } from "react-icons/md";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+  } from "@/components/ui/carousel"
 
 const getPopularPosts = unstable_cache(async () => {
     try {
@@ -43,11 +48,23 @@ const PopularPosts = async () => {
 
             <Heading icon={<MdOutlineHive />} title={'Popular from HIVE'}/>
         
-         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+         {/* <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4"> */}
+         <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}>
+                  <CarouselContent>
          {posts?.map((post) => (
-           <PopularPostCard key={post.id} post={post}/>
+             <CarouselItem key={post.id}  className="md:basis-1/2 basis-10/12 lg:basis-1/3">
+           <PopularPostCard post={post}/>
+           </CarouselItem>
           ))}
-         </div>
+         
+          </CarouselContent>
+
+          </Carousel>
+         {/* </div> */}
         </div>
     );
 };

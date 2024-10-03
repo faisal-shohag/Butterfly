@@ -13,12 +13,12 @@ const getMostPostUser = unstable_cache(
         include: {
           _count: {
             select: {
-              books: true,
+              posts: true,
             },
           },
         },
         orderBy: {
-          books: {
+          posts: {
             _count: "desc",
           },
         },
@@ -50,7 +50,7 @@ const HiveHuntersCard = async () => {
               {/* <div className="text-xs">@{user.username}</div> */}
               <div className="text-sm text-gray-500 flex items-center justify-between font-bold border rounded-xl max-w-12 pr-2 dark:bg-zinc-950">
                 <MdHive size={20} className="shimmer" />{" "}
-                {user._count.books}
+                {user._count.posts}
               </div>
             </div>
           </div>
