@@ -8,7 +8,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 // import Snowfall from "react-snowfall";
 import { GiButterfly } from "react-icons/gi";
-import { Card,  CardHeader, } from "@/components/ui/card";
+import { Card, CardHeader, } from "@/components/ui/card";
 
 const Special = () => {
   const books = [
@@ -210,13 +210,14 @@ const Special = () => {
         <div className="absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[40%]">
           <Card className="overflow-hidden   transition-shadow duration-300 ease-in-out hover:shadow-lg">
             <CardHeader className="flex flex-row items-center justify-center gap-4 ">
-              <div className="text-5xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-pink-500 to-red-500"> 50% OFFER</div>
+              <div className=" text-xl md:text-4xl lg:text-5xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-pink-500 to-red-500"> 50% OFFER</div>
             </CardHeader>
           </Card>
         </div>
       </div>
 
-      <div className="mt-16 flex items-center gap-3">
+
+      <div className="mt-20 flex items-center gap-3">
         <Image
           height="40"
           width="40"
@@ -235,7 +236,7 @@ const Special = () => {
           ))}
       </div>
 
-      <div className="mt-10 flex items-center gap-3">
+      <div className="mt-14 flex items-center gap-3 ">
         <Image
           height="40"
           width="40"
