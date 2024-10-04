@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import Image from "next/image";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
@@ -23,12 +23,19 @@ import { useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { bookSchema } from "@/lib/validation";
 import UserAvatar from "@/components/common/UserAvatar";
+import CoinModal from "@/components/common/CoinModal";
 
 const AddBook = () => {
   const axiosSecure = useAxiosSecure();
   const session = useSession();
   const user = session.data?.user;
   const queryClient = useQueryClient();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
 
   const {
     register,
@@ -63,7 +70,10 @@ const AddBook = () => {
       onSuccess: () => {
         queryClient.invalidateQueries("all_books");
         toast.success("Book added successfully!", { id: "addBook" });
+        setCoverPhotos([])
+        setCoverPhotosL([])
         setPreviewData({});
+        setIsModalOpen(true)
       },
     }
   );
@@ -164,7 +174,9 @@ const AddBook = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Add a New Book</h1>
+     <CoinModal isOpen={isModalOpen}
+        onClose={closeModal}/>
+     <h1 className="text-2xl font-bold mb-4">Add a New Book</h1>
       <div className="lg:flex lg:space-x-4">
         <div className="lg:w-1/2">
           <form
