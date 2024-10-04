@@ -33,7 +33,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 if(!credentials.password) throw new AuthError("Please provide your password!")
                 const isPasswordCorrect = credentials.password === user.password;
 
-                console.log(user, isPasswordCorrect)
+                // console.log(user, isPasswordCorrect)
 
                 if(!isPasswordCorrect) throw new AuthError("Password is incorrect")
 
@@ -59,6 +59,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             if(trigger === "update" && session?.name) {
                 token.name = session.name;
+                token.username = session.username;
             }
 
             //

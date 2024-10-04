@@ -27,6 +27,7 @@ import { PiHandsClappingFill } from "react-icons/pi";
 import { useState } from "react";
 import Loading from "@/components/common/Loading";
 import PostLoading from "./PostLoading";
+import UserAvatar from "@/components/common/UserAvatar";
 
 
 const PostList = ({user}) => {
@@ -253,15 +254,7 @@ const PostList = ({user}) => {
         >
           <CardHeader className="flex flex-row justify-between items-start">
             <div className="flex items-center space-x-2">
-              <Avatar>
-                <AvatarImage
-                  src={post.author.image}
-                  alt={post.author.name}
-                />
-                <AvatarFallback>
-                  {post.author.name.charAt(0)}
-                </AvatarFallback>
-              </Avatar>
+              <UserAvatar image={post.author.image} name={post.author.name}/>
               <div>
                 <h3 className="font-semibold">{post.author.name}</h3>
                 <p className="text-xs flex items-center gap-3 text-gray-500">

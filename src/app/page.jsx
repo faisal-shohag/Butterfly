@@ -1,14 +1,20 @@
 import Banner from "../components/home/Banner";
-import FeaturedCommunityMembers from "@/components/home/FeaturedCommunityMembers";
 import ButterflyAdvertisement from "@/components/home/ButterflyAdvertisement";
+import PopularPosts from "@/components/home/PopularPosts";
+import MostCoinedUser from "@/components/home/MostCoinedUser";
+import HiveHunters from "@/components/home/HiveHunters";
+import LatestExchangePosts from "@/components/home/LatestExchangePosts";
 export default function Home() {
   return (
     <>
       <div className="">
       <Banner/>
-      <FeaturedCommunityMembers/>
-      {/* <BookShowWithCategory/> */}
-      <ButterflyAdvertisement/>
+      <MostCoinedUser/>
+      <LatestExchangePosts/>
+      <HiveHunters/>
+      <PopularPosts/>
+    
+     
       </div>
     </>
   );

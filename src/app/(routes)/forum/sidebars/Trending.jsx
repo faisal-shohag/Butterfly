@@ -1,9 +1,7 @@
 import { auth } from "@/auth";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import UserAvatar from "@/components/common/UserAvatar";
 import { Button } from "@/components/ui/button";
-import prisma from "@/lib/prisma";
 import { Loader2 } from "lucide-react";
-import { unstable_cache } from "next/cache";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -23,34 +21,18 @@ export default function TrendsSidebar ({className}) {
 
 
 async function WhoToFollow () {
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
     const { user } = await auth();
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    if(!user) return null;
+    let usersToFollow = []
+    try {
+      usersToFollow = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/suggested-to-follow-users/${user?.id}`).then(res => res.json());
+    } catch (error) {
+      console.error('Error fetching who to follow users:', error);
+      throw new Error('Failed to fetch latest exchange posts', error);
+    }
 
-
-    // console.log(user)
-    
-    // const usersToFollow= []
-    const usersToFollow = await prisma.user.findMany({
-        where: {
-            NOT: {
-                id: user.id
-            }
-        },
-        take: 3,
-        select: {
-            id: true,
-            name: true,
-            image: true,
-            username: true,
-        }
-    })
-
-    // console.log(usersToFollow)
-
-
-
-    return  <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
+  
+    return  <div className="space-y-5 rounded-2xl bg-card dark:bg-zinc-900 p-5 shadow-sm">
     <div className="text-xl font-bold">Who to follow</div>
     {usersToFollow.map((u) => (
       <div key={u.id} className="flex items-center justify-between gap-3">
@@ -58,15 +40,7 @@ async function WhoToFollow () {
           href={`/users/${u.name}`}
           className="flex items-center gap-3"
         >
-      <Avatar>
-                <AvatarImage
-                  src={u.image}
-                  alt={u.name}
-                />
-                <AvatarFallback>
-                  {u.name.charAt(0)}
-                </AvatarFallback>
-              </Avatar>
+         <UserAvatar image={u.image} name={u.name}/>
           <div>
             <div className="line-clamp-1 text-sm break-all font-semibold hover:underline">
               {u.name}
@@ -82,26 +56,13 @@ async function WhoToFollow () {
   </div>
 }
 
-const getTrendingTopics = unstable_cache(
-    async () => {
-      const result = await prisma.$queryRaw`
-              SELECT LOWER(unnest(regexp_matches(content, '#[[:alnum:]_]+', 'g'))) AS hashtag, COUNT(*) AS count
-              FROM "Post"
-              GROUP BY hashtag
-              ORDER BY count DESC, hashtag ASC
-              LIMIT 5
-          `;
-  
+const getTrendingTopics =  async () => {
+      const result = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/trending-topics`).then(res => res.json())
       return result.map((row) => ({
         hashtag: row.hashtag,
         count: Number(row.count),
       }));
-    },
-    ["trending_topics"],
-    {
-      revalidate: 10*60,
-    },
-  );
+    }
 
 
 export function formatNumber(num) {
@@ -118,9 +79,8 @@ export function formatNumber(num) {
 
 const TrendingTopics = async () => {
     const trendingTopics = await getTrendingTopics();
-    // console.log(trendingTopics);
      return (
-    <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm mt-10">
+    <div className="space-y-5 rounded-2xl bg-card dark:bg-zinc-900 p-5 shadow-sm mt-10">
       <div className="text-xl font-bold">Trending topics</div>
       {trendingTopics.map(({ hashtag, count }) => {
         const title = hashtag;

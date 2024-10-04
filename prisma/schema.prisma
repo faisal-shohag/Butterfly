@@ -9,38 +9,39 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(uuid())
-  name       String
-  username   String? @unique
-  email      String    @unique
-  password   String?
+  id            String     @id @default(uuid())
+  name          String
+  email         String     @unique
+  password      String?
+  image         String?
+  coverPhoto    String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  role          String?
+  username      String?    @unique
   emailVerified DateTime?
-  image  String?
-  coverPhoto String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  role String?
+  books         Book[]
+  BookLike      BookLike[]
+  comments      Comment[]
+  likes         Like[]
+  posts         Post[]
+  replies       Reply[]
+  Request       Request[]
   accounts      Account[]
+  coins         coins[]
+  following     Follows[]  @relation("follower")
+  followers     Follows[]  @relation("following")
   sessions      Session[]
-  books      Book[]
-  comments   Comment[]
-  likes      Like[]
-  posts      Post[]
-  replies    Reply[]
-    followers     Follows[] @relation("following")
-  following     Follows[] @relation("follower")
-
 
   @@map("users")
 }
 
-
 model Follows {
-  follower    User     @relation("follower", fields: [followerId], references: [id])
   followerId  String
-  following   User     @relation("following", fields: [followingId], references: [id])
   followingId String
   createdAt   DateTime @default(now())
+  follower    User     @relation("follower", fields: [followerId], references: [id])
+  following   User     @relation("following", fields: [followingId], references: [id])
 
   @@id([followerId, followingId])
   @@map("follows")
@@ -65,7 +66,6 @@ model Account {
   @@id([provider, providerAccountId])
   @@map("accounts")
 }
-
 
 model Session {
   sessionToken String   @unique
@@ -99,8 +99,13 @@ model Book {
   userId        String
   lookingFor    Json
   author        String
+  createdAt     DateTime          @default(now())
   user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  BookLike      BookLike[]
   samplePhotos  BookSamplePhoto[]
+  Request       Request[]
+
+  @@index([userId])
 }
 
 model BookSamplePhoto {
@@ -179,7 +184,7 @@ model Like {
 model Image {
   id        Int      @id @default(autoincrement())
   url       String
-  fileId    String? 
+  fileId    String?
   postId    Int?
   commentId Int?
   comment   Comment? @relation("CommentImages", fields: [commentId], references: [id], onDelete: Cascade)
@@ -187,4 +192,43 @@ model Image {
 
   @@index([postId])
   @@index([commentId])
+}
+
+model Request {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  requesterId String
+  bookId      Int
+  message     String?
+  status      String
+  Book        Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  users       User     @relation(fields: [requesterId], references: [id])
+
+  @@index([bookId])
+  @@index([requesterId])
+}
+
+model coins {
+  id        String   @id
+  type      String?
+  reason    String?
+  value     Float    @default(0)
+  userId    String
+  createdAt DateTime @default(now())
+  users     User     @relation(fields: [userId], references: [id])
+}
+
+model BookLike {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  userId    String
+  bookId    Int
+  Book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  users     User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, bookId])
+  @@index([bookId])
+  @@index([userId])
 }

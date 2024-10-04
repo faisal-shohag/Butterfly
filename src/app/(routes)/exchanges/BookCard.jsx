@@ -1,27 +1,27 @@
 "use client"
 import { Heart, Plus, Repeat } from "lucide-react";
 import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
+import { Button } from "../../../components/ui/button";
+import { Separator } from "../../../components/ui/separator";
+import ExchangeLikeButton from "./ExchangeLikeButton";
 
-const BookCard = ({books}) => {
-
+const BookCard = ({books, userId, disabled=false}) => {
     return (
-        <>
+        <div className="flex justify-center">
             {books &&
-              <div className="flex gap-5 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
                 {   books?.map((book) => (
-                    <div  className="flex-shrink-0 w-56 space-y-1 custom-glass-2 rounded-xl p-3">
-                    <Link key={book.id} href={`/exchanges/${book.id}`}>  <div className="flex items-center justify-center gap-1">
+                    <div key={book.id}  className="flex-shrink-0 space-y-1 custom-glass-2 rounded-xl p-3">
+                    <Link href={`/exchanges/${book.id}`}>  <div className="flex items-center justify-center gap-1">
       
                      <Image
                         height={200}
                         width={200}
                         src={book.cover}
                         alt={book.title}
-                        className="h-32 object-contain rounded"
+                        className="lg:h-32 md:h-32 h-44 object-contain rounded"
                       />
                       <div className="text-green-600">
                       <Repeat size={20}/>
@@ -31,7 +31,7 @@ const BookCard = ({books}) => {
                         width={200}
                         src={book.lookingFor.cover}
                         alt={book.lookingFor.title}
-                        className="h-32 object-contain rounded"
+                        className="lg:h-32 md:h-32 h-44 object-contain rounded"
                       />
                      </div>
                      </Link>
@@ -53,13 +53,8 @@ const BookCard = ({books}) => {
                      </div>
                     
                      <Separator className="my-2"/>
-                     <div className="flex justify-center gap-3">
-                      <Button
-                      variant="outline"
-                      className="flex items-center gap-2"
-                      >
-                        <Heart size={16}/> {book.likes || 0}
-                      </Button>
+                     <div className="flex justify-between">
+                      <ExchangeLikeButton book={book} userId={userId}/>
 
                       <Button
                       variant="outline"
@@ -72,7 +67,7 @@ const BookCard = ({books}) => {
                   ))}
               </div>
             }
-        </>
+        </div>
     );
 };
 
