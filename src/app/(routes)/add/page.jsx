@@ -113,7 +113,7 @@ const AddBook = () => {
   const getCoverPhoto = (type, query) => {
     setLoader(true);
     axios
-      .get("https://www.googleapis.com/books/v1/volumes?q=" + query)
+      .get("https://www.googleapis.com/books/v1/volumes?q=" + query+`&key=AIzaSyCSs17OM5wJkkpB5zX5tUBny1-n_MAyjsk`)
       .then((res) => {
         const data = res.data.items.filter(
           (book) => book.volumeInfo && book.volumeInfo.imageLinks
