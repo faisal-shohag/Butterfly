@@ -12,7 +12,7 @@ import { BsThreeDots } from "react-icons/bs";
 
 export default function UserProfile() {
   return (
-    <div className="w-full rounded-md bg-white dark:bg-gray-900 shadow-md overflow-hidden">
+    <div className="w-full rounded-md bg-white dark:bg-zinc-900 shadow-md overflow-hidden">
       {/* Cover image */}
       <div className="h-[170px] flex justify-center items-center">
         <Avatar className="min-w-full min-h-full rounded-none">
