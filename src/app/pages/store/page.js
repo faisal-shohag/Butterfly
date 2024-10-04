@@ -182,7 +182,7 @@ const Special = () => {
   }, []);
 
   return (
-    <div className="bg-black">
+    <div className="">
 
       {/* <Snowfall /> */}
 
@@ -198,7 +198,7 @@ const Special = () => {
           <div className=" bg-[#586DF2] z-10 lg:h-[400px] md:h-[300px] h-[300px] w-full bg-opacity-40"></div>
           <div className="absolute inset-0 flex items-center justify-center flex-col z-20">
             <p className=" text-lg text-white font-bold shadow-lg uppercase">Limited time offer</p>
-            <h3 className=" shadow-6xl text-5xl  font-extrabold  uppercase mt-3 text-black mb-5">mega <span className="text-white">sale</span> </h3>
+            <h3 className=" text-6xl  font-extrabold  uppercase mt-2 text-black mb-9">mega <span className="text-white">sale</span> </h3>
             <Button
               size="lg"
             >
@@ -207,16 +207,16 @@ const Special = () => {
           </div>
         </div>
 
-        <div className="absolute top-[100%]  left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[40%]">
-          <Card className="overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-lg">
-            <CardHeader className="flex flex-row items-center gap-4 pb-2">
-              <div className="text-5xl font-bold">60% OFFER</div>
+        <div className="absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[40%]">
+          <Card className="overflow-hidden   transition-shadow duration-300 ease-in-out hover:shadow-lg">
+            <CardHeader className="flex flex-row items-center justify-center gap-4 ">
+              <div className="text-5xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-pink-500 to-red-500"> 50% OFFER</div>
             </CardHeader>
           </Card>
         </div>
       </div>
 
-      <div className="mt-10 flex items-center gap-3">
+      <div className="mt-16 flex items-center gap-3">
         <Image
           height="40"
           width="40"
