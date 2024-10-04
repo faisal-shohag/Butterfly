@@ -249,3 +249,18 @@
     text-shadow: inherit;
   }
 }
+
+
+.coin {
+  animation: coin-spin 5s linear infinite;
+  /* perspective: 800px; */
+}
+
+@keyframes coin-spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
