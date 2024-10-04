@@ -11,7 +11,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarImage } from "../ui/avatar";
 import { MdOutlineHive } from "react-icons/md";
 import { Home, Loader2Icon, LoaderIcon, Repeat, Search } from "lucide-react";
 import { TbButterfly } from "react-icons/tb";
