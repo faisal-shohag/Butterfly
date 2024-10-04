@@ -10,7 +10,7 @@ import { MdOutlineCastConnected } from "react-icons/md";
 import { PiUserCirclePlus } from "react-icons/pi";
 import { BsThreeDots } from "react-icons/bs";
 
-export default function UserProfile() {
+export default function UserProfile({ userInfo }) {
   return (
     <div className="w-full rounded-md bg-white dark:bg-zinc-900 shadow-md overflow-hidden">
       {/* Cover image */}
@@ -40,11 +40,12 @@ export default function UserProfile() {
           {/* Name and info section */}
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Alison Jonson
+              {userInfo.name}{" "}
+              {/* <small className="text-sm font-normal">
+                @{userInfo.username}
+              </small> */}
             </h2>
-            <p className="text-gray-700 dark:text-gray-300">
-              jonson@butterfly.com
-            </p>
+            <p className="text-gray-700 dark:text-gray-300">{userInfo.email}</p>
             <div className="flex items-center my-2 gap-3">
               <small className="text-gray-700 dark:text-gray-300">
                 New York, America
