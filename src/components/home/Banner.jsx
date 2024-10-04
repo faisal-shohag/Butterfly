@@ -58,8 +58,8 @@ const Banner = () => {
           <Image
             src={slide.image}
             alt={slide.title}
-            layout="fill"
-            objectFit="cover"
+            fill
+            
             priority
             className={`transition-transform duration-1000 ease-in-out ${
               index === current ? 'scale-100' : 'scale-110'

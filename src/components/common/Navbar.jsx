@@ -1,5 +1,4 @@
 "use client"
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ModeToggle } from "./ThemeToggle";
@@ -14,46 +13,53 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { MdOutlineHive } from "react-icons/md";
-import { Home, Repeat } from "lucide-react";
+import { Home, Loader2Icon, LoaderIcon, Repeat, Search } from "lucide-react";
 import { TbButterfly } from "react-icons/tb";
 import { usePathname } from "next/navigation";
-import { userNav } from "./userNav"; 
-import { signOut } from "@/app/pages/authentication/login/action";
-import { useAuth } from "@/providers/authProvider";
+import { Input } from "../ui/input";
+import { signOut, useSession } from "next-auth/react";
+import UserAvatar from "./UserAvatar";
+
 const Navbar = () => {
   const currentPath = usePathname();
- const { user } = useAuth();
-
-  const handleSignOut = async () => {
-    await signOut(); 
-  };
-
+  const session = useSession()
+  const user = session.data?.user
+  // console.log(user)
 return (
-    <nav className="bg-background border-b mb-5 custom-glass-2  py-3">
+    <nav className="bg-background border-b mb-5 custom-glass-2  py-3 sticky top-0 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="">
-            <div className="flex items-center">
+            <div className="flex items-center gap-5">
               <Link
                 href="/"
-                className="flex-shrink-0 flex items-center gap-2 font-bold text-xl"
+                className="flex-shrink-0 shimmer flex items-center gap-2 font-bold text-xl"
               >
                 <Image
-                  width={50}
-                  height={50}
-                  src="https://i.postimg.cc/nrSMfQDf/image.png"
+                  width={60}
+                  height={60}
+                  src="/logo.png"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   alt="Butterfly logo"
                   className="h-8 w-auto"
                 />
-                <div className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-pink-500 to-red-500">
-                  Butterfly
+                <div className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-indigo-500 to-blue-500">
+                  {currentPath == "/forum" ? "Hive" : <div>
+                    <div>Butterfly</div>
+                    <div className="text-xs -mt-2">Let your book fly!</div>
+                    </div>}
                 </div>
               </Link>
+              <div className="flex items-center">
+                <Search className="absolute ml-3 text-slate-400" size={20} />
+                <Input type="text" className="rounded-full pl-10" placeholder="Search books"/>
+              </div>
             </div>
           </div>
+          
+        
 
-          <div className="hidden lg:block md:block">
+          <div className="hidden lg:block md:hidden">
             <div className="flex  gap-10 items-center text-slate-600">
               <Link
                 className={`${
@@ -66,10 +72,10 @@ return (
 
               <Link
                 className={`${
-                  currentPath == "/pages/exchanges" &&
+                  currentPath == "/exchanges" &&
                   "g-card px-2 py-1 font-semibold"
                 } flex items-center gap-1`}
-                href="/pages/exchanges"
+                href="/exchanges"
               >
                 <Repeat size={20} />
                 Exchanges
@@ -77,10 +83,10 @@ return (
 
               <Link
                 className={`${
-                  currentPath == "/pages/store" &&
+                  currentPath == "/store" &&
                   "g-card px-2 py-1 font-semibold"
                 } flex items-center gap-1`}
-                href="/pages/store"
+                href="/store"
               >
                 <TbButterfly size={20} />
                 Butterfly Store
@@ -88,10 +94,10 @@ return (
 
               <Link
                 className={`${
-                  currentPath == "/pages/forum" &&
+                  currentPath == "/forum" &&
                   "g-card px-2 py-1 font-semibold"
                 } flex items-center gap-1`}
-                href="/pages/forum"
+                href="/forum"
               >
                 <MdOutlineHive size={20} /> Hive
               </Link>
@@ -108,25 +114,31 @@ return (
                       variant="ghost"
                       className=" relative rounded-full"
                     >
-                      <Avatar>
-                        <AvatarImage src={user.avatar_url} />
-                      </Avatar>
+                     <UserAvatar image={user.image} name={user.name}/>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>{user.full_name}</DropdownMenuLabel>
+                    <DropdownMenuLabel className="">
+                   <div> {user.name}</div>
+                   <span className="text-xs text-green-500"> @{user?.username}</span>
+
+                    </DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <Link href={"/pages/profile"}>
+                    <Link href={"/profile"}>
                       <DropdownMenuItem>Profile</DropdownMenuItem>
                     </Link>
                     <DropdownMenuItem>Settings</DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleSignOut}>
+                    <DropdownMenuItem onClick={()=>signOut()}>
                       Sign out
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <p>Not logged in</p>
+                <>
+           {  session.status === "loading" ? <div className="animate-spin"><Loader2Icon size={13}/></div> :   <Link href="/api/auth/signin">
+                  <Button>Sign In</Button>
+                </Link>}
+                </>
               )}
               <ModeToggle />
             </div>
