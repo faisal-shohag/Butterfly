@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { ModeToggle } from "./ThemeToggle";
@@ -22,10 +22,10 @@ import UserAvatar from "./UserAvatar";
 
 const Navbar = () => {
   const currentPath = usePathname();
-  const session = useSession()
-  const user = session.data?.user
+  const session = useSession();
+  const user = session.data?.user;
   // console.log(user)
-return (
+  return (
     <nav className="bg-background border-b mb-5 custom-glass-2  py-3 sticky top-0 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -44,20 +44,26 @@ return (
                   className="h-8 w-auto"
                 />
                 <div className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-indigo-500 to-blue-500">
-                  {currentPath == "/forum" ? "Hive" : <div>
-                    <div>Butterfly</div>
-                    <div className="text-xs -mt-2">Let your book fly!</div>
-                    </div>}
+                  {currentPath == "/forum" ? (
+                    "Hive"
+                  ) : (
+                    <div>
+                      <div>Butterfly</div>
+                      <div className="text-xs -mt-2">Let your book fly!</div>
+                    </div>
+                  )}
                 </div>
               </Link>
               <div className="flex items-center">
                 <Search className="absolute ml-3 text-slate-400" size={20} />
-                <Input type="text" className="rounded-full pl-10" placeholder="Search books"/>
+                <Input
+                  type="text"
+                  className="rounded-full pl-10"
+                  placeholder="Search books"
+                />
               </div>
             </div>
           </div>
-          
-        
 
           <div className="hidden lg:block md:hidden">
             <div className="flex  gap-10 items-center text-slate-600">
@@ -83,8 +89,7 @@ return (
 
               <Link
                 className={`${
-                  currentPath == "/store" &&
-                  "g-card px-2 py-1 font-semibold"
+                  currentPath == "/store" && "g-card px-2 py-1 font-semibold"
                 } flex items-center gap-1`}
                 href="/store"
               >
@@ -94,8 +99,7 @@ return (
 
               <Link
                 className={`${
-                  currentPath == "/forum" &&
-                  "g-card px-2 py-1 font-semibold"
+                  currentPath == "/forum" && "g-card px-2 py-1 font-semibold"
                 } flex items-center gap-1`}
                 href="/forum"
               >
@@ -114,30 +118,41 @@ return (
                       variant="ghost"
                       className=" relative rounded-full"
                     >
-                     <UserAvatar image={user.image} name={user.name}/>
+                      <UserAvatar image={user.image} name={user.name} />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel className="">
-                   <div> {user.name}</div>
-                   <span className="text-xs text-green-500"> @{user?.username}</span>
-
+                      <div> {user.name}</div>
+                      <span className="text-xs text-green-500">
+                        {" "}
+                        @{user?.username}
+                      </span>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <Link href={"/profile"}>
                       <DropdownMenuItem>Profile</DropdownMenuItem>
                     </Link>
-                    <DropdownMenuItem>Settings</DropdownMenuItem>
-                    <DropdownMenuItem onClick={()=>signOut()}>
+                    <Link href={"/settings"}>
+                      <DropdownMenuItem>Settings</DropdownMenuItem>
+                    </Link>
+
+                    <DropdownMenuItem onClick={() => signOut()}>
                       Sign out
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
                 <>
-           {  session.status === "loading" ? <div className="animate-spin"><Loader2Icon size={13}/></div> :   <Link href="/api/auth/signin">
-                  <Button>Sign In</Button>
-                </Link>}
+                  {session.status === "loading" ? (
+                    <div className="animate-spin">
+                      <Loader2Icon size={13} />
+                    </div>
+                  ) : (
+                    <Link href="/api/auth/signin">
+                      <Button>Sign In</Button>
+                    </Link>
+                  )}
                 </>
               )}
               <ModeToggle />

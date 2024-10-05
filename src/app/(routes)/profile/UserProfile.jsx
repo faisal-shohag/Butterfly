@@ -1,5 +1,5 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button"; // Import Button from shadcn UI
+import { Button } from "@/components/ui/button";
 import {
   FaFacebookSquare,
   FaLinkedin,
