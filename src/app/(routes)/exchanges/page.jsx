@@ -2,6 +2,7 @@
 
 import { auth } from "@/auth";
 import Exchanges from "./Exchanges";
+import ExchangeBanner from "./ExchangeBanner";
 
 const ExchangeLayout = async () => {
     let user = await auth()
@@ -9,6 +10,7 @@ const ExchangeLayout = async () => {
 
     return (
         <div>
+            <ExchangeBanner/>
              <Exchanges userId={user?.id}/>
         </div>
     );

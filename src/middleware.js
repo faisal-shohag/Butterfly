@@ -6,9 +6,9 @@ export default auth((req) => {
   const isProtectedRoute = req.nextUrl.pathname.startsWith('/store')
                         || req.nextUrl.pathname.startsWith('/profile')
                         || req.nextUrl.pathname.startsWith('/forum')
-                        || req.nextUrl.pathname.startsWith('/exchanges')
                         || req.nextUrl.pathname.startsWith('/api/auth/set_username')
-  
+  // console.log('isProtectedRoute', isProtectedRoute, 'isLoggedIn', isLoggedIn)
+                      
   if (isProtectedRoute && !isLoggedIn) {
     return NextResponse.redirect(new URL('/api/auth/signin', req.url))
   }
