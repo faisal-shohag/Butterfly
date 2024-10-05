@@ -5,6 +5,7 @@ import { FaMinusCircle } from "react-icons/fa";
 
 export default function EditSocialLinks() {
   const socialMedia = [
+    "Website",
     "Facebook",
     "Instagram",
     "Twitter (X)",

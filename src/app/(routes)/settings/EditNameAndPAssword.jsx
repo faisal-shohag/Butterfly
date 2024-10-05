@@ -2,9 +2,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Importing eye icons
 
 export default function EditNameAndPassword() {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -73,27 +76,41 @@ export default function EditNameAndPassword() {
                 {...register("username")}
               />
             </div>
-            <div className="w-full">
+            <div className="w-full relative">
               <label className="block text-sm font-medium mt-3 mb-2">
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter your new password"
                 className="w-full rounded px-3 p-2 border outline-0"
                 {...register("password")}
               />
+              <button
+                type="button"
+                className="absolute right-2 top-[50px] transform -translate-y-1/2"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
-            <div className="w-full">
+            <div className="w-full relative">
               <label className="block text-sm font-medium mt-3 mb-2">
                 Confirm Password
               </label>
               <input
-                type="password"
+                type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm your new password"
                 className="w-full rounded px-3 p-2 border outline-0"
                 {...register("confirmPassword")}
               />
+              <button
+                type="button"
+                className="absolute right-2 top-[50px] transform -translate-y-1/2"
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+              >
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
               {errors.confirmPassword && (
                 <p className="text-red-500 text-sm mt-1">
                   {errors.confirmPassword.message}
@@ -110,16 +127,23 @@ export default function EditNameAndPassword() {
           </>
         ) : (
           <>
-            <div className="w-full">
+            <div className="w-full relative">
               <label className="block text-sm font-medium mt-3 mb-2">
                 Current Password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter your current password"
                 className="w-full rounded px-3 p-2 border outline-0"
                 {...register("currentPassword", { required: true })}
               />
+              <button
+                type="button"
+                className="absolute right-2 top-[50px] transform -translate-y-1/2"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
             <div className="mt-4">
               <Button type="submit" className="bg-black text-white px-10">
