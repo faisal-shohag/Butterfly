@@ -24,12 +24,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { bookSchema } from "@/lib/validation";
 import UserAvatar from "@/components/common/UserAvatar";
 import CoinModal from "@/components/common/CoinModal";
+import { useCoins } from "@/hooks/useCoins";
 
 const AddBook = () => {
   const axiosSecure = useAxiosSecure();
   const session = useSession();
   const user = session.data?.user;
   const queryClient = useQueryClient();
+  const {addCoin} = useCoins(user?.id)
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -74,6 +77,12 @@ const AddBook = () => {
         setCoverPhotosL([])
         setPreviewData({});
         setIsModalOpen(true)
+        addCoin({
+          type: 'silver',
+          reason: 'For adding a book for exchanging',
+          value: 1,
+          userId: user.id,
+        })
       },
     }
   );
