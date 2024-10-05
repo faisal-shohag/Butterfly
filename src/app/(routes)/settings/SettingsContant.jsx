@@ -1,16 +1,16 @@
 import EditContactInfo from "./EditContactInfo";
 import EditIntroductionInfo from "./EditIntroductionInfo";
-import EditNameAndPAssword from "./EditNameAndPAssword";
+import EditNameAndPassword from "./EditNameAndPassword";
 import EditProfile from "./EditProfile";
 import EditSocialLinks from "./EditSocialLinks";
 
 export default function SettingsContent({ currentNav }) {
   return (
-    <div className="w-full overflow-hidden rounded-md bg-white dark:bg-zinc-900 shadow-md">
+    <div className="w-full overflow-hidden rounded-xl bg-white dark:bg-zinc-900 shadow-md">
       {currentNav === "profile" ? (
         <EditProfile />
       ) : currentNav === "nameAndPassword" ? (
-        <EditNameAndPAssword />
+        <EditNameAndPassword />
       ) : currentNav === "ContactInfo" ? (
         <EditContactInfo />
       ) : currentNav === "SocialLinks" ? (

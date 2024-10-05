@@ -5,7 +5,7 @@ import { RiContactsBook2Fill } from "react-icons/ri";
 export default function SettingsNav({ HandleNav }) {
   return (
     // Container for the entire settings navigation panel
-    <div className="w-full p-2 rounded-md bg-white dark:bg-zinc-900 shadow-md">
+    <div className="w-full p-2 rounded-xl bg-white dark:bg-zinc-900 shadow-md">
       {/* Avatar Section */}
       <div className="p-5 flex justify-center items-center">
         {/* User avatar with border styling */}
