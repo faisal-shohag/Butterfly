@@ -2,7 +2,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { FaUserEdit, FaKey, FaLink, FaInfoCircle } from "react-icons/fa";
 import { RiContactsBook2Fill } from "react-icons/ri";
 
-export default function SettingsNav() {
+export default function SettingsNav({ HandleNav }) {
   return (
     // Container for the entire settings navigation panel
     <div className="w-full p-2 rounded-md bg-white dark:bg-zinc-900 shadow-md">
@@ -27,27 +27,42 @@ export default function SettingsNav() {
       {/* Settings Options Section */}
       <div className="w-full rounded p-1 flex flex-col gap-1 bg-gray-100 dark:bg-zinc-800 mt-3">
         {/* Button for Editing Profile Information */}
-        <button className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700">
+        <button
+          onClick={() => HandleNav("profile")}
+          className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700"
+        >
           <FaUserEdit /> Edit Profile
         </button>
 
         {/* Button for Changing Username and Password */}
-        <button className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700">
+        <button
+          onClick={() => HandleNav("nameAndPassword")}
+          className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700"
+        >
           <FaKey /> Name and Password
         </button>
 
         {/* Button for Managing Social Links */}
-        <button className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700">
+        <button
+          onClick={() => HandleNav("ContactInfo")}
+          className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700"
+        >
           <RiContactsBook2Fill /> Contact Info
         </button>
 
         {/* Button for Managing Social Links */}
-        <button className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700">
+        <button
+          onClick={() => HandleNav("SocialLinks")}
+          className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700"
+        >
           <FaLink /> Social Links
         </button>
 
         {/* Button for Updating Introduction Info */}
-        <button className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700">
+        <button
+          onClick={() => HandleNav("IntroductionInfo")}
+          className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700"
+        >
           <FaInfoCircle /> Introduction Info
         </button>
       </div>
