@@ -27,12 +27,12 @@ export default function SettingsNav({ HandleNav }) {
       {/* Settings Options Section */}
       <div className="w-full rounded p-1 flex flex-col gap-1 bg-gray-100 dark:bg-zinc-800 mt-3">
         {/* Button for Editing Profile Information */}
-        <button
+        {/* <button
           onClick={() => HandleNav("profile")}
           className="w-full text-left p-2 rounded bg-white dark:bg-zinc-900 text-sm font-medium flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-zinc-700"
         >
           <FaUserEdit /> Edit Profile
-        </button>
+        </button> */}
 
         {/* Button for Changing Username and Password */}
         <button

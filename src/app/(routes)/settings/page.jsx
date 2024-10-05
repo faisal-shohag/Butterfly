@@ -4,7 +4,7 @@ import SettingsContant from "./SettingsContant";
 import SettingsNav from "./SettingsNav";
 
 export default function Settings() {
-  const [currentNav, SetCurrentNav] = useState("profile");
+  const [currentNav, SetCurrentNav] = useState("nameAndPassword");
 
   const HandleNav = (data) => {
     SetCurrentNav(data);
