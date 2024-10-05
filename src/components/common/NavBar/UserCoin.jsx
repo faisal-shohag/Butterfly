@@ -37,7 +37,8 @@ const UserCoin = ({ user }) => {
                 </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-                <DropdownMenuLabel className="font-semibold">Your Butterfly Coins</DropdownMenuLabel>
+                <DropdownMenuLabel className="font-semibold">
+                    Recent Butterfly Coins</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {coins && coins.map((coin) => (
                     <DropdownMenuItem key={coin.id} className="text-sm">

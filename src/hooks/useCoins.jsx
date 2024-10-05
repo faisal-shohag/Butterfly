@@ -34,10 +34,14 @@ export const useCoins = (userId) => {
     queryClient.invalidateQueries(['userCoins', userId]);
   };
 
-  const totalCoins = coins ? coins.length : 0;
+//   console.log(coins)
+
+  const totalCoins = coins ? coins.totalCoins : 0;
+  const recentCoins = coins ? coins.recentCoins : [];
+
 
   return {
-    coins,
+    coins: recentCoins,
     totalCoins,
     isLoading,
     error,
