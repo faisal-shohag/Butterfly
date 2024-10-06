@@ -4,7 +4,6 @@ import { BackgroundLines } from "@/components/ui/background-lines";
 import { FlipWords } from "@/components/ui/flip-words";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import Image from "next/image";
-// import { Vortex } from "@/components/ui/vortex";
 import Link from "next/link";
 import { TbCoinBitcoinFilled } from "react-icons/tb";
 
