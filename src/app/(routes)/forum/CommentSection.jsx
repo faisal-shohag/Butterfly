@@ -9,13 +9,26 @@ import formatTimeAgo from "./TimeAgo";
 import CustomRenderer from "@/components/common/CustomRenderer";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { ThumbsUp, MessageCircle, MoreVertical, Trash2, Loader2 } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  ThumbsUp,
+  MessageCircle,
+  MoreVertical,
+  Trash2,
+  Loader2,
+  SendHorizonal,
+  Flag,
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const CommentSection = ({ postId, user, axiosSecure }) => {
   const [newComment, setNewComment] = useState("");
   const [page, setPage] = useState(1);
-  const [likeLoading, setLikeLoading] = useState(false)
+  const [likeLoading, setLikeLoading] = useState(false);
   const queryClient = useQueryClient();
 
   const { data, isLoading, error } = useQuery(
@@ -50,7 +63,9 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
       },
       onError: (error) => {
         console.error("Error creating comment:", error);
-        toast.error("Failed to add comment. Please try again.", { id: "createComment" });
+        toast.error("Failed to add comment. Please try again.", {
+          id: "createComment",
+        });
       },
     }
   );
@@ -59,9 +74,12 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
     async (commentId) => {
       commentId = commentId.commentId;
       setLikeLoading(true);
-      const response = await axiosSecure.post(`/comments/${commentId}/toggle-like`, {
-        userId: user.id,
-      });
+      const response = await axiosSecure.post(
+        `/comments/${commentId}/toggle-like`,
+        {
+          userId: user.id,
+        }
+      );
       setLikeLoading(false);
       return { ...response.data, commentId };
     },
@@ -80,7 +98,9 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
                 ? {
                     ...comment,
                     isLiked: !comment.isLiked,
-                    likeCount: comment.isLiked ? comment.likeCount - 1 : comment.likeCount + 1,
+                    likeCount: comment.isLiked
+                      ? comment.likeCount - 1
+                      : comment.likeCount + 1,
                   }
                 : comment
             ),
@@ -121,17 +141,21 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
 
   const deleteCommentMutation = useMutation(
     async (commentId) => {
-      toast.loading("Deleting comment...", {id: 'delete-comment'});
+      toast.loading("Deleting comment...", { id: "delete-comment" });
       await axiosSecure.delete(`/comments/${commentId}/${user.id}`);
     },
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["comments", postId]);
-        toast.success("Comment deleted successfully!",  {id: 'delete-comment'});
+        toast.success("Comment deleted successfully!", {
+          id: "delete-comment",
+        });
       },
       onError: (error) => {
         console.error("Error deleting comment:", error);
-        toast.error("Failed to delete the comment. Please try again.",  {id: 'delete-comment'});
+        toast.error("Failed to delete the comment. Please try again.", {
+          id: "delete-comment",
+        });
       },
     }
   );
@@ -169,86 +193,117 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
     // This could open a modal or expand a section to show replies
   };
 
-  if (isLoading) return (
-    <div className="">
-      <Separator/>
-      <div className="px-10 py-5 font-semibold">Loading comments...</div>
-    </div>
-  );
+  if (isLoading)
+    return (
+      <div className="mt-2">
+        <Separator />
+        <div className="px-10 mt-2 font-semibold">Loading comments...</div>
+      </div>
+    );
   if (error) return <div>Error loading comments: {error.message}</div>;
+
+  console.log(data)
 
   return (
     <div className="mt-4 p-4 border-t">
       <form onSubmit={handleSubmitComment} className="mb-4">
         <div className="flex items-start space-x-4">
           <UserAvatar image={user.image} name={user.name} />
-          <div className="flex-grow">
+          <div className="flex-grow relative">
             <Textarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Write a comment..."
-              className="w-full p-2 border rounded"
+              required
+              className="w-full p-2 border rounded-xl"
             />
-            <Button type="submit" className="mt-2">
-              Post Comment
-            </Button>
+            <button type="submit" className="mt-2 shadow-xl border flex items-center justify-center absolute right-2 bottom-2 bg-black text-white rounded-full px-1 py-1 dark:bg-zinc-800">
+              <SendHorizonal size={20}/>
+            </button>
           </div>
         </div>
       </form>
 
-     
-
       {data?.comments && data.comments.length > 0 ? (
-        <div className="ml-14">
+        <div className="">
           {data.comments.map((comment) => (
-            <div key={comment.id} className="mb-4 p-2 border rounded-xl">
-              
-              <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src={comment.author.image} />
-                  <AvatarFallback className="text-white bg-black font-semibold border-2 border-zinc-300">
-                    {comment.author.name.charAt(0)}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="font-semibold text-sm">{comment.author.name}</div>
-              </div>
+            <div key={comment.id} className="p-2 rounded-xl flex items-start gap-2">
 
-              {comment.author.id === user?.id && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <MoreVertical className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => handleDeleteComment(comment.id)}>
-                <Trash2 className="mr-2 h-4 w-4" />
-                <span>Delete</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
-        </div>
-              <div className="pl-12 text-sm">
+              {/* avatar */}
+              <div className="">
+                <div className="flex items-center space-x-2">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={comment.author.image} />
+                    <AvatarFallback className="text-white bg-black font-semibold border-2 border-zinc-300 dark:border-zinc-800">
+                      {comment.author.name.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+              </div>
+              
+
+              <div className="w-full">
+              {/* comment */}
+              
+              <div className="text-sm  w-full rounded-xl px-3 py-2 dark:bg-zinc-950 bg-gray-100 relative">
+
+                <div className="absolute right-0 top-0">
+                   {/* dropdown menu */}
+                {comment.author.id === user?.id && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="h-8 w-8 p-0">
+                        <MoreVertical className="h-3 w-3" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem
+                        onClick={() => handleDeleteComment(comment.id)}
+                      >
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        <span>Delete</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                      <Flag className="mr-2 h-4 w-4" />
+                        <span>Report</span>
+                        {/* TODO */}
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
+                </div>
+                
+              <div className="font-semibold text-xs mb-1">
+
+                    {comment.author.name} <span className="text-xs text-zinc-700"> @{comment.author.username}</span>
+              
+              </div>
                 <CustomRenderer content={comment.content} />
               </div>
-              <div className="pl-12 mt-1 text-xs flex items-center gap-3">
-                <div className="text-gray-500">{formatTimeAgo(comment.createdAt)}</div>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+
+            {/* buttons */}
+              <div className="mt-2 ml-1 text-xs flex items-center gap-3">
+                <div className="text-gray-500">
+                  {formatTimeAgo(comment.createdAt)}
+                </div>
+                <button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => handleLikeComment(comment.id)}
                   disabled={toggleLikeMutation.isLoading}
                   className={`${
                     comment.isLiked
-                      ? "text-white bg-green-500 font-bold hover:text-white"
+                      ? "text-green-500  font-bold"
                       : "hover:text-black dark:hover:text-white"
-                  } border rounded-full hover:bg-green-500`}
+                  }  rounded-full flex`}
                 >
-                 {likeLoading ? <Loader2 className="h-4 w-4 mr-1 animate-spin"/> : <ThumbsUp className="h-4 w-4 mr-1" />} 
+                  {likeLoading ? (
+                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                  ) : (
+                    <ThumbsUp className="h-4 w-4 mr-1" />
+                  )}
                   Like {comment.likeCount > 0 && `(${comment.likeCount})`}
-                </Button>
+                </button>
                 {comment.replyCount > 0 && (
                   <Button
                     variant="ghost"
@@ -257,10 +312,13 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
                     className="hover:text-black dark:hover:text-white border rounded-full"
                   >
                     <MessageCircle className="h-4 w-4 mr-1" />
-                    View {comment.replyCount} {comment.replyCount === 1 ? 'reply' : 'replies'}
+                    View {comment.replyCount}{" "}
+                    {comment.replyCount === 1 ? "reply" : "replies"}
                   </Button>
                 )}
               </div>
+          </div>
+
             </div>
           ))}
         </div>
@@ -268,25 +326,25 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
         <div className="text-center text-gray-500">You are at the end!</div>
       )}
 
-<div className="flex  justify-between">
-
-
-       {
-        data?.currentPage > 1 && (
-          <div onClick={loadPreviousComments} className=" my-2 underline font-semibold cursor-pointer">
+      <div className="flex  justify-between text-sm">
+        {data?.currentPage > 1 && (
+          <div
+            onClick={loadPreviousComments}
+            className=" mt-2 underline font-semibold cursor-pointer"
+          >
             Load New Comments
           </div>
-        )
-       }
+        )}
 
-{data?.currentPage < data?.totalPages && (
-        <div onClick={loadMoreComments} className=" my-2 underline font-semibold cursor-pointer">
-          Load Old Comments
-        </div>
-      )}
-</div>
-
-      
+        {data?.currentPage < data?.totalPages && (
+          <div
+            onClick={loadMoreComments}
+            className=" mt-2 underline font-semibold cursor-pointer"
+          >
+            Load Old Comments
+          </div>
+        )}
+      </div>
     </div>
   );
 };

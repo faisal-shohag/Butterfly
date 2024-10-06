@@ -1,10 +1,22 @@
-"use client"
-import  { useState } from 'react';
+"use client";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, Share2, MoreVertical, Trash2, Sparkles, Bookmark } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  MessageSquare,
+  Share2,
+  MoreVertical,
+  Trash2,
+  Sparkles,
+  Bookmark,
+  Flag,
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { PiHandsClappingFill } from "react-icons/pi";
 import { toast } from "react-hot-toast";
@@ -13,10 +25,10 @@ import formatTimeAgo from "./TimeAgo";
 import ImageDisplay from "./ImageDisplay";
 import CustomRenderer from "@/components/common/CustomRenderer";
 import UserAvatar from "@/components/common/UserAvatar";
-import CommentSection from './CommentSection';
+import CommentSection from "./CommentSection";
 
 const PostCard = ({ post, user, axiosSecure }) => {
-    const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(false);
   const queryClient = useQueryClient();
 
   const toggleLikeMutation = useMutation(
@@ -62,7 +74,7 @@ const PostCard = ({ post, user, axiosSecure }) => {
             })),
           };
         });
-        toast.success("Post deleted successfully", {id: "deletePost"});
+        toast.success("Post deleted successfully", { id: "deletePost" });
       },
       onError: (error) => {
         console.error("Error deleting post:", error);
@@ -85,7 +97,10 @@ const PostCard = ({ post, user, axiosSecure }) => {
     const postUrl = `${window.location.origin}/posts/${id}`;
     const shareData = {
       title: `${post.author.full_name}'s post on Britto`,
-      text: post.content.length > 100 ? post.content.substring(0, 97) + "..." : post.content,
+      text:
+        post.content.length > 100
+          ? post.content.substring(0, 97) + "..."
+          : post.content,
       url: postUrl,
     };
 
@@ -115,8 +130,10 @@ const PostCard = ({ post, user, axiosSecure }) => {
   };
 
   return (
-    <Card className={`${post.type === "ai" ? "" : ""} mb-4 max-w-2xl mx-auto dark:bg-[#141414]`}>
-      <CardHeader className="flex flex-row justify-between items-start">
+    <div
+      className={`${post.type === "ai" ? "" : ""} bg-card mb-4 max-w-2xl mx-auto rounded-xl dark:bg-[#141414] py-6 border shadow-xl`}
+    >
+      <div className="flex flex-row justify-between items-start px-5">
         <div className="flex items-center space-x-2">
           <UserAvatar image={post.author.image} name={post.author.name} />
           <div>
@@ -151,18 +168,23 @@ const PostCard = ({ post, user, axiosSecure }) => {
                 <Trash2 className="mr-2 h-4 w-4" />
                 <span>Delete</span>
               </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Flag className="mr-2 h-4 w-4" />
+                <span>Report</span>
+                {/* TODO */}
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         )}
-      </CardHeader>
-      <CardContent className="p-0 mt-[-10px]">
+      </div>
+      <div className="p-0 mt-2">
         <div className="px-6 font-kalpurush">
           <CustomRenderer content={post.content} />
         </div>
         <ImageDisplay images={post.images} />
-      </CardContent>
+      </div>
       <Separator className="mt-3" />
-      <CardFooter className="flex justify-between mt-2">
+      <div className="flex justify-between mt-2 px-5">
         <div className="flex items-center gap-5">
           <Button
             variant="ghost"
@@ -175,15 +197,17 @@ const PostCard = ({ post, user, axiosSecure }) => {
                 : "hover:text-black dark:hover:text-white"
             } border rounded-full hover:bg-green-500`}
           >
-            <PiHandsClappingFill className="mr-2 h-4 w-4" /> {post.likeCount || ""}
+            <PiHandsClappingFill className="mr-2 h-4 w-4" />{" "}
+            {post.likeCount || ""}
           </Button>
-          <Button 
-            className="border rounded-full" 
-            variant="ghost" 
+          <Button
+            className="border rounded-full"
+            variant="ghost"
             size="sm"
             onClick={() => setShowComments(!showComments)}
           >
-            <MessageSquare className="mr-2 h-4 w-4" /> {post.commentCount || ""} Comments
+            <MessageSquare className="mr-2 h-4 w-4" /> {post.commentCount || ""}{" "}
+            Comments
           </Button>
           <Button
             onClick={() => handleShare(post, post.id)}
@@ -202,12 +226,16 @@ const PostCard = ({ post, user, axiosSecure }) => {
         >
           <Bookmark className="h-4 w-4" />
         </Button>
-      </CardFooter>
-      
+      </div>
+
       {showComments && (
-        <CommentSection postId={post.id} user={user} axiosSecure={axiosSecure} />
+        <CommentSection
+          postId={post.id}
+          user={user}
+          axiosSecure={axiosSecure}
+        />
       )}
-    </Card>
+    </div>
   );
 };
 
