@@ -9,6 +9,7 @@ import Link from "next/link";
 
 const PopularPostCard = ({ post }) => {
     // console.log(post);
+    
   return (
     <div className=" p-5 bg-card  rounded-xl shadow-xl">
       <div className="flex items-center gap-3">
