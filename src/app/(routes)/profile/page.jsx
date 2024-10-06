@@ -15,11 +15,16 @@ const Profile = async () => {
       <div className="w-full col-span-1 sm:col-span-4">
         {/* Pass userInfo to UserProfile component */}
         <UserProfile userInfo={userInfo.user} />
+        <div className="block w-full mt-3 sm:hidden">
+          <UserSubInformation />
+        </div>
         <PostSection />
       </div>
 
       {/* User additional information */}
-      <UserSubInformation />
+      <div className="w-full col-span-1 sm:col-span-2  hidden sm:block">
+        <UserSubInformation />
+      </div>
     </div>
   );
 };

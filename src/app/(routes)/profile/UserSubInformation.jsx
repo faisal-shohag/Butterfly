@@ -11,7 +11,7 @@ import {
 
 export default function UserSubInformation() {
   return (
-    <div className="w-full col-span-1 sm:col-span-2">
+    <div className="w-full">
       <div className="w-full bg-white dark:bg-zinc-900 shadow-lg rounded-lg p-6">
         <div className="text-center">
           {/* Profile Icon with Text */}

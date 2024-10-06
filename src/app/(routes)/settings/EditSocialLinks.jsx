@@ -89,19 +89,22 @@ export default function EditSocialLinks() {
             </div>
           ))}
         </div>
-        <button
-          type="button"
-          className="mt-4 ml-6 bg-black mr-5 text-white rounded px-4 py-2"
-          onClick={() => append({ platform: "", link: "" })} // Adds another social link
-        >
-          Add Another Social Link
-        </button>
-        <button
-          type="submit"
-          className="mt-4 bg-black mr-5 text-white rounded px-4 py-2"
-        >
-          Submit
-        </button>
+
+        <div className="flex justify-between items-center">
+          <button
+            type="button"
+            className="mt-4 ml-6 bg-black mr-5 text-white rounded px-4 py-2"
+            onClick={() => append({ platform: "", link: "" })} // Adds another social link
+          >
+            Add Another Social Link
+          </button>
+          <button
+            type="submit"
+            className="mt-4 bg-black  text-white rounded px-4 py-2"
+          >
+            Submit
+          </button>
+        </div>
       </form>
       {errors.socialLinks && (
         <p className="text-red-500">Please fill in all fields.</p>
