@@ -202,7 +202,7 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
     );
   if (error) return <div>Error loading comments: {error.message}</div>;
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div className="mt-4 p-4 border-t">
@@ -217,8 +217,11 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
               required
               className="w-full p-2 border rounded-xl"
             />
-            <button type="submit" className="mt-2 shadow-xl border flex items-center justify-center absolute right-2 bottom-2 bg-black text-white rounded-full px-1 py-1 dark:bg-zinc-800">
-              <SendHorizonal size={20}/>
+            <button
+              type="submit"
+              className="mt-2 shadow-xl border flex items-center justify-center absolute right-2 bottom-2 bg-black text-white rounded-full px-1 py-1 dark:bg-zinc-800"
+            >
+              <SendHorizonal size={20} />
             </button>
           </div>
         </div>
@@ -227,8 +230,10 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
       {data?.comments && data.comments.length > 0 ? (
         <div className="">
           {data.comments.map((comment) => (
-            <div key={comment.id} className="p-2 rounded-xl flex items-start gap-2">
-
+            <div
+              key={comment.id}
+              className="p-2 rounded-xl flex items-start gap-2"
+            >
               {/* avatar */}
               <div className="">
                 <div className="flex items-center space-x-2">
@@ -240,85 +245,87 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
                   </Avatar>
                 </div>
               </div>
-              
 
               <div className="w-full">
-              {/* comment */}
-              
-              <div className="text-sm  w-full rounded-xl px-3 py-2 dark:bg-zinc-950 bg-gray-100 relative">
+                {/* comment */}
 
-                <div className="absolute right-0 top-0">
-                   {/* dropdown menu */}
-                {comment.author.id === user?.id && (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
-                        <MoreVertical className="h-3 w-3" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem
-                        onClick={() => handleDeleteComment(comment.id)}
-                      >
-                        <Trash2 className="mr-2 h-4 w-4" />
-                        <span>Delete</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                      <Flag className="mr-2 h-4 w-4" />
-                        <span>Report</span>
-                        {/* TODO */}
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                )}
+                <div className="text-sm  w-full rounded-xl px-3 py-2 dark:bg-zinc-950 bg-gray-100 relative">
+                  <div className="absolute right-0 top-0">
+                    {/* dropdown menu */}
+                    {comment.author.id === user?.id && (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" className="h-8 w-8 p-0">
+                            <MoreVertical className="h-3 w-3" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem
+                            onClick={() => handleDeleteComment(comment.id)}
+                          >
+                            <Trash2 className="mr-2 h-4 w-4" />
+                            <span>Delete</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <Flag className="mr-2 h-4 w-4" />
+                            <span>Report</span>
+                            {/* TODO */}
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    )}
+                  </div>
+
+                  <div className="font-semibold text-xs mb-1">
+                    {comment.author.name}
+                    {/* <span className="text-xs text-zinc-700">
+                  
+                      @{comment.author.username}
+                    </span> */}
+                  </div>
+                  <span className="font-kalpurush">
+                    {" "}
+                    <CustomRenderer content={comment.content} />
+                  </span>
                 </div>
-                
-              <div className="font-semibold text-xs mb-1">
 
-                    {comment.author.name} <span className="text-xs text-zinc-700"> @{comment.author.username}</span>
-              
-              </div>
-               <span className="font-kalpurush"> <CustomRenderer content={comment.content} /></span>
-              </div>
-
-            {/* buttons */}
-              <div className="mt-2 ml-1 text-xs flex items-center gap-3">
-                <div className="text-gray-500">
-                  {formatTimeAgo(comment.createdAt)}
-                </div>
-                <button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleLikeComment(comment.id)}
-                  disabled={toggleLikeMutation.isLoading}
-                  className={`${
-                    comment.isLiked
-                      ? "text-green-500  font-bold"
-                      : "hover:text-black dark:hover:text-white"
-                  }  rounded-full flex items-center`}
-                >
-                  {likeLoading ? (
-                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
-                  ) : (
-                    <ThumbsUp className="h-4 w-4 mr-1" />
-                  )}
-                  Like {comment.likeCount > 0 && `(${comment.likeCount})`}
-                </button>
-                {comment.replyCount > 0 && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleViewReplies(comment.id)}
-                    className="hover:text-black dark:hover:text-white border rounded-full"
+                {/* buttons */}
+                <div className="ml-1 text-xs flex items-center gap-3">
+                  <div className="text-gray-500">
+                    {formatTimeAgo(comment.createdAt)}
+                  </div>
+                  <button
+                    onClick={() => handleLikeComment(comment.id)}
+                    disabled={toggleLikeMutation.isLoading}
+                    className={`${
+                      comment.isLiked
+                        ? "text-green-500  font-bold"
+                        : "hover:text-black dark:hover:text-white"
+                    }  flex items-center`}
                   >
-                    <MessageCircle className="h-4 w-4 mr-1" />
-                    View {comment.replyCount}{" "}
-                    {comment.replyCount === 1 ? "reply" : "replies"}
-                  </Button>
-                )}
+                    <div className="flex  items-center">
+                    {likeLoading ? (
+                      <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                    ) : (
+                      <ThumbsUp className="h-4 w-4 mr-1" />
+                    )}
+                    <div className="pt-1">Like {comment.likeCount > 0 && `(${comment.likeCount})`}</div>
+                    </div>
+                  </button>
+                  {comment.replyCount > 0 && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleViewReplies(comment.id)}
+                      className="hover:text-black dark:hover:text-white border rounded-full"
+                    >
+                      <MessageCircle className="h-4 w-4 mr-1" />
+                      View {comment.replyCount}{" "}
+                      {comment.replyCount === 1 ? "reply" : "replies"}
+                    </Button>
+                  )}
+                </div>
               </div>
-          </div>
-
             </div>
           ))}
         </div>

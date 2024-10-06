@@ -40,8 +40,8 @@ model Follows {
   followerId  String
   followingId String
   createdAt   DateTime @default(now())
-  follower    User     @relation("follower", fields: [followerId], references: [id])
-  following   User     @relation("following", fields: [followingId], references: [id])
+  follower    User     @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User     @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
 
   @@id([followerId, followingId])
   @@map("follows")
@@ -127,7 +127,7 @@ model Post {
   comments  Comment[]
   images    Image[]   @relation("PostImages")
   likes     Like[]
-  author    User      @relation(fields: [authorId], references: [id])
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   @@index([authorId])
 }
@@ -139,8 +139,8 @@ model Comment {
   updatedAt DateTime @updatedAt
   authorId  String
   postId    Int
-  author    User     @relation(fields: [authorId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   images    Image[]  @relation("CommentImages")
   likes     Like[]
   replies   Reply[]
@@ -156,8 +156,8 @@ model Reply {
   authorId  String
   commentId Int
   likes     Like[]
-  author    User     @relation(fields: [authorId], references: [id])
-  comment   Comment  @relation(fields: [commentId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
 
   @@index([authorId])
   @@index([commentId])
@@ -170,10 +170,10 @@ model Like {
   postId    Int?
   commentId Int?
   replyId   Int?
-  comment   Comment? @relation(fields: [commentId], references: [id])
-  post      Post?    @relation(fields: [postId], references: [id])
-  reply     Reply?   @relation(fields: [replyId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  reply     Reply?   @relation(fields: [replyId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, postId, commentId, replyId])
   @@index([userId])
@@ -201,7 +201,7 @@ model Request {
   message     String?
   status      String
   Book        Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
-  users       User     @relation(fields: [requesterId], references: [id])
+  users       User     @relation(fields: [requesterId], references: [id], onDelete: Cascade)
 
   @@index([bookId])
   @@index([requesterId])
@@ -214,7 +214,7 @@ model coins {
   value     Float    @default(0)
   userId    String
   createdAt DateTime @default(now())
-  users     User     @relation(fields: [userId], references: [id])
+  users     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model BookLike {
@@ -224,7 +224,7 @@ model BookLike {
   userId    String
   bookId    Int
   Book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
-  users     User     @relation(fields: [userId], references: [id])
+  users     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, bookId])
   @@index([bookId])
