@@ -26,6 +26,7 @@ import ImageDisplay from "./ImageDisplay";
 import CustomRenderer from "@/components/common/CustomRenderer";
 import UserAvatar from "@/components/common/UserAvatar";
 import CommentSection from "./CommentSection";
+import HiveUserAvatar from "./HiveUserAvatar";
 
 const PostCard = ({ post, user, axiosSecure }) => {
   const [showComments, setShowComments] = useState(false);
@@ -135,7 +136,7 @@ const PostCard = ({ post, user, axiosSecure }) => {
     >
       <div className="flex flex-row justify-between items-start px-5">
         <div className="flex items-center space-x-2">
-          <UserAvatar image={post.author.image} name={post.author.name} />
+          {(post.author.id === user?.id) ? <UserAvatar image={post.author.image} name={post.author.name} /> : <HiveUserAvatar user={post.author} currentUserId={user.id}/>}
           <div>
             <h3 className="font-semibold">{post.author.name}</h3>
             <p className="text-xs flex items-center gap-3 text-gray-500">
