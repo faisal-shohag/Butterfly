@@ -16,36 +16,6 @@ export default function EditIntroductionInfo() {
       </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="p-4">
-          {/* Cover URL input */}
-          <label
-            htmlFor="coverUrl"
-            className="block text-sm font-medium mt-3 mb-2"
-          >
-            Enter Your Cover URL
-          </label>
-          <input
-            type="url"
-            id="coverUrl"
-            placeholder="Enter Your Cover URL"
-            className="w-full border rounded px-3 p-1 mt-1 outline-0"
-            {...register("coverUrl")}
-          />
-
-          {/* Profile URL input */}
-          <label
-            htmlFor="profileUrl"
-            className="block text-sm font-medium mt-3 mb-2"
-          >
-            Enter Your Profile URL
-          </label>
-          <input
-            type="text"
-            id="profileUrl"
-            placeholder="Enter Your Profile URL"
-            className="w-full border rounded px-3 p-1 mt-1 outline-0"
-            {...register("profileUrl")}
-          />
-
           {/* Bio textarea */}
           <label htmlFor="bio" className="block text-sm font-medium mt-3 mb-2">
             Bio
