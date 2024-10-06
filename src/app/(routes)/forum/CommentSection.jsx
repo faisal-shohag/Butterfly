@@ -278,7 +278,7 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
                     {comment.author.name} <span className="text-xs text-zinc-700"> @{comment.author.username}</span>
               
               </div>
-                <CustomRenderer content={comment.content} />
+               <span className="font-kalpurush"> <CustomRenderer content={comment.content} /></span>
               </div>
 
             {/* buttons */}
@@ -295,7 +295,7 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
                     comment.isLiked
                       ? "text-green-500  font-bold"
                       : "hover:text-black dark:hover:text-white"
-                  }  rounded-full flex`}
+                  }  rounded-full flex items-center`}
                 >
                   {likeLoading ? (
                     <Loader2 className="h-4 w-4 mr-1 animate-spin" />
