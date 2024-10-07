@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { PiHandsClappingFill } from "react-icons/pi";
+import { HiCheckBadge } from "react-icons/hi2";
 import { toast } from "react-hot-toast";
 
 import formatTimeAgo from "./TimeAgo";
@@ -138,7 +139,7 @@ const PostCard = ({ post, user, axiosSecure }) => {
         <div className="flex items-center space-x-2">
           {(post.author.id === user?.id) ? <UserAvatar image={post.author.image} name={post.author.name} /> : <HiveUserAvatar user={post.author} currentUserId={user.id}/>}
           <div>
-            <h3 className="font-semibold">{post.author.name}</h3>
+            <h3 className="font-semibold flex items-center gap-1">{post.author.name} {post.author.role ==="admin" && <HiCheckBadge className="text-green-500" size={20}/>}</h3>
             <p className="text-xs flex items-center gap-3 text-gray-500">
               {formatTimeAgo(post.createdAt)}
               {post.type === "ai" && (
@@ -157,7 +158,7 @@ const PostCard = ({ post, user, axiosSecure }) => {
             </p>
           </div>
         </div>
-        {post.author.id === user?.id && (
+        {post.author.id === user?.id ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
@@ -169,14 +170,23 @@ const PostCard = ({ post, user, axiosSecure }) => {
                 <Trash2 className="mr-2 h-4 w-4" />
                 <span>Delete</span>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Flag className="mr-2 h-4 w-4" />
-                <span>Report</span>
-                {/* TODO */}
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        )}
+        ):   (<DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <MoreVertical className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem>
+            <Flag className="mr-2 h-4 w-4" />
+            <span>Report</span>
+            {/* TODO */}
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    )}
       </div>
       <div className="p-0 mt-2">
         <div className="px-6 font-kalpurush">
