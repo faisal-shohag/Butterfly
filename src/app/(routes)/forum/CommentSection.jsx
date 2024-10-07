@@ -24,6 +24,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { HiCheckBadge } from "react-icons/hi2";
 
 const CommentSection = ({ postId, user, axiosSecure }) => {
   const [newComment, setNewComment] = useState("");
@@ -276,12 +277,8 @@ const CommentSection = ({ postId, user, axiosSecure }) => {
                     )}
                   </div>
 
-                  <div className="font-semibold text-xs mb-1">
-                    {comment.author.name}
-                    {/* <span className="text-xs text-zinc-700">
-                  
-                      @{comment.author.username}
-                    </span> */}
+                  <div className="font-semibold text-xs mb-1 flex items-center gap-1">
+                    {comment.author.name} {comment.author.role ==="admin" && <HiCheckBadge className="text-green-500" size={17}/>}
                   </div>
                   <span className="font-kalpurush">
                     {" "}
