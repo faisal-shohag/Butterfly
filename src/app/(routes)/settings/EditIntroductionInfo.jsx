@@ -129,9 +129,54 @@ export default function EditIntroductionInfo() {
             {...register("hobby")}
           />
 
+          {/* Gender dropdown */}
+          <label
+            htmlFor="gender"
+            className="block text-sm font-medium mt-3 mb-2"
+          >
+            Gender
+          </label>
+          <select
+            id="gender"
+            className="w-full border rounded px-3 p-1 mt-1 outline-0"
+            {...register("gender")}
+          >
+            <option value="">Select your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+
+          {/* Wish input */}
+          <label htmlFor="wish" className="block text-sm font-medium mt-3 mb-2">
+            Wish
+          </label>
+          <input
+            type="text"
+            id="wish"
+            placeholder="Enter your wish"
+            className="w-full border rounded px-3 p-1 mt-1 outline-0"
+            {...register("wish")}
+          />
+
+          {/* Favorite Quote input */}
+          <label
+            htmlFor="favoriteQuote"
+            className="block text-sm font-medium mt-3 mb-2"
+          >
+            Favorite Quote
+          </label>
+          <input
+            type="text"
+            id="favoriteQuote"
+            placeholder="Enter your favorite quote"
+            className="w-full border rounded px-3 p-1 mt-1 outline-0"
+            {...register("favoriteQuote")}
+          />
+
           {/* Submit button */}
           <Button type="submit" className="mt-4 px-10 bg-black text-white">
-            Update Profile
+            Update Introduction Info
           </Button>
         </div>
       </form>
