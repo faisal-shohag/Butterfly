@@ -1,15 +1,18 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function EditNameAndPassword() {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showOldPassword, setShowOldPassword] = useState(false);
+  const [logedUserInfo, setLogedUserInfo] = useState([]);
 
   const {
     register,
@@ -20,27 +23,32 @@ export default function EditNameAndPassword() {
     setError,
   } = useForm();
 
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useSession();
   const userInfo = session?.user || {};
 
-  const onSubmit = (data) => {
-    const previousPassword = userInfo.password;
+  useEffect(() => {
+    if (userInfo?.id) {
+      axios
+        .get(`https://butterfly-backend.vercel.app/users/${userInfo.id}`)
+        .then((response) => setLogedUserInfo(response.data))
+        .catch((error) => toast.error("Error fetching user data."));
+    }
+  }, [userInfo]);
 
-    setError("currentPassword", {
-      type: "manual",
-      message: "Current password is incorrect!",
-    });
+  const onSubmit = async (data) => {
+    const previousPassword = logedUserInfo.password;
 
-    // if (data.currentPassword !== previousPassword) {
-    //   setError("currentPassword", {
-    //     type: "manual",
-    //     message: "Current password is incorrect!",
-    //   });
-    //   return;
-    // }
+    // Validation for current password
+    if (data.currentPassword !== previousPassword) {
+      setError("currentPassword", {
+        type: "manual",
+        message: "Current password is incorrect!",
+      });
+      return;
+    }
 
-    // Check if the new password and confirm password match
-    if (data.password && data.password !== data.confirmPassword) {
+    // Validation for password confirmation
+    if (data.password !== data.confirmPassword) {
       setError("confirmPassword", {
         type: "manual",
         message: "Passwords do not match!",
@@ -48,21 +56,28 @@ export default function EditNameAndPassword() {
       return;
     }
 
-    // Update user data by retaining old values if no new input is provided
     const updatedData = {
-      coverPhoto: userInfo.coverPhoto,
-      image: userInfo.image,
-      role: userInfo.role,
+      coverPhoto: logedUserInfo.coverPhoto,
+      image: logedUserInfo.image,
+      role: logedUserInfo.role,
+      id: userInfo.id,
       name: data.name || userInfo.name,
       username: data.username || userInfo.username,
-      password: data.password || previousPassword, // Keep old password if no new one is set
+      password: data.password || previousPassword,
     };
 
-    // Simulate submission
-    console.log("Updated Data: ", updatedData);
-
-    reset(); // Reset the form after successful submission
-    setShowCurrentPassword(false); // Optionally reset current password view
+    try {
+      await axios.put(
+        `https://butterfly-backend.vercel.app/users/${userInfo.id}`,
+        updatedData
+      );
+      await update(updatedData);
+      toast.success("Profile updated successfully!");
+      reset();
+      setShowCurrentPassword(false);
+    } catch (error) {
+      toast.error("Failed to update profile.");
+    }
   };
 
   const watchFields = watch([
@@ -72,7 +87,6 @@ export default function EditNameAndPassword() {
     "confirmPassword",
   ]);
 
-  // Handle loading and no-session states
   if (status === "loading") {
     return <p>Loading...</p>;
   }
@@ -83,6 +97,7 @@ export default function EditNameAndPassword() {
 
   return (
     <div className="w-full p-4 sm:p-7 md:p-10">
+      <Toaster />
       <h2 className="text-center sm:text-left text-2xl font-bold">
         Update Your Name and Password
       </h2>
@@ -168,7 +183,6 @@ export default function EditNameAndPassword() {
               )}
             </div>
 
-            {/* Conditionally render the Next button */}
             {watchFields.some((value) => value) && (
               <div className="mt-4">
                 <Button
