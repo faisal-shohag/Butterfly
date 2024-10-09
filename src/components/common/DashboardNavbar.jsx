@@ -1,23 +1,17 @@
 'use client'
-import { useState } from "react";
-import { MdLogout } from "react-icons/md";
+import { useState } from "react"; 
 import { AiOutlineClose } from 'react-icons/ai';
 import { SlMenu } from 'react-icons/sl';
-import { LiaTimesSolid } from 'react-icons/lia';
-import { PiUserCircleThin } from "react-icons/pi";
+import { LiaTimesSolid } from 'react-icons/lia'; 
 import Link from "next/link";
 import { FiLogOut } from "react-icons/fi";
 
-const DashboardNavbar = () => {
-
-    const [profile, setProfile] = useState(false)
-    const [user] = useState(true)
+const DashboardNavbar = () => { 
     const [click, setClick] = useState(false);
 
     const handleClick = () => setClick(!click);
     const closeMenu = () => {
-        setClick(false)
-        setProfile(false)
+        setClick(false) 
     };
  
 
