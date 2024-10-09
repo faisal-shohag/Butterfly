@@ -26,8 +26,7 @@ const layout =({children})=> {
                 <Link href={'/manageUsers'}>Manage users</Link> </p>
                 <p className='font-medium  w-full rounded-md px-5 py-2 hover:bg-gray-200 '>
                 <Link href={'/books'}>Books</Link> </p>
-                <p className='font-medium  w-full rounded-md px-5 py-2 hover:bg-gray-200 '>
-                <Link href={'/features'}>Features</Link> </p>
+                 
                 <p className='font-medium  w-full rounded-md px-5 py-2 hover:bg-gray-200 '>
                 <Link href={'/ordersReport'}>Orders Report</Link> </p>
                 <p className='font-medium  w-full rounded-md px-5 py-2 hover:bg-gray-200 '>

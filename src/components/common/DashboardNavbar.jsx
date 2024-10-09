@@ -22,8 +22,7 @@ const DashboardNavbar = () => {
             <Link href={'/manageUsers'}>Manage users</Link> </li>
         <li onClick={closeMenu} className='font-medium  w-full rounded-md px-5 py-2   '>
             <Link href={'/books'}>Books</Link> </li>
-            <li onClick={closeMenu} className='font-medium  w-full rounded-md px-5 py-2   '>
-            <Link href={'/features'}>Features</Link> </li>
+             
         <li onClick={closeMenu} className='font-medium  w-full rounded-md px-5 py-2   '>
             <Link href={'/ordersReport'}>Orders Report</Link> </li>
         <li onClick={closeMenu} className='font-medium  w-full rounded-md px-5 py-2   '>
