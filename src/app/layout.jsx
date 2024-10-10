@@ -7,7 +7,9 @@ import ReactQueryProvider from "@/providers/reactQueryProvider";
 import BottomNavBar from "@/components/common/BottomNavBar";
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
-import localFont from "next/font/local";
+import localFont from "next/font/local";  
+
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,7 +26,9 @@ export const metadata = {
   description: "A book exchange app. Share your books with other.",
 };
 
+ 
 
+ 
 
 export default async function RootLayout({ children }) {
   return (
