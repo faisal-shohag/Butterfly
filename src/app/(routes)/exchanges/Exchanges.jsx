@@ -15,6 +15,7 @@ const Exchanges = ({userId}) => {
         const response = await axiosSecure.get(`/all_books/${userId}?page=${pageParam}&limit=10`);
         return response.data;
     };
+    
 
     const {
         data,

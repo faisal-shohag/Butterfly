@@ -1,5 +1,8 @@
+"use client";
+import { useState } from "react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button"; // Import Button from shadcn UI
+import { Button } from "@/components/ui/button";
+
 import {
   FaFacebookSquare,
   FaLinkedin,
@@ -7,31 +10,87 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import { MdOutlineCastConnected } from "react-icons/md";
-import { PiUserCirclePlus } from "react-icons/pi";
+import { PiUserCirclePlus, PiCameraRotateFill } from "react-icons/pi";
 import { BsThreeDots } from "react-icons/bs";
 
-export default function UserProfile() {
+export default function UserProfile({ userInfo }) {
+  const [coverImage, setCoverImage] = useState(
+    "https://miro.medium.com/v2/resize:fit:851/0*4GpVgZhCyslzZC3y.jpg"
+  );
+  const [profileImage, setProfileImage] = useState(
+    "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/50dab922-5d48-4c6b-8725-7fd0755d9334/3a3f2d35-8167-4708-9ef0-bdaa980989f9.png"
+  );
+
+  // Handle cover image upload
+  const handleCoverImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCoverImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Handle profile image upload
+  const handleProfileImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
-    <div className="w-full rounded-md bg-white dark:bg-gray-900 shadow-md overflow-hidden">
+    <div className="w-full rounded-md bg-white dark:bg-zinc-900 shadow-md overflow-hidden">
       {/* Cover image */}
       <div className="h-[170px] flex justify-center items-center">
-        <Avatar className="min-w-full min-h-full rounded-none">
+        <Avatar className="min-w-full relative min-h-full rounded-none">
           <AvatarImage
-            src="https://miro.medium.com/v2/resize:fit:851/0*4GpVgZhCyslzZC3y.jpg"
+            src={coverImage}
             alt="profile cover photo"
-            className="rounded-none"
+            className="rounded-none min-w-full h-auto"
           />
+          <span
+            className="absolute bottom-1 bg-gray-900 right-1 p-1 rounded-full border cursor-pointer"
+            onClick={() => document.getElementById("coverInput").click()}
+          >
+            <input
+              type="file"
+              id="coverInput"
+              hidden
+              accept="image/*"
+              onChange={handleCoverImageChange}
+            />
+            <PiCameraRotateFill className="text-xl text-gray-100" />
+          </span>
         </Avatar>
       </div>
 
       {/* Profile image */}
       <div className="w-full flex -mt-[65px] justify-center items-center sm:justify-start px-8">
-        <Avatar className="h-[130px] w-[130px] border-[3px] border-white dark:border-gray-800">
-          <AvatarImage
-            src="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/50dab922-5d48-4c6b-8725-7fd0755d9334/3a3f2d35-8167-4708-9ef0-bdaa980989f9.png"
-            alt="user profile"
-          />
-        </Avatar>
+        <span className="relative">
+          <Avatar className="h-[130px] w-[130px] border-[3px] border-white dark:border-gray-800">
+            <AvatarImage src={profileImage} alt="user profile" />
+          </Avatar>
+          <span
+            className="absolute bottom-2 bg-gray-900 right-1 p-1 rounded-full border cursor-pointer"
+            onClick={() => document.getElementById("profileInput").click()}
+          >
+            <input
+              type="file"
+              id="profileInput"
+              hidden
+              accept="image/*"
+              onChange={handleProfileImageChange}
+            />
+            <PiCameraRotateFill className="text-xl text-gray-100" />
+          </span>
+        </span>
       </div>
 
       {/* Content box */}
@@ -40,11 +99,9 @@ export default function UserProfile() {
           {/* Name and info section */}
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Alison Jonson
+              {userInfo.name}{" "}
             </h2>
-            <p className="text-gray-700 dark:text-gray-300">
-              jonson@butterfly.com
-            </p>
+            <p className="text-gray-700 dark:text-gray-300">{userInfo.email}</p>
             <div className="flex items-center my-2 gap-3">
               <small className="text-gray-700 dark:text-gray-300">
                 New York, America
