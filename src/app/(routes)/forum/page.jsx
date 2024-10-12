@@ -6,6 +6,7 @@ import Menu from "./sidebars/Menu";
 import TrendsSidebar from "./sidebars/Trending";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FollowingPostList from "./FollowingPostList";
+import WhoToFollow from "./sidebars/WhoToFollow";
 
 export default async function Hive() {
   const { user } = await auth();
@@ -25,6 +26,8 @@ export default async function Hive() {
        <Menu className="fixed border dark:bg-zinc-900 bottom-0 flex  justify-center gap-5 border-t bg-card p-3 sm:hidden" />
        </div> */}
       <CreatePostSection user={user} />
+
+      <WhoToFollow currentUser={user}/>
 
      <div className="max-w-2xl mx-auto">
      <Tabs defaultValue="foryou" >

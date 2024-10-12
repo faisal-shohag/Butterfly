@@ -14,7 +14,7 @@ const ExchangeBanner = () => {
 
      <div className="px-10 text-center w-full">
      <TextGenerateEffect
-        className="absolute top-5 lg:text-2xl md:text-xl text-md  shimmer"
+        className="absolute text-center w-full top-5 lg:text-2xl md:text-xl text-md  shimmer"
         words={`Create book with Generative AI in less than 30 seconds.`}
       />
      </div>
