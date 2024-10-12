@@ -6,6 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import formatTimeAgo from '@/app/(routes)/forum/TimeAgo';
 import { AiFillThunderbolt } from "react-icons/ai";
+import Image from 'next/image';
 
 const UserCoin = ({ user }) => {
     const { totalCoins, isLoading, error, coins } = useCoins(user.id);
@@ -18,7 +19,7 @@ const UserCoin = ({ user }) => {
 
             <div className="text-sm font-semibold text-white">BC</div>
             <div className="flex items-center gap-2 bg-white rounded-xl dark:bg-zinc-900">
-                <div><TbCoinBitcoinFilled className="shimmer" size={20}/></div>
+                <div className='pl-1'><Image height={15} width={15} src={"/bcoin.png"} alt='coin'/></div>
                 <div className="text-sm font-bold pr-2">
                     {isLoading ? <Loader size={15} className='animate-spin'/> : totalCoins}
                 </div>
@@ -43,7 +44,11 @@ const UserCoin = ({ user }) => {
                 {coins && coins.map((coin) => (
                     <DropdownMenuItem key={coin.id} className="text-sm">
                        <div className='flex items-center gap-3'>
-                        <div><TbCoinBitcoinFilled size={30} className='shimmer'/></div>
+                       <div className='pl-1 relative'>
+                        <div className='text-xs font-bold absolute -top-2 right-0 custom-glass-3 rounded px-1'>
+                            x{coin.value}
+                        </div>
+                        <Image height={35} width={35} src={"/bcoin.png"} alt='coin'/></div>
                         <div className='text-sm'>
                             <div className='font-semibold'>{coin.reason}</div>
                             <div className='text-xs'>{formatTimeAgo(coin.createdAt)}</div>
