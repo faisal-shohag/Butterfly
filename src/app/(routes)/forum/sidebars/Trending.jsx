@@ -1,16 +1,18 @@
+"use server"
+
 import { auth } from "@/auth";
-import UserAvatar from "@/components/common/UserAvatar";
-import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
+import WhoToFollow from "./WhoToFollow";
 
 
-export default function TrendsSidebar ({className}) {
+export default async function TrendsSidebar  ({className}) {
+      const {user} = await auth();
     return (
         <div className={className}>
             <Suspense fallback={<Loader2 className="mx-auto animate-spin"/>}>
-          <WhoToFollow/>
+          <WhoToFollow currentUser={user}/>
           <TrendingTopics/>
           </Suspense>
         </div>
@@ -20,41 +22,7 @@ export default function TrendsSidebar ({className}) {
 
 
 
-async function WhoToFollow () {
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
-    const { user } = await auth();
-    let usersToFollow = []
-    try {
-      usersToFollow = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/suggested-to-follow-users/${user?.id}`).then(res => res.json());
-    } catch (error) {
-      console.error('Error fetching who to follow users:', error);
-      throw new Error('Failed to fetch latest exchange posts', error);
-    }
 
-  
-    return  <div className="space-y-5 rounded-2xl bg-card dark:bg-zinc-900 p-5 shadow-sm">
-    <div className="text-xl font-bold">Who to follow</div>
-    {usersToFollow.map((u) => (
-      <div key={u.id} className="flex items-center justify-between gap-3">
-        <Link
-          href={`/users/${u.name}`}
-          className="flex items-center gap-3"
-        >
-         <UserAvatar image={u.image} name={u.name}/>
-          <div>
-            <div className="line-clamp-1 text-sm break-all font-semibold hover:underline">
-              {u.name}
-            </div>
-            <div className="line-clamp-1 text-xs break-all text-muted-foreground hover:underline">
-          @{u.username}
-            </div>
-          </div>
-        </Link>
-        <Button>Follow</Button>
-      </div>
-    ))}
-  </div>
-}
 
 const getTrendingTopics =  async () => {
       const result = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/trending-topics`).then(res => res.json())
@@ -65,7 +33,7 @@ const getTrendingTopics =  async () => {
     }
 
 
-export function formatNumber(num) {
+export async function formatNumber(num) {
     if (num >= 1e9) {
         return (num / 1e9).toFixed(1) + "B";
     } else if (num >= 1e6) {

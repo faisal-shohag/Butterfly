@@ -137,7 +137,7 @@ const CreatePost = ({user}) => {
       className=""
     >
       <>
-        <div className="shadow-sm mb-10 border dark:bg-[#141414] bg-white px-4 py-4 rounded-2xl max-w-2xl mx-auto">
+        <div className="shadow-sm mb-5 border dark:bg-[#141414] bg-white px-4 py-4 rounded-2xl max-w-2xl mx-auto">
           <div></div>
           <div className="flex items-start gap-4 font-kalpurush">
            {user && <UserAvatar image={user.image} name={user.name}/>}

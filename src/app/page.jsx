@@ -7,14 +7,12 @@ import LatestExchangePosts from "@/components/home/LatestExchangePosts";
 export default function Home() {
   return (
     <>
-      <div className="">
-      <Banner/>
-      <MostCoinedUser/>
-      <LatestExchangePosts/>
-      <HiveHunters/>
-      <PopularPosts/>
-    
-     
+      <div className="section">
+        <Banner />
+        <MostCoinedUser />
+        <LatestExchangePosts />
+        <HiveHunters />
+        <PopularPosts />
       </div>
     </>
   );
