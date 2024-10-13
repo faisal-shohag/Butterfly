@@ -75,9 +75,9 @@ export default function UpdateDataTable() {
 
   return (
     <div className="overflow-x-auto mt-1">
-      <table className="min-w-full bg-white border border-gray-200">
+      <table className="min-w-full bg-white border dark:bg-zinc-900 border-gray-200">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-gray-100 dark:bg-gray-900">
             <th className="py-2 px-4 border">Book Title</th>
             <th className="py-2 px-4 border">Author</th>
             <th className="py-2 px-4 border">Exchange Date</th>
