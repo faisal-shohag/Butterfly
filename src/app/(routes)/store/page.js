@@ -1,4 +1,5 @@
 "use client";
+<<<<<<< HEAD
 import { LazyLoadImage } from "react-lazy-load-image-component";
 // import DiscountCard from "../../components/common/DiscountCard";
 import DiscountCard from '../../../components/common/DiscountCard'
@@ -295,6 +296,21 @@ const Special = () => {
           </div>
         </div>
       </dialog>
+=======
+import Banner from "@/components/home/Banner";
+import Image from "next/image";
+import Snowfall from "react-snowfall";
+const Special = () => {
+
+
+  return (
+    <div>
+       <div className="w-full flex justify-center custom-glass-2 rounded-xl overflow-hidden">
+       <Image className="object-cover" src='/store-banner.png' height={400} width={1000} alt="banner"/>
+       </div>
+       <Snowfall style={{zIndex: '99999'}} />
+     
+>>>>>>> c11bc9fc29e582fb75e256a5917ac18afb23976d
     </div>
   );
 };

@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
 
 // Dynamically import ReactApexChart to avoid SSR issues
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-const Chart = ({total, number, name, amount}) => {
+const Chart = ({ total, number, name, amount }) => {
   // Define the state using useState inside the functional component
   const [chartData] = useState({
     series: [
@@ -23,14 +23,14 @@ const Chart = ({total, number, name, amount}) => {
     ],
     options: {
       chart: {
-        type: 'bar',
+        type: "bar",
         height: 350,
       },
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: '55%',
-          endingShape: 'rounded',
+          columnWidth: "55%",
+          endingShape: "rounded",
         },
       },
       dataLabels: {
@@ -39,14 +39,14 @@ const Chart = ({total, number, name, amount}) => {
       stroke: {
         show: true,
         width: 2,
-        colors: ['transparent'],
+        colors: ["transparent"],
       },
       xaxis: {
         categories: [`${name}`],
       },
       yaxis: {
         title: {
-          text: 'Count',
+          text: "Count",
         },
       },
       fill: {
@@ -63,7 +63,7 @@ const Chart = ({total, number, name, amount}) => {
   });
 
   return (
-    <div> 
+    <div>
       <div className="mt-10">
         <ReactApexChart
           options={chartData.options}

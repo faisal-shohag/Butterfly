@@ -1,41 +1,29 @@
-'use server'
-import React from 'react';
- 
+"use server";
+import HiveAndExchangeChart from "./HiveAndExchangeChart";
+import TopCards from "./TopCards";
+import { IoNotificationsCircle } from "react-icons/io5";
+import { FiFilter } from "react-icons/fi";
+import UpdateDataTable from "./UpdateDataTable";
 
 const page = () => {
-    return (
-        <div>
-            <div>
-                <h3 className="text-2xl font-bold text-center p-3 border shadow-md rounded-sm">DashBoard</h3>
-            </div>
+  return (
+    <div className="w-full">
+      <div className="w-full flex justify-between items-center mb-2">
+        <h4 className="font-bold text-gray-500">Deshboard</h4>
+        <IoNotificationsCircle className="text-2xl cursor-pointer" />
+      </div>
+      <TopCards />
+      <HiveAndExchangeChart />
 
-            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6'>
-<div className='p-3 border shadow-md rounded-sm hover:shadow-lg hover:scale-105'>
-    <h2 className="text-xl font-bold">Stock Books</h2>
-    <h2 className="text-2xl font-bold text-center">100</h2>
-</div>
-<div className='p-3 border shadow-md rounded-sm hover:shadow-lg hover:scale-105'>
-    <h2 className="text-xl font-bold">Total Users</h2>
-    <h2 className="text-2xl font-bold text-center">100</h2>
-</div>
-<div className='p-3 border shadow-md rounded-sm hover:shadow-lg hover:scale-105'>
-    <h2 className="text-xl font-bold">Total Hive Posts</h2>
-    <h2 className="text-2xl font-bold text-center">100</h2>
-</div>
-<div className='p-3 border shadow-md rounded-sm hover:shadow-lg hover:scale-105'>
-    <h2 className="text-xl font-bold">Total Exchange Requests</h2>
-    <h2 className="text-2xl font-bold text-center">100</h2>
-</div>
-<div className='p-3 border shadow-md rounded-sm hover:shadow-lg hover:scale-105'>
-    <h2 className="text-xl font-bold">Subscribers</h2>
-    <h2 className="text-2xl font-bold text-center">100</h2>
-</div>
-
-
-
-            </div>
+      <div className="w-full">
+        <div className="w-full flex justify-between items-center ">
+          <h5 className="font-bold">Update Info:</h5>
+          <FiFilter />
         </div>
-    );
+        <UpdateDataTable />
+      </div>
+    </div>
+  );
 };
 
 export default page;

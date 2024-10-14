@@ -42,29 +42,27 @@ const Exchanges = ({userId}) => {
 
     if (!isReady || isLoading) return <Loading/>;
     if (isError) return <div>Error fetching books</div>;
-    // console.log(data)
+
+    // Flatten all books from all pages
+    const allBooks = data?.pages.flatMap(page => page.books) || [];
 
     return (
         <div className="container mx-auto px-4">
-            {data && data.pages ? (
-                data.pages.map((page, i) => (
-                    <React.Fragment key={i}>
-                        {page.books && page.books.length > 0 ? (
-                           <BookCard books={page.books} userId={userId}/>
-                        ) : (
-                            <div>No books found on this page.</div>
-                        )}
-                    </React.Fragment>
-                ))
-            ) : (
-                <div>No books available.</div>
-            )}
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+            {allBooks.length > 0 ? (
+        allBooks.map((book) => (
+            <BookCard key={book.id} book={book} userId={userId} />
+        ))
+    ) : (
+        <div>No books available.</div>
+    )}
+            </div>
             <div ref={ref}>
                 {isFetchingNextPage
                     ? 'Loading more...'
                     : hasNextPage
                     ? 'Load More'
-                    : <div className="text-center font-semibold text-slate-500 mt-5">You are the end!</div>}
+                    : <div className="text-center font-semibold text-slate-500 mt-5">You are at the end!</div>}
             </div>
         </div>
     );
