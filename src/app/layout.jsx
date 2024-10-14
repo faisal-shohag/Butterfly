@@ -35,7 +35,7 @@ export default async function RootLayout({ children }) {
             <ReactQueryProvider>
               <Toaster />
               <Navbar />
-              <div className="section">{children}</div>
+              <div className="">{children}</div>
               <div className="lg:hidden md:block block">
                 <BottomNavBar />
               </div>
