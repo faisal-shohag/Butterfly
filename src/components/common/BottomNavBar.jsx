@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Home } from "lucide-react";
@@ -12,6 +12,20 @@ import { PiButterflyFill } from "react-icons/pi";
 
 const BottomNavBar = () => {
   const currentPath = usePathname();
+
+  if (
+    currentPath === "/dashboard" ||
+    currentPath === "/exchangesPostReport" ||
+    currentPath === "/features" ||
+    currentPath === "/hivePostReport" ||
+    currentPath === "/manageUsers" ||
+    currentPath === "/messages" ||
+    currentPath === "/books" ||
+    currentPath === "/ordersReport" ||
+    currentPath === "/userProfile"
+  ) {
+    return null;
+  }
 
   return (
     <nav className="fixed drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)] custom-glass-2 pt-1 w-full sidebar bottom-0 z-50 bg-white pb-2">

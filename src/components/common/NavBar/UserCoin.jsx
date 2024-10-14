@@ -1,11 +1,9 @@
-import React from 'react';
-import { TbCoinBitcoinFilled } from "react-icons/tb";
 import { Loader } from 'lucide-react';
 import { useCoins } from '@/hooks/useCoins';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import formatTimeAgo from '@/app/(routes)/forum/TimeAgo';
-import { AiFillThunderbolt } from "react-icons/ai";
+
 import Image from 'next/image';
 
 const UserCoin = ({ user }) => {
@@ -14,8 +12,6 @@ const UserCoin = ({ user }) => {
     const CoinDisplay = () => (
         <>
         <div className="shadow-md rounded-lg py-1 px-2 flex items-center gap-5 shimmer bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-400 border-2 border-purple-300 pl-7 relative">
-        <div className='absolute -left-5 z-10 -top-2 text-pink-100 '><AiFillThunderbolt size={50} className=''/></div>
-           
 
             <div className="text-sm font-semibold text-white">BC</div>
             <div className="flex items-center gap-2 bg-white rounded-xl dark:bg-zinc-900">
@@ -45,12 +41,12 @@ const UserCoin = ({ user }) => {
                     <DropdownMenuItem key={coin.id} className="text-sm">
                        <div className='flex items-center gap-3'>
                        <div className='pl-1 relative'>
-                        <div className='text-xs font-bold absolute -top-2 right-0 custom-glass-3 rounded px-1'>
+                        {/* <div className='text-xs font-bold absolute -top-2 right-0 custom-glass-3 rounded px-1'>
                             x{coin.value}
-                        </div>
+                        </div> */}
                         <Image height={35} width={35} src={"/bcoin.png"} alt='coin'/></div>
                         <div className='text-sm'>
-                            <div className='font-semibold'>{coin.reason}</div>
+                            <div className='font-semibold'>{coin.reason}(x{coin.value})</div>
                             <div className='text-xs'>{formatTimeAgo(coin.createdAt)}</div>
                         </div>
 

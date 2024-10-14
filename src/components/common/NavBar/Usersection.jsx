@@ -38,7 +38,7 @@ const Usersection = () => {
                 variant="ghost"
                 className=" relative rounded-full"
               >
-                <UserAvatar image={user.image} name={user.name} />
+                <UserAvatar height="50" width="50" image={user.image} name={user.name} />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
