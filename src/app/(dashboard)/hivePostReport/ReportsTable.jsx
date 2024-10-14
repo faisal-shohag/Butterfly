@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Link from "next/link";
 
-export default function ReportsTable() {
+export default function ReportsTable({ handleMessageBox }) {
   const [openMenuId, setOpenMenuId] = useState(null);
 
   const toggleMenu = (id) => {
@@ -145,17 +145,23 @@ export default function ReportsTable() {
                 </div>
                 {openMenuId === report.id && (
                   <div className="absolute top-full border right-0 w-52 bg-white p-2 shadow-lg rounded-lg z-10">
-                    <Link
-                      href="#"
+                    <div
+                      onClick={() => handleMessageBox(true)}
                       className="block p-2 text-sm hover:bg-gray-100 rounded"
                     >
                       Message User
-                    </Link>
+                    </div>
+                    <div
+                      onClick={() => handleMessageBox(true)}
+                      className="block p-2 text-sm hover:bg-gray-100 rounded"
+                    >
+                      Message Reported User
+                    </div>
                     <Link
                       href="#"
                       className="block p-2 text-sm hover:bg-gray-100 rounded"
                     >
-                      Message Reported User
+                      See Reported Post
                     </Link>
                     <Link
                       href="#"
