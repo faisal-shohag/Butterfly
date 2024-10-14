@@ -12,11 +12,11 @@ export default async function Hive() {
   const { user } = await auth();
   return (
     <>
-      <div>
+      {/* <div>
         <div className="lg:block hidden">
           <Menu className="fixed dark:bg-zinc-900 border left-[5.25rem] top-[5.25rem] hidden h-fit flex-none space-y-3 rounded-2xl bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
         </div>
-      </div>
+      </div> */}
 
       <div className="lg:block hidden">
         <TrendsSidebar className="fixed  right-[5.25rem] top-[5.25rem] hidden h-fit flex-none  sm:block lg:px-5 xl:w-80" />
@@ -27,7 +27,7 @@ export default async function Hive() {
        </div> */}
       <CreatePostSection user={user} />
 
-      <WhoToFollow currentUser={user}/>
+      {/* <WhoToFollow currentUser={user}/> */}
 
      <div className="max-w-2xl mx-auto">
      <Tabs defaultValue="foryou" >

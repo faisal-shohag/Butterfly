@@ -70,25 +70,25 @@ const UserToFollowItem = ({ user, currentUserId }) => {
 
   return (
     <div className="flex items-center justify-between gap-3">
-      <Link
-        href={`/users/${user.username}`}
+      <div
+      
         className="flex items-center gap-3"
       >
         <UserAvatar image={user.image} name={user.name} />
         <div>
-          <div className="line-clamp-1 text-sm break-all font-semibold hover:underline">
+          <Link href={`/users/${user.username}`} className="line-clamp-1 text-sm break-all font-semibold hover:underline">
             {user.name}
-          </div>
-          <Button
+          </Link>
+          <button
            size="sm"
-        className={` ${isFollowing ? 'bg-red-500' : 'dark:bg-zinc-950 dark:text-zinc-100'}`}
+        className={`text-sm font-bold hover:underline ${isFollowing ? 'text-red-500' : ''}`}
           onClick={handleFollowToggle} 
           disabled={followToggleMutation.isLoading || isLoadingStatus}
         >
           {isFollowing ? 'Unfollow' : 'Follow'}
-        </Button>
+        </button>
         </div>
-      </Link>
+      </div>
      
     </div>
   );
