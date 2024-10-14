@@ -61,7 +61,7 @@ const Layout = ({ children }) => {
                     <UserAvatar image={user.image} name={user.name} />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
+                <DropdownMenuContent align="end" className="!z-20 !bg-white">
                   <DropdownMenuLabel>
                     <div>{user.name}</div>
                     {user.username && (

@@ -11,7 +11,6 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
-import logo from "../../images/logo.png";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
@@ -51,9 +50,12 @@ export default function DashboardNav({ handleNav, responsiveNav }) {
         </button>
         <div className="w-full my-5 flex gap-2 justify-center items-center">
           <Image
-            src={logo}
-            alt="admin dashboard logo"
-            className="max-w-[50px]"
+            width={60}
+            height={60}
+            src="/logo.png"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            alt="Butterfly logo"
+            className="h-8 w-auto"
           />
           <div className="bg-clip-text font-bold block md:hidden lg:block text-transparent bg-gradient-to-r from-purple-400 via-indigo-500 to-blue-500">
             <div>
