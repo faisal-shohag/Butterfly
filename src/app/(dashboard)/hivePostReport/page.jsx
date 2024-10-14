@@ -1,12 +1,13 @@
 "use server";
 import React from "react";
-import Chart from "@/components/Chart";
+// import Chart from "@/components/Chart";
 import { IoNotificationsCircle } from "react-icons/io5";
 import HivePostRepostCards from "./HivePostRepostCards";
+import ReportsTable from "./ReportsTable";
 
 const page = () => {
-  const name = "Total Hive Posts";
-  const amount = "Total Hive Post Users";
+  // const name = "Total Hive Posts";
+  // const amount = "Total Hive Post Users";
 
   return (
     <div>
@@ -16,7 +17,8 @@ const page = () => {
       </div>
 
       <HivePostRepostCards />
-      <Chart total={600} number={100} name={name} amount={amount}></Chart>
+      {/* <Chart total={600} number={100} name={name} amount={amount}></Chart> */}
+      <ReportsTable />
     </div>
   );
 };
