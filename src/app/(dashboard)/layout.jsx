@@ -61,9 +61,12 @@ const Layout = ({ children }) => {
                     <UserAvatar image={user.image} name={user.name} />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="!z-20 !bg-white">
+                <DropdownMenuContent
+                  align="end"
+                  className="!z-20 shadow-md !bg-white p-3 rounded-md"
+                >
                   <DropdownMenuLabel>
-                    <div>{user.name}</div>
+                    <h3 className="font-bold -mb-2">{user.name}</h3>
                     {user.username && (
                       <span className="text-xs text-green-500">
                         @{user.username}
