@@ -1,165 +1,199 @@
-import React from "react";
-import { IoNotificationsCircle } from "react-icons/io5";
-import { Button } from "@/components/ui/button"; // Assuming you have shadcn/ui button component
+'use client'
+import ManageUsers from "@/components/ManageUsers/ManageUsers";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import useAxiosSecure from "@/hooks/useAxiosSecure";
+import Image from "next/image";
+import React, { useState } from "react";
+import { RiEdit2Line } from "react-icons/ri";
+import { useInfiniteQuery } from "react-query";
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogClose,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
 
 const Page = () => {
-  const users = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "admin",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 3,
-      name: "Michael Brown",
-      email: "michael.brown@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 4,
-      name: "Emily Johnson",
-      email: "emily.johnson@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 5,
-      name: "David Wilson",
-      email: "david.wilson@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 6,
-      name: "Sarah Miller",
-      email: "sarah.miller@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 7,
-      name: "James Taylor",
-      email: "james.taylor@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 8,
-      name: "Sophia Lee",
-      email: "sophia.lee@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 9,
-      name: "Chris Evans",
-      email: "chris.evans@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 10,
-      name: "Olivia Davis",
-      email: "olivia.davis@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-  ];
+
+  const axiosSecure = useAxiosSecure();
+  const [users, setUsers] = useState([]) 
+  const [currentUser, setCurrentUser] = useState({})
+
+  const { data: allUser = [], isPending, refetch } = useInfiniteQuery({
+    queryKey: ['users', axiosSecure],
+    queryFn: async () => {
+      const res = await axiosSecure.get('/users');
+      return res.data;
+    }
+  });
+
+  React.useEffect(() => {
+    if (allUser && allUser.pages && allUser.pages.length > 0) {
+      setUsers(allUser.pages[0]); 
+    }
+  }, [allUser]);
+
+  const sortedUsers = users?.sort((a, b) => {
+    if (a.role === 'admin' && b.role !== 'admin') return -1;
+    if (a.role !== 'admin' && b.role === 'admin') return 1;
+    if (a.role === 'moderator' && b.role !== 'moderator') return -1;
+    if (a.role !== 'moderator' && b.role === 'moderator') return 1;
+    // if (a.role === 'guest' && b.role !== 'guest') return 1;
+    // if (a.role !== 'guest' && b.role === 'guest') return -1;
+    return 0;
+  });
+
+  const handleEditRole = (user) => {
+    setCurrentUser(user) 
+  }
+   
+
+  const handleRoleUpdate = async (e) => {
+
+    e.preventDefault()
+    const currentRole = e.target.role.value
+    const data = {
+      role: currentRole,
+    }
+
+    const res = await axiosSecure.put(`/users/${currentUser?.id}`, data)
+
+    console.log(res.status)
+    if (res.status === 200) {
+        refetch()
+        console.log('success')
+         
+        // Swal.fire({
+        //     position: "top-end",
+        //     icon: "success",
+        //     title: "Role updated",
+        //     showConfirmButton: false,
+        //     timer: 1000
+        //   });
+    }
+  }
 
   return (
-    <div className="p-4  min-h-screen">
-      {/* Header */}
-      <div className="w-full flex justify-between items-center mb-4">
-        <h4 className="font-bold text-xl text-gray-600 dark:text-gray-300">
-          Manage Users
-        </h4>
-        <IoNotificationsCircle className="text-3xl cursor-pointer text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors" />
-      </div>
-
-      {/* User Table */}
-      <div className="overflow-x-auto mt-4 flex justify-center items-center">
-        <table className="table-auto w-full text-left dark:bg-zinc-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md">
-          <thead className="bg-gradient-to-r from-zinc-500 to-zinc-700 dark:from-zinc-700 dark:to-zinc-900 text-white dark:text-gray-200 rounded-t-lg">
-            <tr>
-              <th className="py-3 px-4">User Info</th>
-              <th className="py-3 px-4">Role</th>
-              <th className="py-3 px-4">Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {users.map((user) => (
-              <tr
-                key={user.id}
-                className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-              >
-                <td className="py-3 px-4">
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={user.image}
-                      alt={`${user.name} avatar`}
-                      className="h-12 w-12 rounded-full object-cover border border-gray-300 dark:border-gray-600 shadow-sm"
-                    />
-                    <div>
-                      <div className="font-semibold text-gray-700 dark:text-gray-300">
-                        {user.name}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        {user.email}
-                      </div>
-                    </div>
+    <div>
+      {/* <ManageUsers></ManageUsers> */}
+      <Table>
+        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead>#</TableHead>
+            <TableHead>UserInfo</TableHead>
+            <TableHead>Role</TableHead>
+            <TableHead className='text-center'>Action</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {sortedUsers?.map((user, idx) => (
+            <TableRow key={user?.id}>
+              <TableCell>{idx + 1}</TableCell>
+              <TableCell>
+                <div className="flex gap-2   items-center max-sm:mr-10">
+                  <Image
+                    width={60}
+                    height={60}
+                    src={user?.image || "/bcoin.png"}
+                    alt="User Image"
+                    className="h-8 w-8 rounded-md"
+                  />
+                  <div>
+                    <p className="font-medium">{user?.name}</p>
+                    <p className="opacity-90">{user?.email}</p>
                   </div>
-                </td>
+                </div>
+              </TableCell>
+              <TableCell>
+                <div>
+                  {
+                    user?.role === 'moderator' ?
 
-                <td
-                  className={`w-52 text-center font-semibold ${
-                    user.role === "admin"
-                      ? "text-red-500 dark:text-red-400"
-                      : "text-gray-700 dark:text-gray-300"
-                  }`}
-                >
-                  {user.role}
-                </td>
+                      <p className='text-green-500'>{user?.role || 'N/A'}</p>
+                      :
+                      user?.role === 'admin' ?
+                        <p className='text-sky-500'>{user?.role || 'N/A'}</p>
+                        :
 
-                {user.role === "admin" ? (
-                  <td></td>
-                ) : (
-                  <td className="w-52 text-center">
-                    {/* Black button with white text */}
-                    <Button className="bg-black text-white hover:bg-gray-800  dark:text-black dark:bg-gray-200 shadow-md transition">
-                      Edit Role
-                    </Button>
-                    {/* White button with black border and black text */}
-                    <Button className="ml-2 border border-black hover:text-white text-black bg-gray-100 dark:border-gray-300 dark:text-white dark:bg-gray-800 shadow-md transition">
-                      Send Mail
-                    </Button>
-                  </td>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                        <p className='text-red-500'>{user?.role || 'N/A'}</p>
+
+                  }
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="flex gap-2 justify-center items-center">
+                  {/* <button onClick={() => handleEditRole(user)} className="flex gap-1 justify-center items-center border border-gray-900 hover:bg-gray-700 hover:text-white px-3 py-1 rounded-md"><span>Edit</span><RiEdit2Line /></button> */}
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button onClick={() => handleEditRole(user)} className="flex gap-1 justify-center items-center border border-gray-900 hover:bg-gray-700 hover:text-white px-3 py-1 rounded-md"><span>Edit</span><RiEdit2Line /></button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <div className="grid gap-4 py-3">
+                        <form onSubmit={handleRoleUpdate} className='flex flex-col justify-center items-center my-2'>
+                          <select name="role" id="" className="border px-4 py-1 rounded-md w-full mb-2">
+                            <option disabled selected>{user?.role || 'N/A'}</option>
+                            {/* <option value='guest'>guest</option> */}
+                            <option value='moderator'>moderator</option>
+                            <option value='admin'>admin</option>
+                          </select>
+                          <div>
+                          <DialogClose asChild>
+                          <input type="submit" value="Save" className="w-fit md:px-2 text-center border border-gray-900 hover:bg-gray-700 hover:text-white px-3 py-1 rounded-md font-medium text-sm  " />
+          </DialogClose>
+                            
+                          </div>
+                        </form>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+
+                  <button className="w-24 border border-gray-900 hover:bg-gray-700 hover:text-white px-3 py-1 rounded-md"> Sent Mail </button>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      {/* <div>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline">Edit Profile</Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <div className="grid gap-4 py-3">
+              <form onSubmit={handleRoleUpdate} className='flex flex-col justify-center items-center my-2'>
+                <select name="role" id="" className="border px-4 py-1 rounded-md w-full mb-2">
+                  <option disabled selected>{'user?.role' || 'N/A'}</option>
+                  <option value='guest'>guest</option>
+                  <option value='moderator'>moderator</option>
+                  <option value='admin'>admin</option>
+                </select>
+                <div>
+                  <input type="submit" value="Save" className="w-fit md:px-2 text-center border border-gray-900 hover:bg-gray-700 hover:text-white px-3 py-1 rounded-md font-medium text-sm  " />
+                </div>
+              </form>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div> */}
     </div>
   );
 };
