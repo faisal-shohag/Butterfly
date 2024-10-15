@@ -87,15 +87,27 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Cover URL Field */}
-        <div>
-          <label htmlFor="coverUrl">Cover URL</label>
-          <Input
-            id="coverUrl"
-            {...register("coverUrl", { required: true })}
-            placeholder="Enter cover image URL"
-            className="w-full"
-          />
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {/* Cover URL Field */}
+          <div>
+            <label htmlFor="coverUrl">Cover URL</label>
+            <Input
+              id="coverUrl"
+              {...register("coverUrl", { required: true })}
+              placeholder="Enter cover image URL"
+              className="w-full"
+            />
+          </div>
+          {/* Pdf URL Field */}
+          <div>
+            <label htmlFor="pdfUrl">Pdf URL</label>
+            <Input
+              id="pdfUrl"
+              {...register("pdfUrl", { required: true })}
+              placeholder="Enter Pdf URL"
+              className="w-full"
+            />
+          </div>
         </div>
 
         {/* Description Field */}
