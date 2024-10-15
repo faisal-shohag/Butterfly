@@ -11,11 +11,14 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full flex justify-center items-center gap-5">
+    <div className="w-full">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="custom-glass w-full rounded-md  p-5 space-y-4"
+        className="custom-glass w-full rounded-md p-5 space-y-4"
       >
+        <h1 className="text-center font-bold text-xl text-gray-600 dark:text-gray-300">
+          Add Store Book
+        </h1>
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Title Field */}
           <div>
@@ -27,19 +30,7 @@ export default function Page() {
               className="w-full"
             />
           </div>
-          {/* Genre Field */}
-          <div>
-            <label htmlFor="genre">Genre</label>
-            <Input
-              id="genre"
-              {...register("genre", { required: true })}
-              placeholder="Enter genre"
-              className="w-full"
-            />
-          </div>
-        </div>
 
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Author Field */}
           <div>
             <label htmlFor="author">Author</label>
@@ -50,38 +41,27 @@ export default function Page() {
               className="w-full"
             />
           </div>
-
-          {/* ISBN Field */}
-          <div>
-            <label htmlFor="isbn">ISBN</label>
-            <Input
-              id="isbn"
-              {...register("isbn", { required: true })}
-              placeholder="Enter ISBN"
-              className="w-full"
-            />
-          </div>
         </div>
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {/* Published Year Field */}
+          {/* Publications Field */}
           <div>
-            <label htmlFor="publishedYear">Published Year</label>
+            <label htmlFor="publications">Publications</label>
             <Input
-              id="publishedYear"
-              {...register("publishedYear", { required: true })}
-              placeholder="Enter published year"
+              id="publications"
+              {...register("publications")}
+              placeholder="Enter publication details"
               className="w-full"
             />
           </div>
 
-          {/* Publisher Field */}
+          {/* Language Field */}
           <div>
-            <label htmlFor="publisher">Publisher</label>
+            <label htmlFor="language">Language</label>
             <Input
-              id="publisher"
-              {...register("publisher", { required: true })}
-              placeholder="Enter publisher"
+              id="language"
+              {...register("language", { required: true })}
+              placeholder="Enter language"
               className="w-full"
             />
           </div>
@@ -90,22 +70,90 @@ export default function Page() {
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Cover URL Field */}
           <div>
-            <label htmlFor="coverUrl">Cover URL</label>
+            <label htmlFor="cover">Cover URL</label>
             <Input
-              id="coverUrl"
-              {...register("coverUrl", { required: true })}
+              id="cover"
+              {...register("cover")}
               placeholder="Enter cover image URL"
               className="w-full"
             />
           </div>
-          {/* Pdf URL Field */}
+
+          {/* PDF URL Field */}
           <div>
-            <label htmlFor="pdfUrl">Pdf URL</label>
+            <label htmlFor="pdfUrl">PDF URL</label>
             <Input
               id="pdfUrl"
-              {...register("pdfUrl", { required: true })}
-              placeholder="Enter Pdf URL"
+              {...register("pdfURL")}
+              placeholder="Enter PDF URL"
               className="w-full"
+            />
+          </div>
+        </div>
+
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {/* Category Field */}
+          <div>
+            <label htmlFor="category">Category</label>
+            <Input
+              id="category"
+              {...register("category", { required: true })}
+              placeholder="Enter category"
+              className="w-full"
+            />
+          </div>
+
+          {/* Published Date Field */}
+          <div>
+            <label htmlFor="publishedDate">Published Date</label>
+            <Input
+              id="publishedDate"
+              type="date"
+              {...register("publishedDate")}
+              className="w-full"
+            />
+          </div>
+        </div>
+
+        <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {/* Price Field */}
+          <div>
+            <label htmlFor="price">Price</label>
+            <Input
+              id="price"
+              type="number"
+              step="0.01"
+              {...register("price", { required: true })}
+              placeholder="Enter price"
+              className="w-full"
+              defaultValue={0}
+            />
+          </div>
+
+          {/* Coin Field */}
+          <div>
+            <label htmlFor="coin">Coin</label>
+            <Input
+              id="coin"
+              type="number"
+              {...register("coin", { required: true })}
+              placeholder="Enter coin value"
+              className="w-full"
+              defaultValue={0}
+            />
+          </div>
+
+          {/* Discount Field */}
+          <div>
+            <label htmlFor="discount">Discount (%)</label>
+            <Input
+              id="discount"
+              type="number"
+              step="0.01"
+              {...register("discount", { required: true })}
+              placeholder="Enter discount"
+              className="w-full"
+              defaultValue={0}
             />
           </div>
         </div>
