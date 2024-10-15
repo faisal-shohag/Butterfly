@@ -2,7 +2,6 @@
 
 import { SiApachehive } from "react-icons/si";
 import Heading from "../common/Heading";
-import { unstable_cache } from "next/cache";
 import UserAvatar from "../common/UserAvatar";
 import { MdHive } from "react-icons/md";
 

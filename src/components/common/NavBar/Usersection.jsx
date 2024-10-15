@@ -1,10 +1,10 @@
+
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
-import { ModeToggle } from "../ThemeToggle";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Loader2Icon } from "lucide-react";
+import { Loader2Icon, LogOutIcon, Moon, Settings, Sun, UserCircle } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,11 +14,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import UserAvatar from "../UserAvatar";
-import { TbCoinBitcoinFilled } from "react-icons/tb";
 import UserCoin from "./UserCoin";
+import { useTheme } from "next-themes";
 const Usersection = () => {
+    const { theme, setTheme } = useTheme()
   const session = useSession();
   const user = session.data?.user;
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light")
+  }
+
   return (
     <>
       <div className="ml-4 flex items-center md:ml-6 gap-5">
@@ -32,7 +38,7 @@ const Usersection = () => {
                 variant="ghost"
                 className=" relative rounded-full"
               >
-                <UserAvatar image={user.image} name={user.name} />
+                <UserAvatar height="50" width="50" image={user.image} name={user.name} />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -44,11 +50,17 @@ const Usersection = () => {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <Link href={"/profile"}>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem><UserCircle size={15} className="mr-2"/> Profile</DropdownMenuItem>
               </Link>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => signOut()}>
-                Sign out
+              <DropdownMenuItem onClick={toggleTheme}>
+              <Sun size={15} className=" rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 mr-2" />
+              <Moon size={15} className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 mr-2" />
+              
+              Theme</DropdownMenuItem>
+              {/* <DropdownMenuItem><Moon size={15} className='mr-2'/> Dark Mode</DropdownMenuItem> */}
+              {/* <DropdownMenuItem><Settings size={15} className="mr-2"/> Settings</DropdownMenuItem> */}
+              <DropdownMenuItem className="text-red-500" onClick={() => signOut()}>
+                <LogOutIcon size={15} className="mr-2"/> Sign out
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -65,7 +77,6 @@ const Usersection = () => {
             )}
           </>
         )}
-        <ModeToggle />
       </div>
     </>
   );

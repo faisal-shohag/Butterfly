@@ -1,8 +1,6 @@
 "use client";
-import Lottie from "react-lottie-player";
-import coinNormal from "@/lottie/coin-normal.json";
-
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Image from "next/image";
 
 const CoinModal = ({
   title = "Modal Title",
@@ -15,17 +13,13 @@ const CoinModal = ({
     <Dialog className="h-[400px]" open={isOpen} onOpenChange={onClose}>
       <DialogTrigger asChild></DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
-        <div className="flex justify-center w-full items-center flex-col font-kalpurush">
-        <div className="absolute top-20 text-3xl font-bold shimmer">Congratulations!!!</div>
-        <div className="absolute bottom-20 text-3xl font-bold shimmer">You got Butterfly coin!</div>
-          <div className="">
-            <Lottie
-              loop
-              animationData={coinNormal}
-              play
-              style={{ width: "100%", height: "100%" }}
-            />
+        <div className="flex justify-center w-full items-center flex-col gap-10 font-kalpurush">
+        <div className=" text-3xl font-bold">Congratulations!!!</div>
+        
+          <div className="shimmer">
+            <Image height={200} width={200} src={"/bcoin.png"} alt="coin" />
           </div>
+          <div className=" text-3xl font-bold">You got Butterfly coin!</div>
         </div>
       </DialogContent>
     </Dialog>
