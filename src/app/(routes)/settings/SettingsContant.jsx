@@ -1,6 +1,6 @@
 import EditContactInfo from "./EditContactInfo";
 import EditIntroductionInfo from "./EditIntroductionInfo";
-import EditNameAndPassword from "./EditNameAndPassword";
+import EditNameAndPassword from "./EditNameAndPAssword";
 import EditProfile from "./EditProfile";
 import EditSocialLinks from "./EditSocialLinks";
 
