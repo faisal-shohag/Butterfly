@@ -30,17 +30,7 @@ const Navbar = () => {
   const user = session.data?.user;
   // console.log(user)
 
-  if (
-    currentPath === "/dashboard" ||
-    currentPath === "/exchangesPostReport" ||
-    currentPath === "/features" ||
-    currentPath === "/hivePostReport" ||
-    currentPath === "/manageUsers" ||
-    currentPath === "/messages" ||
-    currentPath === "/books" ||
-    currentPath === "/ordersReport" ||
-    currentPath === "/userProfile"
-  ) {
+  if (/^\/dashboard/.test(currentPath)) {
     return null;
   }
   return (
