@@ -38,38 +38,37 @@ const Layout = ({ children }) => {
 
   const menuItems = [
     {
-      href: "/dashboard",
+      href: "/dashboard/dashboardHome",
       label: "Dashboard",
       icon: <Home className="h-4 w-4" />,
     },
     {
-      href: "/manageUsers",
+      href: "/dashboard/manageUsers",
       label: "Manage users",
       icon: <Users className="h-4 w-4" />,
     },
-    { href: "/books", label: "Books", icon: <Package className="h-4 w-4" /> },
     {
-      href: "/ordersReport",
+      href: "/dashboard/books",
+      label: "Books",
+      icon: <Package className="h-4 w-4" />,
+    },
+    {
+      href: "/dashboard/ordersReport",
       label: "Orders Report",
       icon: <ShoppingCart className="h-4 w-4" />,
     },
-    // {
-    //   href: "/exchangesPostReport",
-    //   label: "Exchanges Post Report",
-    //   icon: <LineChart className="h-4 w-4" />,
-    // },
     {
-      href: "/hivePostReport",
+      href: "/dashboard/hivePostReport",
       label: "Post Reports",
       icon: <Package2 className="h-4 w-4" />,
     },
     {
-      href: "/messages",
+      href: "/dashboard/messages",
       label: "Messages",
       icon: <Bell className="h-4 w-4" />,
     },
     {
-      href: "/userProfile",
+      href: "/dashboard/userProfile",
       label: "Profile",
       icon: <CircleUser className="h-4 w-4" />,
     },

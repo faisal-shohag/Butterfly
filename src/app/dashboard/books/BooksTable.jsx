@@ -84,7 +84,7 @@ export default function BooksTable() {
   ];
 
   return (
-    <table className="w-full text-left table-auto mb-24 border-collapse">
+    <table className="w-full text-left table-auto  border-collapse">
       <thead className="bg-gray-200">
         <tr>
           <th className="p-3 font-semibold text-gray-700">Image</th>
@@ -120,10 +120,16 @@ export default function BooksTable() {
               </div>
               {openMenuId === book.id && (
                 <div className="absolute top-2/3 mt-2 right-1/2 border w-40 flex flex-col p-2 rounded-lg bg-white shadow-lg z-10">
-                  <Link href={""} className="p-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href={`/dashboard/books/details/${book.id}`}
+                    className="p-2 hover:bg-gray-100 rounded"
+                  >
                     Details
                   </Link>
-                  <Link href={""} className="p-2 hover:bg-gray-100 rounded">
+                  <Link
+                    href={`/dashboard/books/Edit/${book.id}`}
+                    className="p-2 hover:bg-gray-100 rounded"
+                  >
                     Edit
                   </Link>
                   <Link href={""} className="p-2 hover:bg-gray-100 rounded">
