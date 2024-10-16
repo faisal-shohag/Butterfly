@@ -6,8 +6,11 @@ import { useQuery } from "react-query";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import Loading from "@/components/common/Loading";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function BooksTable() {
+  const [callAlter, setCallert] = useState(false);
   const [openMenuId, setOpenMenuId] = useState(null);
   const axiosSecure = useAxiosSecure();
 
@@ -15,6 +18,7 @@ export default function BooksTable() {
     data: books = [],
     isLoading,
     isError,
+    refetch,
   } = useQuery(["storeBooks"], async () => {
     const response = await axiosSecure.get("/store_books");
     return response.data;
@@ -24,11 +28,19 @@ export default function BooksTable() {
     setOpenMenuId(openMenuId === id ? null : id);
   };
 
-  //   // Add delete functionality
-  // const handleDelete = (id) => {
-  //   // Confirm and delete logic goes here
-  //   console.log(`Delete book with id: ${id}`);
-  // };
+  const handleDelete = (id) => {
+    axiosSecure
+      .delete(`/store_books/${id}`)
+      .then(() => {
+        toast.success("Book deleted successfully!");
+        refetch();
+        setCallert(false);
+      })
+      .catch((error) => {
+        toast.error("Something went wrong!");
+        console.error("Error deleting the book:", error);
+      });
+  };
 
   // Display loading and error states
   if (isLoading) {
@@ -41,6 +53,7 @@ export default function BooksTable() {
 
   return (
     <table className="w-full text-left table-auto border-collapse">
+      <Toaster />
       <thead className="bg-gray-200">
         <tr>
           <th className="p-3 max-w-1/6 font-semibold text-gray-700">Image</th>
@@ -65,8 +78,40 @@ export default function BooksTable() {
       <tbody className="bg-white divide-y divide-gray-200">
         {books.storeBooks.map((book) => (
           <tr key={book.id} className="hover:bg-gray-50">
+            <div
+              className={`w-full h-screen ${callAlter ? "block" : "hidden"} fixed top-0 left-0 flex justify-center z-50 bg-[#0000003b] items-center`}
+            >
+              <div className="bg-white p-5 flex flex-col justify-center items-center gap-5 rounded-md">
+                <h3 className="font-bold text-gray-700">
+                  Are You Want to delete?
+                </h3>
+                <div className="flex justify-center items-center gap-4">
+                  <Button
+                    onClick={() => setCallert(false)}
+                    variant="outline"
+                    className="px-10"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={() => handleDelete(book.id)}
+                    className="px-10"
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            </div>
             <td className="p-1 flex justify-center">
-              <Image
+              <img
+                src={
+                  book?.cover ||
+                  "https://i.postimg.cc/44FccD29/cover-default-book.jpg"
+                }
+                alt=""
+                className="w-[50px]"
+              />
+              {/* <Image
                 src={
                   book?.cover ||
                   "https://i.postimg.cc/44FccD29/cover-default-book.jpg"
@@ -75,7 +120,7 @@ export default function BooksTable() {
                 height={50}
                 alt={book?.title || "Missing Book Title"}
                 className="w-10 h-auto rounded"
-              />
+              /> */}
             </td>
             <td className="p-3 max-w-1/6 text-sm font-medium text-gray-900">
               {book.title}
@@ -115,7 +160,7 @@ export default function BooksTable() {
                   </Link>
                   <button
                     className="p-2 bg-gray-100 hover:bg-gray-200 text-red-600 rounded"
-                    // onClick={() => handleDelete(book.id)}
+                    onClick={() => setCallert(true)}
                   >
                     Delete
                   </button>

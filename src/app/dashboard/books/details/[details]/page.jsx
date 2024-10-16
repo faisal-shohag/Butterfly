@@ -46,11 +46,19 @@ export default function Page() {
     <div className="w-full custom-glass rounded-md">
       <div className="w-full flex flex-col sm:flex-row justify-center items-center">
         <div className="min-w-[200px] pr-2">
-          <Image
+          {/* <Image
             src={detailsbook?.cover}
             alt="Book cover image"
-            width={200} // Provide width
-            height={300} // Provide height or adjust based on your image aspect ratio
+            width={200} 
+            height={300} 
+            className="w-[200px] h-auto rounded"
+          /> */}
+          <img
+            src={
+              book?.cover ||
+              "https://i.postimg.cc/44FccD29/cover-default-book.jpg"
+            }
+            alt=""
             className="w-[200px] h-auto rounded"
           />
         </div>
