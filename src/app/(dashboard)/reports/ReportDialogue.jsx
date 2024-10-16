@@ -17,7 +17,7 @@ const ReportDialogue = ({text}) => {
         <Dialog>
       <DialogTrigger asChild>
         {/* <Button variant="outline">Edit Profile</Button> */}
-        <p className="underline cursor-pointer">{text.slice(0, 20)}...</p>
+        <p className="hover:underline cursor-pointer">{text.slice(0, 20)}...</p>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
