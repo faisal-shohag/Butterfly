@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "next/navigation";
+import Loading from "@/components/common/Loading";
 
 export default function Page() {
   const axiosSecure = useAxiosSecure();
@@ -70,6 +71,14 @@ export default function Page() {
 
     mutation.mutate(bookData);
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <div>Failed to load book. Please try again later.</div>;
+  }
 
   return (
     <div className="w-full">
