@@ -20,7 +20,6 @@ export default function Page() {
     formState: { errors },
   } = useForm();
 
-  // Mutation for updating the book
   const mutation = useMutation({
     mutationFn: (data) => axiosSecure.put(`/store_books/${id}`, data),
     onSuccess: () => {
@@ -34,7 +33,6 @@ export default function Page() {
     },
   });
 
-  // Query to fetch the current book details
   const {
     data: Editbook = {},
     isLoading,

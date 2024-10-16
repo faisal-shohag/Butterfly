@@ -1,5 +1,6 @@
 "use client";
 import Loading from "@/components/common/Loading";
+import { Button } from "@/components/ui/button";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import Image from "next/image";
 import Link from "next/link";
@@ -83,26 +84,24 @@ export default function Page() {
             </p>
           </div>
           <p className="text-gray-500">{detailsbook?.description}</p>
+
           <div className="mt-5 flex justify-between items-center">
             <span></span>
-            <div className="flex justify-center items-center gap-3">
-              <Link
-                href={"/dashboard/books"}
-                className="font-medium bg-black text-white px-5 rounded py-1"
-              >
-                See All Books
+            <div className="flex justify-center flex-wrap items-center gap-3">
+              <a href={detailsbook?.pdfURL} target="blank">
+                <Button>Book Pdf</Button>
+              </a>
+              <Link href={"/dashboard/books"} className="font-medium">
+                <Button>See All</Button>
               </Link>
               <Link
                 href={`/dashboard/books/Edit/${detailsbook?.id}`}
-                className="font-medium bg-black text-white px-5 rounded py-1"
+                className="font-medium"
               >
-                Edit Book
+                <Button>Edit</Button>
               </Link>
-              <Link
-                href={"/dashboard/books/add"}
-                className="font-medium bg-black text-white px-5 rounded py-1"
-              >
-                Add Book
+              <Link href={"/dashboard/books/add"} className="font-medium">
+                <Button>Add New</Button>
               </Link>
             </div>
           </div>
