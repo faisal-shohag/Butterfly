@@ -1,5 +1,4 @@
 import Banner from "../components/home/Banner";
-import ButterflyAdvertisement from "@/components/home/ButterflyAdvertisement";
 import PopularPosts from "@/components/home/PopularPosts";
 import MostCoinedUser from "@/components/home/MostCoinedUser";
 import HiveHunters from "@/components/home/HiveHunters";

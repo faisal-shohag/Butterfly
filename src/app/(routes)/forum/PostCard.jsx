@@ -28,9 +28,13 @@ import CustomRenderer from "@/components/common/CustomRenderer";
 import UserAvatar from "@/components/common/UserAvatar";
 import CommentSection from "./CommentSection";
 import HiveUserAvatar from "./HiveUserAvatar";
+import ReportModal from "@/components/common/ReportModal";
 
 const PostCard = ({ post, user, axiosSecure }) => {
   const [showComments, setShowComments] = useState(false);
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+  
+  
   const queryClient = useQueryClient();
 
   const toggleLikeMutation = useMutation(
@@ -131,6 +135,13 @@ const PostCard = ({ post, user, axiosSecure }) => {
       });
   };
 
+  const handleReportSubmit = async (reportData) => {
+    // This function can be used to perform any additional actions after report submission
+    // For now, we'll just close the modal as the ReportModal component handles the API call
+    setIsReportModalOpen(false);
+  };
+   
+
   return (
     <div
       className={`${post.type === "ai" ? "" : ""} bg-card mb-4 max-w-2xl mx-auto rounded-xl dark:bg-[#141414] py-6 border shadow-xl`}
@@ -179,7 +190,7 @@ const PostCard = ({ post, user, axiosSecure }) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setIsReportModalOpen(true)}>
             <Flag className="mr-2 h-4 w-4" />
             <span>Report</span>
             {/* TODO */}
@@ -246,6 +257,16 @@ const PostCard = ({ post, user, axiosSecure }) => {
           axiosSecure={axiosSecure}
         />
       )}
+
+
+<ReportModal
+        isOpen={isReportModalOpen}
+        onClose={() => setIsReportModalOpen(false)}
+        onSubmit={handleReportSubmit}
+        itemType="post"
+        itemId={post.id}
+        userId={user?.id}
+      />
     </div>
   );
 };
