@@ -111,7 +111,7 @@ const Layout = ({ children }) => {
           {children}
         </div>
         <div className="w-full flex justify-center items-center h-[30px] border-t">
-          <small>copy &copy; 2024 community in:</small>
+          <small>copy &copy; {new Date().getFullYear()} community in:</small>
         </div>
       </div>
     </div>

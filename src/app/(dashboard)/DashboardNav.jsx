@@ -30,7 +30,7 @@ export default function DashboardNav({ handleNav, responsiveNav }) {
       label: "Exchanges Post Report",
       icon: <FaExchangeAlt />,
     },
-    { href: "/hivePostReport", label: "Hive Post Report", icon: <FaHive /> },
+    { href: "/reports", label: "Reports", icon: <FaHive /> },
     { href: "/messages", label: "Messages", icon: <FaEnvelope /> },
     { href: "/userProfile", label: "Profile", icon: <FaUser /> },
   ];

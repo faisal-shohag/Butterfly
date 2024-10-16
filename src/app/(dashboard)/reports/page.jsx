@@ -2,7 +2,8 @@
 import React from "react";
 import Chart from "@/components/Chart";
 import { IoNotificationsCircle } from "react-icons/io5";
-import HivePostRepostCards from "./HivePostRepostCards";
+import ReportsTable from "./ReportsTable";
+import ReportsCards from "./Reports";
 
 const page = () => {
   const name = "Total Hive Posts";
@@ -15,8 +16,10 @@ const page = () => {
         <IoNotificationsCircle className="text-3xl cursor-pointer text-gray-500 hover:text-blue-500 transition-colors" />
       </div>
 
-      <HivePostRepostCards />
-      <Chart total={600} number={100} name={name} amount={amount}></Chart>
+      <ReportsCards/>
+      {/* <Chart total={600} number={100} name={name} amount={amount}></Chart> */}
+
+      <ReportsTable/>
     </div>
   );
 };
