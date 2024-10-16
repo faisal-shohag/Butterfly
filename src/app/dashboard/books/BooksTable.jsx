@@ -5,6 +5,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { useQuery } from "react-query";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import Loading from "@/components/common/Loading";
+import Image from "next/image";
 
 export default function BooksTable() {
   const [openMenuId, setOpenMenuId] = useState(null);
@@ -65,9 +66,14 @@ export default function BooksTable() {
         {books.storeBooks.map((book) => (
           <tr key={book.id} className="hover:bg-gray-50">
             <td className="p-1 flex justify-center">
-              <img
-                src={book?.cover}
-                alt={book.title}
+              <Image
+                src={
+                  book?.cover ||
+                  "https://i.postimg.cc/44FccD29/cover-default-book.jpg"
+                }
+                width={20}
+                height={50}
+                alt={book?.title || "Missing Book Title"}
                 className="w-10 h-auto rounded"
               />
             </td>
@@ -108,7 +114,7 @@ export default function BooksTable() {
                     Edit
                   </Link>
                   <button
-                    className="p-2 hover:bg-gray-100 rounded"
+                    className="p-2 bg-gray-100 hover:bg-gray-200 text-red-600 rounded"
                     // onClick={() => handleDelete(book.id)}
                   >
                     Delete
