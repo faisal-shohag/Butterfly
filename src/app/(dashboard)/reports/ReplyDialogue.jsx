@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -11,12 +12,31 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
 
-const ReplyDialogue = () => {
+const ReplyDialogue = ({createReplyMutation, id, userId, report}) => {
+  const [text, setText] = useState("")
+  
+  const handleReply = ()=>{
+
+    const replyData = {
+      text,
+      userId,
+      report
+    }
+
+    if (!text.trim()) {
+      alert("Reply cannot be empty");
+      return;
+    }
+    createReplyMutation.mutate({ replyData, id });
+    console.log(replyData)
+    setText("")
+  }
     return (
         <Dialog>
       <DialogTrigger asChild>
-        <Button>Reply</Button>
+        <Button >Reply</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -25,16 +45,17 @@ const ReplyDialogue = () => {
              Click sent when you're done.
           </DialogDescription>
         </DialogHeader>
-        <div className="">
+       
          
           <div className="">
             {/* <Input id=""  className="" /> */}
-            <Textarea/>
+            <Textarea value={text} onChange={(e)=>setText(e.target.value)} placeholder="Write your reply..."/>
           </div>
-        </div>
+       
         <DialogFooter>
-          <Button type="submit">Sent Reply</Button>
+          <Button onClick={handleReply}  type="submit">Sent Reply</Button>
         </DialogFooter>
+       
       </DialogContent>
     </Dialog>
     );
