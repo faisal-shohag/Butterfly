@@ -8,10 +8,15 @@ import { FaBookMedical } from "react-icons/fa";
 import { FaBookmark, FaShare } from 'react-icons/fa6';
 import Loading from '@/components/common/Loading';
 import UserAvatar from '@/components/common/UserAvatar';
+import RequestButton from '../RequestButton';
+import { useSession } from 'next-auth/react';
+import ExchangeLikeButton from '../ExchangeLikeButton';
 
 const BookDetailsPage = ({ params }) => {
   const { exchangeId: id } = params;
   const axiosSecure = useAxiosSecure();
+  const session = useSession()
+  
 
   const fetchBookDetails = async () => {
     const response = await axiosSecure.get(`/books/${id}`);
@@ -27,25 +32,26 @@ const BookDetailsPage = ({ params }) => {
     <div className="container mx-auto px-4 py-8">
       
       <div className=" custom-glass-2 rounded-lg overflow-hidden">
-    <div className="absolute right-0 flex mx-5 gap-3  items-center">
-    <div className=" mt-2 custom-glass-3 px-5 py-2 rounded-lg font-semibold text-sm cursor-pointer hover:bg-zinc-900 hover:dark:bg-zinc-700 hover:text-white flex items-center gap-1 "><FaBookMedical/> Request</div>
+    <div className="absolute right-0 flex mx-5 gap-3  items-center mt-2">
+   {session.status !== "loading" && <RequestButton book={book} userId={session.data.user.id}/>}
 
-    <div className=" mt-2 custom-glass-3 px-5 py-2 rounded-lg font-semibold text-sm cursor-pointer hover:bg-zinc-900 hover:dark:bg-zinc-700 hover:text-white flex items-center gap-1"><FaShare/> Share</div>
+   {session.status !== "loading" && <ExchangeLikeButton book={book} userId={session.data.user.id}/>}
 
-    <div className=" mt-2 custom-glass-3 px-5 py-2 rounded-lg font-semibold text-sm cursor-pointer hover:bg-zinc-900 hover:dark:bg-zinc-700 hover:text-white flex items-center gap-1"><FaBookmark/> Save</div>
+    {/* <div className=" mt-2 custom-glass-3 px-5 py-2 rounded-lg font-semibold text-sm cursor-pointer hover:bg-zinc-900 hover:dark:bg-zinc-700 hover:text-white flex items-center gap-1"><FaBookmark/> Save</div> */}
 
     </div>
         <div className="md:flex">
-          <div className="md:flex-shrink-0 bg-zinc-200 dark:bg-zinc-950">
+    
+          <div className="p-8">
+          <div className="">
             <Image
               src={book.cover}
               alt={book.title}
-              width={400}
-              height={450}
-              className="h-full w-full object-contain"
+              width={200}
+              height={250}
+              className=" object-contain border"
             />
           </div>
-          <div className="p-8">
             <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{book.genre}</div>
             <h1 className="mt-1 text-4xl font-bold text-slate-500">{book.title}</h1>
             <p className="mt-2 text-gray-600">by {book.author}</p>

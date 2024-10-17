@@ -16,6 +16,7 @@ import {
 import UserAvatar from "../UserAvatar";
 import UserCoin from "./UserCoin";
 import { useTheme } from "next-themes";
+import { RiAdminFill } from "react-icons/ri";
 const Usersection = () => {
     const { theme, setTheme } = useTheme()
   const session = useSession();
@@ -24,6 +25,7 @@ const Usersection = () => {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light")
   }
+  // console.log(user.role)
 
   return (
     <>
@@ -57,8 +59,8 @@ const Usersection = () => {
               <Moon size={15} className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 mr-2" />
               
               Theme</DropdownMenuItem>
-              {/* <DropdownMenuItem><Moon size={15} className='mr-2'/> Dark Mode</DropdownMenuItem> */}
-              {/* <DropdownMenuItem><Settings size={15} className="mr-2"/> Settings</DropdownMenuItem> */}
+ 
+              {user.role === 'admin' && <Link href='/dashboard/dashboardHome'><DropdownMenuItem><RiAdminFill size={15} className="mr-2"/> Admin Dashboard</DropdownMenuItem></Link>}
               <DropdownMenuItem className="text-red-500" onClick={() => signOut()}>
                 <LogOutIcon size={15} className="mr-2"/> Sign out
               </DropdownMenuItem>

@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-const UserAvatar = ({image, name, height="100", width="100"}) => {
+const UserAvatar = ({image, name}) => {
     return <>
         <Avatar className={` shadow-xl border-2 rounded-full`}>
             <AvatarImage  src={image} alt={name}></AvatarImage>

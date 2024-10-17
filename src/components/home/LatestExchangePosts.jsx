@@ -1,5 +1,5 @@
 "use server"
-import { unstable_cache } from "next/cache";
+
 import { GiCardExchange } from "react-icons/gi";
 import Heading from "../common/Heading";
 import Link from "next/link";
@@ -17,7 +17,7 @@ import {
 const getLatestExchangePosts = async () => {
     try {
       const books = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/latest-books/${undefined}`).then(res => res.json());
-    return books
+      return books
     } catch (error) {
       console.error('Error fetching latest exchange posts:', error);
       throw new Error('Failed to fetch latest exchange posts', error);
