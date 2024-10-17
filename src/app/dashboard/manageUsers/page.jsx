@@ -128,12 +128,12 @@ const Page = () => {
       <div className="flex justify-between items-center my-5 px-6">
         <h3 className="text-center">Total: {allUser.totalUsers} Users</h3>
         <h3 className="text-2xl font-bold text-center">Manage Users</h3>
-        <div className="flex gap-1 justify-end items-center mr-4 text-sm font-medium">
-          <p className="px-2 py-1">Show:</p>
+        <div className="flex gap-1 justify-center items-center mr-4 text-sm font-medium">
+          <p className="px-2 py-1">Show :</p>
           <select
             onChange={handleItemParPage}
             value={itemParPage}
-            className="border px-2 py-1"
+            className="border px-2  rounded-sm"
           >
             <option value="6">6</option>
             <option value="20">20</option>
