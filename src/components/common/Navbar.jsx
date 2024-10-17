@@ -29,18 +29,21 @@ const Navbar = () => {
   const user = session.data?.user;
   // console.log(user)
 
-  if (/^\/dashboard/.test(currentPath)) {
+  if (
+    /^\/dashboard/.test(currentPath) ||
+    /^\/userDashboard/.test(currentPath)
+  ) {
     return null;
   }
   return (
     <nav className="bg-background border-b mb-5 custom-glass-2  py-3 sticky top-0 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-        <Leading/>
+          <Leading />
 
-        <NavLinks/>
+          <NavLinks />
 
-        <Usersection/>
+          <Usersection />
         </div>
       </div>
     </nav>
