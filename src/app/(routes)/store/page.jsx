@@ -2,6 +2,7 @@
 import Banner from "@/components/home/Banner";
 import Image from "next/image";
 import Snowfall from "react-snowfall";
+import StoreList from "./StoreList";
 const Special = () => {
 
 
@@ -12,6 +13,7 @@ const Special = () => {
        </div>
        <Snowfall style={{zIndex: '99999'}} />
      
+     <StoreList/>
     </div>
   );
 };
