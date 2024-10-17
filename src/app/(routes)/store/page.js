@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Snowfall from "react-snowfall";
+import StoreBooks from "./StoreBooks";
 
 const Special = () => {
   return (
@@ -113,7 +114,9 @@ const Special = () => {
             alt="banner"
           />
         </div>
-        <div className="w-full custom-glass rounded-lg mt-3"></div>
+        <div className="w-full custom-glass rounded-lg mt-3">
+          <StoreBooks />
+        </div>
       </div>
       <Snowfall style={{ zIndex: "99999" }} />
     </div>
