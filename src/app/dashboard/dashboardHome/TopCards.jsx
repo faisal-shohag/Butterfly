@@ -1,40 +1,8 @@
 "use client"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { FaBook, FaUsers, FaRegEnvelope, FaFileImage, FaStore  } from "react-icons/fa";
 import { useQuery } from "react-query";
-
-const cardData = [
-  {
-    id: 1,
-    title: "Stock Books",
-    count: "1,200 Books",
-    progress: 70,
-    icon: <FaBook size={28} />,
-    iconBg: "bg-blue-500 dark:bg-blue-600",
-    circleColor: "text-blue-500 dark:text-blue-400",
-    description: "Total available stock in inventory",
-  },
-  {
-    id: 2,
-    title: "Total Users",
-    count: "850 Users",
-    progress: 85,
-    icon: <FaUsers size={28} />,
-    iconBg: "bg-purple-500 dark:bg-purple-600",
-    circleColor: "text-purple-500 dark:text-purple-400",
-    description: "Total registered users",
-  },
-  {
-    id: 3,
-    title: "Subscribers",
-    count: "560 Subscribers",
-    progress: 56,
-    icon: <FaRegEnvelope size={28} />,
-    iconBg: "bg-green-500 dark:bg-green-600",
-    circleColor: "text-green-500 dark:text-green-400",
-    description: "Total active email subscribers",
-  },
-];
 
 export default function TopCards() {
   
@@ -45,116 +13,64 @@ export default function TopCards() {
     error,
     refetch
   } = useQuery("total", async () => {
-    const response = await axiosSecure.get("/total-count");
-    return response.data;
+    const res = await axiosSecure.get("/total-count");
+    return res.data;
   });
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading data</p>;
+  if (error) return <p>Error loading ...</p>;
   refetch()
-  // console.log(total);
 
+  const cardData = [
+    {
+      id: 1, 
+      title: "Total Books",
+      icon: <FaBook size={28} />,
+      totalCounts: total.totalBooks,
+      iconBg: "bg-green-500 dark:bg-green-600",
+    },
+    {
+      id: 2,
+      title: "Total Posts",
+      icon:  <FaFileImage size={28}/>,
+      totalCounts: total.totalPosts,
+      iconBg: "bg-blue-500 dark:bg-blue-600",
+    },
+    {
+      id: 3,
+      title: "Total Store Books",
+      icon:  <FaStore  size={28} />,
+      totalCounts: total.totalStoreBooks,
+      iconBg: "bg-purple-600 dark:bg-purple-600",
+    },
+    {
+      id: 1,
+      title: "Total Users",
+      icon: <FaUsers size={28} />,
+      totalCounts: total.totalUsers,
+      iconBg: "bg-pink-500 dark:bg-pink-600",
+    },
+  ]
+
+  // cardData.map(item => console.log(item))
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
-        <div
-          className="w-full p-8  custom-glass dark:bg-zinc-800 rounded-lg shadow-lg "
-        >
-          <div className=" ">
-            <div className="flex items-center mb-2 justify-between w-full">
-              <div className=" w-14 text-center border-4 border-green-600 p-2 rounded-full">
-                <h4 className="font-bold text-3xl text-gray-600 ">{total.totalBooks}</h4>     
-              </div>
-              <div
-                className="p-4 bg-green-500 dark:bg-green-600 rounded-lg text-white shadow-lg"
-              >
-               <FaBook size={28} />
-              </div>
-            </div>
-            <p className="text-gray-600 font-bold text-l dark:text-gray-400">Total Books</p>
-          </div>
+    <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+            {cardData.map(item => (
+                <Card key={item.id} x-chunk="dashboard-01-chunk-1">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-lg font-medium">
+                            {item.title}
+                        </CardTitle>
+                        <div className="h-4 w-4 text-muted-foreground">
+                            {item.icon}
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-2xl font-bold">+{item.totalCounts}</div>
+                    </CardContent>
+                </Card>
+            ))}
         </div>
-        <div
-          className="w-full p-8  custom-glass dark:bg-zinc-800 rounded-lg shadow-lg "
-        >
-          <div className=" ">
-            <div className="flex items-center mb-2 justify-between w-full">
-              <div className="w-14 text-center border-4 border-blue-600 p-2 rounded-full">
-                <h4 className="font-bold text-3xl text-gray-600 ">{total.totalPosts}</h4>     
-              </div>
-              <div
-                className="p-4 bg-blue-500 dark:bg-blue-600 rounded-lg text-white shadow-lg"
-              >
-                <FaFileImage size={28}/>
-              </div>
-            </div>
-            <p className="text-gray-600 font-bold text-l dark:text-gray-400">Total Posts</p>
-          </div>
-        </div>
-        <div
-          className="w-full p-8  custom-glass dark:bg-zinc-800 rounded-lg shadow-lg "
-        >
-          <div className=" ">
-            <div className="flex items-center mb-2 justify-between w-full">
-              <div className="w-14 text-center border-4 border-purple-600 p-2 rounded-full">
-                <h4 className="font-bold text-3xl text-gray-600 ">{total.totalStoreBooks}</h4>     
-              </div>
-              <div
-                className="p-4 bg-purple-600 dark:bg-purple-600 rounded-lg text-white shadow-lg"
-              >
-                <FaStore  size={28} />
-              </div>
-            </div>
-            <p className="text-gray-600 font-bold text-l dark:text-gray-400">Total Store Books</p>
-          </div>
-        </div>
-        <div
-          className="w-full p-8  custom-glass dark:bg-zinc-800 rounded-lg shadow-lg "
-        >
-          <div className=" ">
-            <div className="flex items-center mb-2 justify-between w-full">
-              <div className="w-14 text-center border-4 border-pink-600 p-2 rounded-full ">
-                <h4 className="font-bold text-3xl  text-gray-600 ">{total.totalUsers}</h4>     
-              </div>
-              <div
-                className="p-4 bg-pink-500 dark:bg-pink-600 rounded-lg text-white shadow-lg"
-              >
-                <FaUsers size={28} />
-              </div>
-            </div>
-            <p className="text-gray-600 font-bold text-l dark:text-gray-400">Total Users</p>
-          </div>
-        </div>
-    </div>
   );
 }
 
-
-// return (
-//   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-//     {cardData.map((card) => (
-//       <div
-//         key={card.id}
-//         className="w-full p-6 custom-glass dark:bg-zinc-800 rounded-lg shadow-lg flex items-center justify-between"
-//       >
-//         <div className="flex flex-col ">
-//           <div className="flex items-center mb-2 flex-col">
-//             <div
-//               className={`p-4 ${card.iconBg} rounded-lg text-white shadow-lg`}
-//             >
-//               {card.icon}
-//             </div>
-//             <div className="ml-4">
-//               <h4 className="font-bold text-lg">{card.title}</h4>
-//               <p className="text-gray-600 dark:text-gray-400">{card.count}</p>
-//             </div>
-//           </div>
-//           <span className="text-xs text-gray-500 dark:text-gray-400">
-//             {card.description}
-//           </span>
-//         </div>
-        
-//       </div>
-//     ))}
-//   </div>
-// );
-// }

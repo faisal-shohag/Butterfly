@@ -1,164 +1,232 @@
-import React from "react";
-import { IoNotificationsCircle } from "react-icons/io5";
-import { Button } from "@/components/ui/button"; // Assuming you have shadcn/ui button component
+'use client'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import useAxiosSecure from "@/hooks/useAxiosSecure";
+import React, { useEffect, useState } from "react";
+import { RiEdit2Line } from "react-icons/ri";
+import { useMutation, useQuery } from "react-query";
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogClose,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
+import toast from "react-hot-toast";
+import Loading from "@/components/common/Loading";
+import { FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft } from "react-icons/fa6";
+
 
 const Page = () => {
-  const users = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "admin",
+
+  const axiosSecure = useAxiosSecure();
+  const [currentUser, setCurrentUser] = useState({});
+  const [pages, setPages] = useState([]);
+  const [itemParPage, setItemParPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // get users
+  const { data: allUser = [], isLoading, refetch } = useQuery({
+    queryKey: ['users', axiosSecure, currentPage, itemParPage],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users?page=${currentPage}&limit=${itemParPage}`);
+      return res.data;
+    },
+    keepPreviousData: true,
+  });
+
+  // filter by role 
+  const sortedUsers = Array.isArray(allUser.users)
+    ? allUser.users.sort((a, b) => {
+      if (a.role === 'admin' && b.role !== 'admin') return -1;
+      if (a.role !== 'admin' && b.role === 'admin') return 1;
+      if (a.role === 'moderator' && b.role !== 'moderator') return -1;
+      if (a.role !== 'moderator' && b.role === 'moderator') return 1;
+      if (a.role === 'guest' && b.role !== 'guest') return -1;
+      if (a.role !== 'guest' && b.role === 'guest') return 1;
+      return 0;
+    })
+    : [];
+
+  // set user in a state
+  const handleEditRole = (user) => {
+    setCurrentUser(user);
+  }
+
+  // Handle updating role
+  const mutation = useMutation(
+    async (data) => {
+      const res = await axiosSecure.put(`/users/${currentUser.id}`, data);
+      return res;
     },
     {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 3,
-      name: "Michael Brown",
-      email: "michael.brown@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 4,
-      name: "Emily Johnson",
-      email: "emily.johnson@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 5,
-      name: "David Wilson",
-      email: "david.wilson@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 6,
-      name: "Sarah Miller",
-      email: "sarah.miller@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 7,
-      name: "James Taylor",
-      email: "james.taylor@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 8,
-      name: "Sophia Lee",
-      email: "sophia.lee@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 9,
-      name: "Chris Evans",
-      email: "chris.evans@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-    {
-      id: 10,
-      name: "Olivia Davis",
-      email: "olivia.davis@example.com",
-      image:
-        "https://ik.imagekit.io/masudur/default-image.jpg?updatedAt=1727106592857",
-      role: "user",
-    },
-  ];
+      onSuccess: () => {
+        refetch();
+        toast.success('Successfully updated role!');
+      }
+    }
+  );
+
+  const handleRoleUpdate = async (e) => {
+    e.preventDefault();
+    const currentRole = e.target.role.value;
+    const data = { role: currentRole };
+    mutation.mutate(data);
+  }
+
+  const count = allUser.totalUsers;
+
+  // Update page count whenever `itemParPage` or `count` changes
+  useEffect(() => {
+    if (count) {
+      const numberOfPages = Math.ceil(count / itemParPage);
+      const pageArray = [...Array(numberOfPages).keys()];
+      setPages(pageArray);
+    }
+  }, [itemParPage, count]);
+
+  // Handle pagination: go to previous page
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+  // Handle pagination: go to next page
+  const handleNextPage = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
+  // Handle changing the number of items per page
+  const handleItemParPage = e => {
+    const val = parseInt(e.target.value);
+    setItemParPage(val);
+    setCurrentPage(1);
+  }
+
+  // Loading state
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
-    <div className="p-4  min-h-screen">
-      {/* Header */}
-      <div className="w-full flex justify-between items-center mb-4">
-        <h4 className="font-bold text-xl text-gray-600 dark:text-gray-300">
-          Manage Users
-        </h4>
-        <IoNotificationsCircle className="text-3xl cursor-pointer text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors" />
+    <div>
+      <div className="flex justify-between items-center my-5 px-6">
+        <h3 className="text-center">Total: {allUser.totalUsers} Users</h3>
+        <h3 className="text-2xl font-bold text-center">Manage Users</h3>
+        <div className="flex gap-1 justify-end items-center mr-4 text-sm font-medium">
+          <p className="px-2 py-1">Show:</p>
+          <select
+            onChange={handleItemParPage}
+            value={itemParPage}
+            className="border px-2 py-1"
+          >
+            <option value="6">6</option>
+            <option value="20">20</option>
+            <option value="40">40</option>
+            <option value="60">60</option>
+          </select>
+        </div>
       </div>
 
-      {/* User Table */}
-      <div className="overflow-x-auto mt-4 flex justify-center items-center">
-        <table className="table-auto w-full text-left dark:bg-zinc-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md">
-          <thead className="bg-gradient-to-r from-zinc-500 to-zinc-700 dark:from-zinc-700 dark:to-zinc-900 text-white dark:text-gray-200 rounded-t-lg">
-            <tr>
-              <th className="py-3 px-4">User Info</th>
-              <th className="py-3 px-4">Role</th>
-              <th className="py-3 px-4">Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {users.map((user) => (
-              <tr
-                key={user.id}
-                className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-              >
-                <td className="py-3 px-4">
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={user.image}
-                      alt={`${user.name} avatar`}
-                      className="h-12 w-12 rounded-full object-cover border border-gray-300 dark:border-gray-600 shadow-sm"
-                    />
-                    <div>
-                      <div className="font-semibold text-gray-700 dark:text-gray-300">
-                        {user.name}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        {user.email}
-                      </div>
-                    </div>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>#</TableHead>
+            <TableHead>User Info</TableHead>
+            <TableHead>Role</TableHead>
+            <TableHead className="text-center">Action</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {sortedUsers?.map((user, idx) => (
+            <TableRow key={user?.id}>
+              <TableCell>{idx + 1}</TableCell>
+              <TableCell>
+                <div className="flex gap-2 items-center">
+                  <Avatar>
+                    <AvatarImage src={user.image} />
+                    <AvatarFallback className="font-bold border-2">
+                      {user.name.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="font-medium">{user?.name}</p>
+                    <p className="opacity-90">{user?.email}</p>
                   </div>
-                </td>
+                </div>
+              </TableCell>
+              <TableCell>
+                <p className={user?.role === 'admin' ? 'text-green-500' : ''}>
+                  {user?.role || 'N/A'}
+                </p>
+              </TableCell>
+              <TableCell>
+                <div className="flex gap-2 justify-center items-center">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        onClick={() => handleEditRole(user)}
+                        variant="outline"
+                        className="flex gap-1 justify-center items-center"
+                      >
+                        <span>Edit</span><RiEdit2Line />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <form onSubmit={handleRoleUpdate} className="grid gap-4 py-3">
+                        <select name="role" className="border px-4 py-1 rounded-md w-full mb-2">
+                          <option disabled selected>{user?.role || 'N/A'}</option>
+                          <option value="guest">guest</option>
+                          <option value="moderator">moderator</option>
+                          <option value="admin">admin</option>
+                        </select>
+                        <div>
+                          <DialogClose asChild>
+                            <Button type="submit" variant="outline">Save</Button>
+                          </DialogClose>
+                        </div>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
 
-                <td
-                  className={`w-52 text-center font-semibold ${
-                    user.role === "admin"
-                      ? "text-red-500 dark:text-red-400"
-                      : "text-gray-700 dark:text-gray-300"
-                  }`}
-                >
-                  {user.role}
-                </td>
-
-                {user.role === "admin" ? (
-                  <td></td>
-                ) : (
-                  <td className="w-52 text-center">
-                    {/* Black button with white text */}
-                    <Button className="bg-black text-white hover:bg-gray-800  dark:text-black dark:bg-gray-200 shadow-md transition">
-                      Edit Role
-                    </Button>
-                    {/* White button with black border and black text */}
-                    <Button className="ml-2 border border-black hover:text-white text-black bg-gray-100 dark:border-gray-300 dark:text-white dark:bg-gray-800 shadow-md transition">
-                      Send Mail
-                    </Button>
-                  </td>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="md:w-1/2 mx-auto mt-10 mb-5 flex justify-center gap-3">
+        <Button variant="outline" onClick={handlePrevPage} disabled={currentPage === 1}>
+          <FaChevronLeft />
+        </Button>
+        {pages.map(page => (
+          <Button
+            key={page}
+            variant="outline"
+            onClick={() => setCurrentPage(page + 1)}
+            className={currentPage === page + 1 ? "text-red-500" : ""}
+          >
+            {page + 1}
+          </Button>
+        ))}
+        <Button variant="outline" onClick={handleNextPage} disabled={currentPage === pages.length}>
+          <FaChevronRight />
+        </Button>
       </div>
     </div>
   );

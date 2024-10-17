@@ -27,7 +27,7 @@ const WhoToFollow = ({ currentUser }) => {
     <div className="rounded-xl max-w-2xl mb-5 mx-auto bg-card dark:bg-zinc-900 p-5 shadow-sm">
       <div className="text-xl font-bold mb-2">Who to follow</div>
       <div>
-        <Carousel
+        {/* <Carousel
           opts={{
             align: "start",
             loop: true,
@@ -43,15 +43,15 @@ const WhoToFollow = ({ currentUser }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-        </Carousel>
+        </Carousel> */}
 
-        {/* {suggestedUsers?.map((user) => (
+        {suggestedUsers?.map((user) => (
           <UserToFollowItem 
             key={user.id} 
             user={user} 
             currentUserId={currentUser.id}
           />
-        ))} */}
+        ))}
       </div>
     </div>
   );
