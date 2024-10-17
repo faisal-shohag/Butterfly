@@ -12,9 +12,9 @@ const ExchangeBanner = () => {
     <div className="relative custom-glass-2 dark:bg-zinc-900 bg-white w-full h-[250px] overflow-hidden rounded-lg shadow-xl mb-8 flex justify-center items-center flex-col">
       <BackgroundLines className="-z-10 dark:bg-zinc-900 absolute" />
 
-     <div className="px-10 text-center w-full">
+     <div className="text-center w-full">
      <TextGenerateEffect
-        className="absolute top-5 lg:text-2xl md:text-xl text-md  shimmer"
+        className="absolute text-center w-full  top-5 lg:text-2xl md:text-xl text-md  shimmer"
         words={`Create book with Generative AI in less than 30 seconds.`}
       />
      </div>

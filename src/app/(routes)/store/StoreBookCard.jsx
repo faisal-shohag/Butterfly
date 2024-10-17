@@ -1,28 +1,61 @@
-import { Button } from "@/components/ui/button";
 import React from "react";
 
-export default function StoreBookCard({ book }) {
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+
+const StoreBookCard = ({ book }) => {
   return (
-    <div className=" sm:w-full h-full rounded-md custom-glass flex flex-col justify-between items-center gap-1 border max-w-[170px]">
-      <small className="px-2 p-[1px] absolute top-2 right-2 rounded bg-black dark:bg-white dark:text-black text-white">
-        ৳ {book?.price}
-      </small>
-      <img
-        src={
-          book?.cover || "https://i.postimg.cc/44FccD29/cover-default-book.jpg"
-        }
-        alt="Book Cover"
-        className="max-w-[75%] h-[160px] mx-auto"
-      />
-      <h3 className="text-center font-medium text-gray-700 dark:text-gray-300">
-        {book?.title}
-      </h3>
-      <small className="text-green-500">{book?.discount}% Discount</small>
-      <div className="w-full  gap-2">
-        <Button variant="outline" className="w-full">
-          See Details
+    <div className="w-full max-w-sm custom-glass rounded-xl relative cursor-pointer font-kalpurush">
+      {book.discount > 0 ? (
+        <div className="absolute -top-4 -left-4">
+          <div className="bg-red-500 text-center text-xs flex justify-center items-center h-[50px] w-[50px] text-white px-2 py-1 rounded-full shadow-2xl">
+            {book.discount}% off
+          </div>
+        </div>
+      ) : null}
+
+      <div>
+        <div className="flex justify-center w-full">
+          <Image
+            height={150}
+            width={100}
+            src={book.cover}
+            alt={book.title}
+            className="border h-[150px] mb-4"
+          />
+        </div>
+        <div className="font-semibold text-sm line-clamp-1">{book.title}</div>
+        <div className="font-semibold text-sm text-muted-foreground line-clamp-1">
+          {book.author}
+        </div>
+      </div>
+      <div className="mt-2">
+        {book.discount > 0 ? (
+          <Button
+            variant="outline"
+            className="font-semibold text-muted-foreground text-sm flex gap-1 w-full"
+          >
+            Buy
+            <strike>{book.price} tk</strike>
+            <span className="text-red-500">
+              {book.price - (book.price * (book.discount / 100)).toFixed(2)} tk
+            </span>
+          </Button>
+        ) : (
+          <Button
+            variant="outline"
+            className="w-full font-semibold text-red-500 text-sm"
+          >
+            Buy {book.price} tk
+          </Button>
+        )}
+        <Button className="w-full mt-1 flex gap-1" variant="outline">
+          <span>Buy with {book.coin}</span>{" "}
+          <Image height={15} width={15} src="/bcoin.png" alt="coin" />
         </Button>
       </div>
     </div>
   );
-}
+};
+
+export default StoreBookCard;

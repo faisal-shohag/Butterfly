@@ -1,3 +1,5 @@
+
+
 import BookDetailsPage from "./BookDetailsPage";
 
 
@@ -7,7 +9,7 @@ export const metadata = {
 }
 
 const BookDetails = async({ params }) => {
- return( <div>
+ return( <div className="section">
           <BookDetailsPage params={params}/>
 
     </div>)
