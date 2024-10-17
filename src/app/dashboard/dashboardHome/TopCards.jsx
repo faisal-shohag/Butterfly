@@ -27,28 +27,24 @@ export default function TopCards() {
       title: "Total Books",
       icon: <FaBook size={28} />,
       totalCounts: total.totalBooks,
-      iconBg: "bg-green-500 dark:bg-green-600",
     },
     {
       id: 2,
       title: "Total Posts",
       icon:  <FaFileImage size={28}/>,
       totalCounts: total.totalPosts,
-      iconBg: "bg-blue-500 dark:bg-blue-600",
     },
     {
       id: 3,
       title: "Total Store Books",
       icon:  <FaStore  size={28} />,
       totalCounts: total.totalStoreBooks,
-      iconBg: "bg-purple-600 dark:bg-purple-600",
     },
     {
       id: 1,
       title: "Total Users",
       icon: <FaUsers size={28} />,
       totalCounts: total.totalUsers,
-      iconBg: "bg-pink-500 dark:bg-pink-600",
     },
   ]
 
