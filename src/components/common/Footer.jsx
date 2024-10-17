@@ -9,7 +9,10 @@ import { usePathname } from "next/navigation";
 const Footer = () => {
   const currentPath = usePathname();
 
-  if (/^\/dashboard/.test(currentPath)) {
+  if (
+    /^\/dashboard/.test(currentPath) ||
+    /^\/userDashboard/.test(currentPath)
+  ) {
     return null;
   }
 

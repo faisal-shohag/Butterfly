@@ -12,7 +12,7 @@ import Loading from "@/components/common/Loading";
 const Page = () => {
   const axiosSecure = useAxiosSecure();
   const [getCurrentPage, setGetCurrentPage] = useState(1);
-  const [everyPageItem, setEveryPageItem] = useState(5);
+  const [everyPageItem, setEveryPageItem] = useState(10);
 
   const {
     data: responseData = {},
@@ -45,6 +45,10 @@ const Page = () => {
     refetch();
   }, [everyPageItem]);
 
+  if (isError) {
+    return <div>Failed to load books. Please try again later.</div>;
+  }
+
   if (isLoading) {
     return <Loading />;
   }
@@ -76,12 +80,7 @@ const Page = () => {
         </div>
       </div>
 
-      <BooksTable
-        books={books}
-        isLoading={isLoading}
-        isError={isError}
-        refetch={refetch}
-      />
+      <BooksTable books={books} refetch={refetch} />
       {totalBooks == everyPageItem || totalBooks < everyPageItem ? null : (
         <div className="w-full flex gap-2 justify-center items-center my-2">
           <Button
@@ -97,7 +96,7 @@ const Page = () => {
             <Button
               variant="outline"
               key={page}
-              className={`p-1 px-2 border ${
+              className={`p-1 px-3 border ${
                 getCurrentPage === page + 1
                   ? "!bg-black dark:!bg-white text-white dark:text-black"
                   : "bg-white dark:bg-black text-black dark:text-white"
