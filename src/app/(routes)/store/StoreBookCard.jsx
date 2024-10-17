@@ -17,7 +17,7 @@ export default function StoreBookCard({ book }) {
       <h3 className="text-center font-medium text-gray-700 dark:text-gray-300">
         {book?.title}
       </h3>
-      <small className="text-green-500">Product in stock</small>
+      <small className="text-green-500">{book?.discount}% Discount</small>
       <div className="w-full  gap-2">
         <Button variant="outline" className="w-full">
           See Details

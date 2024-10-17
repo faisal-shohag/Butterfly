@@ -80,12 +80,7 @@ const Page = () => {
         </div>
       </div>
 
-      <BooksTable
-        books={books}
-        isLoading={isLoading}
-        isError={isError}
-        refetch={refetch}
-      />
+      <BooksTable books={books} refetch={refetch} />
       {totalBooks == everyPageItem || totalBooks < everyPageItem ? null : (
         <div className="w-full flex gap-2 justify-center items-center my-2">
           <Button
