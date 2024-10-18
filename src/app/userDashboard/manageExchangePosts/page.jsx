@@ -13,7 +13,7 @@ import ExchangeTable from "./ExchangeTable";
 const Page = () => {
   const axiosSecure = useAxiosSecure();
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setEveryPageItem] = useState(10);
+  const [itemsPerPage, setEveryPageItem] = useState(2);
   const {data: session} = useSession()
   console.log(session?.user.id)
   const {
