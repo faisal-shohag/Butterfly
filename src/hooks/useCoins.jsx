@@ -37,12 +37,14 @@ export const useCoins = (userId) => {
 //   console.log(coins)
 
   const totalCoins = coins ? coins.totalCoins : 0;
+  const remainingCoins = coins ? coins.remainingCoins : 0;
   const recentCoins = coins ? coins.recentCoins : [];
 
 
   return {
     coins: recentCoins,
     totalCoins,
+    remainingCoins,
     isLoading,
     error,
     addCoin: addCoin.mutate,

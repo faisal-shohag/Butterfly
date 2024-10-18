@@ -1,7 +1,7 @@
 import React from "react";
 import { IoDocumentText, IoPeople } from "react-icons/io5"; // Icons from react-icons
 
-export default function HivePostRepostCards() {
+export default function ReportsCards() {
   // Dummy data for radial progress
   const hivePostProgress = 60; // Represents 60%
   const hiveUserProgress = 45; // Represents 45%

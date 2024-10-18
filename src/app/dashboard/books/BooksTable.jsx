@@ -2,145 +2,175 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
+import Loading from "@/components/common/Loading";
+import { Button } from "@/components/ui/button";
+import toast, { Toaster } from "react-hot-toast";
 
-export default function BooksTable() {
+// Import ShadCN components
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"; // Adjust based on your file structure
+
+export default function BooksTable({ books, refetch }) {
+  const [callAlter, setCallert] = useState(false);
   const [openMenuId, setOpenMenuId] = useState(null);
+  const axiosSecure = useAxiosSecure();
 
   const toggleMenu = (id) => {
     setOpenMenuId(openMenuId === id ? null : id);
   };
 
-  const books = [
-    {
-      id: 1,
-      bookname: "The Alchemist",
-      writername: "Paulo Coelho",
-      price: 12.99,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-    {
-      id: 2,
-      bookname: "To Kill a Mockingbird",
-      writername: "Harper Lee",
-      price: 14.99,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-    {
-      id: 3,
-      bookname: "1984",
-      writername: "George Orwell",
-      price: 9.99,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-    {
-      id: 4,
-      bookname: "Pride and Prejudice",
-      writername: "Jane Austen",
-      price: 11.49,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-    {
-      id: 5,
-      bookname: "The Catcher in the Rye",
-      writername: "J.D. Salinger",
-      price: 10.99,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-    {
-      id: 6,
-      bookname: "The Great Gatsby",
-      writername: "F. Scott Fitzgerald",
-      price: 13.99,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-    {
-      id: 7,
-      bookname: "Moby Dick",
-      writername: "Herman Melville",
-      price: 15.99,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-    {
-      id: 8,
-      bookname: "War and Peace",
-      writername: "Leo Tolstoy",
-      price: 18.99,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-    {
-      id: 9,
-      bookname: "Crime and Punishment",
-      writername: "Fyodor Dostoevsky",
-      price: 16.49,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-    {
-      id: 10,
-      bookname: "The Hobbit",
-      writername: "J.R.R. Tolkien",
-      price: 12.49,
-      image: "https://ik.imagekit.io/masudur/book.webp?updatedAt=1727267354890",
-    },
-  ];
+  const handleDelete = (id) => {
+    axiosSecure
+      .delete(`/store_books/${id}`)
+      .then(() => {
+        toast.success("Book deleted successfully!");
+        refetch();
+        setCallert(false);
+      })
+      .catch((error) => {
+        toast.error("Something went wrong!");
+        console.error("Error deleting the book:", error);
+      });
+  };
 
   return (
-    <table className="w-full text-left table-auto  border-collapse">
-      <thead className="bg-gray-200">
-        <tr>
-          <th className="p-3 font-semibold text-gray-700">Image</th>
-          <th className="p-3 font-semibold text-gray-700">Book Name</th>
-          <th className="p-3 font-semibold text-gray-700">Writer Name</th>
-          <th className="p-3 font-semibold text-gray-700">Price</th>
-          <th className="p-3 font-semibold text-center text-gray-700">
-            Action
-          </th>
-        </tr>
-      </thead>
-      <tbody className="bg-white divide-y divide-gray-200">
-        {books.map((book) => (
-          <tr key={book.id} className="hover:bg-gray-50">
-            <td className="p-1 flex justify-center">
-              <img
-                src={book.image}
-                alt={book.bookname}
-                className="w-10 h-auto rounded"
-              />
-            </td>
-            <td className="p-3 text-sm font-medium text-gray-900">
-              {book.bookname}
-            </td>
-            <td className="p-3 text-sm text-gray-500">{book.writername}</td>
-            <td className="p-3 text-sm text-red-500">${book.price}</td>
-            <td className="text-sm relative cursor-pointer">
-              <div
-                className="flex justify-center items-center"
-                onClick={() => toggleMenu(book.id)}
-              >
-                <BsThreeDotsVertical />
-              </div>
-              {openMenuId === book.id && (
-                <div className="absolute top-2/3 mt-2 right-1/2 border w-40 flex flex-col p-2 rounded-lg bg-white shadow-lg z-10">
-                  <Link
-                    href={`/dashboard/books/details/${book.id}`}
-                    className="p-2 hover:bg-gray-100 rounded"
-                  >
-                    Details
-                  </Link>
-                  <Link
-                    href={`/dashboard/books/Edit/${book.id}`}
-                    className="p-2 hover:bg-gray-100 rounded"
-                  >
-                    Edit
-                  </Link>
-                  <Link href={""} className="p-2 hover:bg-gray-100 rounded">
-                    Delete
-                  </Link>
+    <div className="w-full">
+      <Toaster />
+      <Table className="w-full">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="p-3">#</TableHead>
+            <TableHead className="p-3">Image</TableHead>
+            <TableHead className="p-3">Book</TableHead>
+            <TableHead className="p-3">Category</TableHead>
+            <TableHead className="p-3">Price</TableHead>
+            <TableHead className="p-3">Discount</TableHead>
+            <TableHead className="p-3 text-center">Action</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {books.map((book, idx) => (
+            <TableRow
+              key={book.id}
+              className="hover:bg-zinc-50 dark:hover:bg-zinc-700"
+            >
+              <TableCell>{idx + 1}</TableCell>
+              {/* Image */}
+              <TableCell className="p-1">
+                <img
+                  src={
+                    book?.cover ||
+                    "https://i.postimg.cc/44FccD29/cover-default-book.jpg"
+                  }
+                  alt="Book Cover"
+                  className="w-[50px]"
+                />
+              </TableCell>
+
+              {/* Book Name */}
+              <TableCell>
+                <div className="">
+                  <p className=" max-w-1/6 text-sm font-medium text-zinc-900 dark:text-zinc-200">
+                    {book.title}
+                  </p>
+                  <p className=" max-w-1/6 text-sm text-zinc-500 dark:text-zinc-400">
+                    by {book?.author}
+                  </p>
                 </div>
-              )}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+              </TableCell>
+
+              {/* Writer Name */}
+              <TableCell>
+                <p className=" max-w-1/6 text-sm font-medium text-zinc-900 dark:text-zinc-200">
+                  {book?.category}
+                </p>
+                <p className=" max-w-1/6 text-sm text-zinc-500 dark:text-zinc-400">
+                  by {book?.language}
+                </p>
+              </TableCell>
+
+              {/* Category */}
+              <TableCell>
+                <p className=" max-w-1/6 text-sm font-medium text-zinc-900 dark:text-zinc-200">
+                  ৳ {book?.price} or
+                </p>
+                <p className=" max-w-1/6 text-sm text-zinc-500 dark:text-zinc-400">
+                  {book?.coin} coin
+                </p>
+              </TableCell>
+
+              {/* Price */}
+              <TableCell className="p-3 text-sm text-red-500 dark:text-red-400">
+                {book?.discount}%
+              </TableCell>
+
+              {/* Action */}
+              <TableCell className="text-sm text-center relative">
+                <div
+                  className="flex justify-center items-center cursor-pointer"
+                  onClick={() => toggleMenu(book.id)}
+                >
+                  <BsThreeDotsVertical className="text-zinc-600 dark:text-zinc-300" />
+                </div>
+                {openMenuId === book.id && (
+                  <div className="absolute top-2/3 mt-2 right-1/2 border w-40 flex flex-col p-2 rounded-lg bg-white dark:bg-zinc-800 shadow-lg z-10">
+                    <Link
+                      href={`/dashboard/books/details/${book.id}`}
+                      className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded"
+                    >
+                      Details
+                    </Link>
+                    <Link
+                      href={`/dashboard/books/Edit/${book.id}`}
+                      className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      className="p-2 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 text-red-600 dark:text-red-400 rounded"
+                      onClick={() => setCallert(true)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+
+      {callAlter && (
+        <div className="w-full h-screen fixed top-0 left-0 flex justify-center z-50 bg-[#0000003b] items-center">
+          <div className="bg-white dark:bg-zinc-800 p-5 flex flex-col justify-center items-center gap-5 rounded-md">
+            <h3 className="font-bold text-zinc-700 dark:text-zinc-300">
+              Are you sure you want to delete?
+            </h3>
+            <div className="flex justify-center items-center gap-4">
+              <Button
+                onClick={() => setCallert(false)}
+                variant="outline"
+                className="px-10"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() => handleDelete(openMenuId)}
+                className="px-10"
+              >
+                Delete
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

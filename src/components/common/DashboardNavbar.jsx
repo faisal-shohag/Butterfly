@@ -28,7 +28,7 @@ const DashboardNavbar = () => {
         <li onClick={closeMenu} className='font-medium  w-full rounded-md px-5 py-2   '>
             <Link href={'/exchangesPostReport'}>Exchanges Post Report</Link> </li>
         <li onClick={closeMenu} className='font-medium  w-full rounded-md px-5 py-2    '>
-            <Link href={'/hivePostReport'}>Hive Post Report</Link> </li>
+            <Link href={'/reports'}>Reports</Link> </li>
         <li onClick={closeMenu} className='font-medium  w-full rounded-md px-5 py-2  '>
             <Link href={'/messages'}>Messages</Link> </li>
         <li onClick={closeMenu} className='font-medium  w-full rounded-md px-5 py-2   '>
