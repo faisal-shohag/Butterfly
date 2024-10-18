@@ -1,24 +1,28 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import UserAllPosts from "./UserAllPosts";
-import UserExchanges from "./UserExchanges";
 
 export default function PostSection() {
   return (
-    <div className="w-full bg-white dark:bg-zinc-900 p-2 mt-3 rounded-md shadow-md">
-      <Tabs defaultValue="Posts" className="w-full ">
-        <TabsList className="w-full ">
-          <TabsTrigger value="Posts" className="w-full">
+    <div className=" mt-3 rounded-md shadow-md">
+      <Tabs defaultValue="my_books" className="w-full ">
+        <TabsList >
+        <TabsTrigger value="my_books">
+            My Books
+          </TabsTrigger>
+          <TabsTrigger value="Posts" >
             Posts
           </TabsTrigger>
-          <TabsTrigger value="Exchanges" className="w-full">
+          <TabsTrigger value="Exchanges">
             Exchanges
           </TabsTrigger>
         </TabsList>
+        <TabsContent value="my_books">
+          User Books
+        </TabsContent>
         <TabsContent value="Posts">
-          <UserAllPosts />
+          User Posts
         </TabsContent>
         <TabsContent value="Exchanges">
-          <UserExchanges />
+          Exchanges
         </TabsContent>
       </Tabs>
     </div>

@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, signIn } from "@/auth";
+import { activation } from "@/lib/activationEmailTemplate";
 import { signJwt, verifyJwt } from "@/lib/jwt";
 import { compileActivationTemplate, sendMail } from "@/lib/mail";
 import prisma from "@/lib/prisma";
@@ -48,7 +49,7 @@ export async function CredentialSignUp(formData) {
      await sendMail({
         to: result.email,
         subject: 'Activate your account',
-        body: `${activationUrl}`
+        body: activation(activationUrl)
      })
 
     return "verify"

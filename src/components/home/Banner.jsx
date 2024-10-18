@@ -5,25 +5,9 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
-const bannerContent = [
-  {
-    image: "https://i.postimg.cc/5ySTXwmD/fd1ab28a4493ff7baf37b11a08b18159.jpg",
-    title: "Discover New Worlds",
-    description: "Exchange books and broaden your horizons"
-  },
-  {
-    image: "https://i.postimg.cc/y8dtN33r/image.png",
-    title: "Connect Through Stories",
-    description: "Join our community of book lovers"
-  },
-  {
-    image: "https://i.postimg.cc/vTh2YGYs/image.png",
-    title: "Sustainable Reading",
-    description: "Give books a new life through exchange"
-  }
-];
 
-const Banner = () => {
+
+const Banner = ({bannerContent, className}) => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState('right');
 
@@ -43,7 +27,7 @@ const Banner = () => {
   }, [current]);
 
   return (
-    <div className="relative w-full h-[400px] overflow-hidden rounded-lg shadow-xl mb-8">
+    <div className={`relative w-full overflow-hidden rounded-lg shadow-xl mb-8 ${className}`}>
       {bannerContent.map((slide, index) => (
         <div
           key={index}
@@ -77,11 +61,11 @@ const Banner = () => {
               }`}>
                 {slide.description}
               </p>
-              <Button 
+              {/* <Button 
                 size="lg" 
               >
                 Exchange Now
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
