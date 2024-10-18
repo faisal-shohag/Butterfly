@@ -17,6 +17,7 @@ import UserAvatar from "../UserAvatar";
 import UserCoin from "./UserCoin";
 import { useTheme } from "next-themes";
 import { RiAdminFill } from "react-icons/ri";
+import { DashboardIcon } from "@radix-ui/react-icons";
 const Usersection = () => {
     const { theme, setTheme } = useTheme()
   const session = useSession();
@@ -60,7 +61,9 @@ const Usersection = () => {
               
               Theme</DropdownMenuItem>
  
-              {user.role === 'admin' && <Link href='/dashboard/dashboardHome'><DropdownMenuItem><RiAdminFill size={15} className="mr-2"/> Admin Dashboard</DropdownMenuItem></Link>}
+              {user.role === 'admin' ? <Link href='/dashboard/dashboardHome'><DropdownMenuItem><RiAdminFill size={15} className="mr-2"/> Admin Dashboard</DropdownMenuItem></Link>
+              :  <Link href='/userDashboard/dashboardHome'><DropdownMenuItem><DashboardIcon size={15} className="mr-2"/>  My Dashboard</DropdownMenuItem></Link>
+            }
               <DropdownMenuItem className="text-red-500" onClick={() => signOut()}>
                 <LogOutIcon size={15} className="mr-2"/> Sign out
               </DropdownMenuItem>
