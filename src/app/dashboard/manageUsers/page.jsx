@@ -171,9 +171,14 @@ const Page = () => {
                 </div>
               </TableCell>
               <TableCell>
-                <p className={user?.role === 'admin' ? 'text-green-500' : ''}>
-                  {user?.role || 'N/A'}
-                </p>
+                {
+                  user?.role === 'admin'?
+                   <p className="text-green-500">{user?.role}</p> :
+                    user?.role ==='restricted' ?
+                    <p className="text-red-500">{user?.role}</p>
+                    :<p>{user?.role || 'N/A'}</p>
+                }
+                 
               </TableCell>
               <TableCell>
                 <div className="flex gap-2 justify-center items-center">
@@ -191,9 +196,10 @@ const Page = () => {
                       <form onSubmit={handleRoleUpdate} className="grid gap-4 py-3">
                         <select name="role" className="border px-4 py-1 rounded-md w-full mb-2">
                           <option disabled selected>{user?.role || 'N/A'}</option>
-                          <option value="guest">guest</option>
+                          <option value={null}>N/A</option>
                           <option value="moderator">moderator</option>
                           <option value="admin">admin</option>
+                          <option value="restricted">restricted</option>
                         </select>
                         <div>
                           <DialogClose asChild>
