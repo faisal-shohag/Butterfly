@@ -9,7 +9,7 @@ const StoreBookCard = ({ book }) => {
   return (
     <div className="w-full max-w-sm custom-glass rounded-xl relative cursor-pointer font-kalpurush">
       {book.discount > 0 ? (
-        <div className="absolute -top-4 -left-4">
+        <div className="absolute -top-0 -left-0 z-[9999]">
           <div className="bg-red-500 text-center text-xs flex justify-center items-center h-[50px] w-[50px] text-white px-2 py-1 rounded-full shadow-2xl">
             {book.discount}% off
           </div>
