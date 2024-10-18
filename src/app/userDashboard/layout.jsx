@@ -1,18 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Bell,
-  CircleUser,
-  Home,
-  Menu,
-  Package,
-  Package2,
-  Repeat,
-  Search,
-  ShoppingCart,
-  Users,
-} from "lucide-react";
+import { Home, Menu, Repeat, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -20,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
 import Usersection from "@/components/common/NavBar/Usersection";
-import { MdOutlineHive } from "react-icons/md";
+
 import { TbButterfly } from "react-icons/tb";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 
@@ -38,11 +27,11 @@ const Layout = ({ children }) => {
       label: "Dashboard",
       icon: <Home className="h-4 w-4" />,
     },
-    {
-      href: "/userDashboard/manageHivePosts",
-      label: "Manage Hive Posts",
-      icon: <MdOutlineHive className="h-4 w-4" />,
-    },
+    // {
+    //   href: "/userDashboard/manageHivePosts",
+    //   label: "Manage Hive Posts",
+    //   icon: <MdOutlineHive className="h-4 w-4" />,
+    // },
     {
       href: "/userDashboard/manageExchangePosts",
       label: "Manage Exchange Posts",

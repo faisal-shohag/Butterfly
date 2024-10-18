@@ -21,7 +21,7 @@ export default function ExchangesRequestTable({ request }) {
   // Helper function to format the date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString(); // Will return 'YYYY-MM-DD' format
+    return date.toLocaleDateString();
   };
 
   return (
