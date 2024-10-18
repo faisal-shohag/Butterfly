@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Button } from "@/components/ui/button";
 import Image from 'next/image';
+import Link from 'next/link';
+import BuyWithCoinButton from './BuyWithCoinButton';
 
 const StoreBookCard = ({ book }) => {
   return (
@@ -12,13 +14,14 @@ const StoreBookCard = ({ book }) => {
         </div>: null
        }
 
-      <div>
+      <Link href={`/store/${book.id}`}><div>
         <div className='flex justify-center w-full'>
         <Image height={150} width={100} src={book.cover} alt={book.title} className="border h-[150px] mb-4" />
         </div>
         <div className='font-semibold text-sm line-clamp-1'>{book.title}</div>
         <div className='font-semibold text-sm text-muted-foreground line-clamp-1'>{book.author}</div>
       </div>
+      </Link>
      <div className='mt-2'>
      {
         book.discount > 0 ? <Button variant='outline' className='font-semibold text-muted-foreground text-sm flex gap-1 w-full'>Buy 
@@ -28,8 +31,7 @@ const StoreBookCard = ({ book }) => {
        Buy {book.price} tk
       </Button>
       }
-      <Button className="w-full mt-1 flex gap-1" variant="outline"><span>Buy with  {book.coin}</span> <Image height={15} width={15} src='/bcoin.png' alt='coin'/></Button>
-      
+      <BuyWithCoinButton book={book}/>
      </div>
 
     

@@ -80,7 +80,7 @@ const AddBook = () => {
         addCoin({
           type: 'silver',
           reason: 'For adding a book for exchanging',
-          value: 1,
+          value: 10,
           userId: user.id,
         })
       },
