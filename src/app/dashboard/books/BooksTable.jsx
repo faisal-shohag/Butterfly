@@ -17,18 +17,10 @@ import {
   TableRow,
 } from "@/components/ui/table"; // Adjust based on your file structure
 
-export default function BooksTable({ books, isLoading, isError, refetch }) {
+export default function BooksTable({ books, refetch }) {
   const [callAlter, setCallert] = useState(false);
   const [openMenuId, setOpenMenuId] = useState(null);
   const axiosSecure = useAxiosSecure();
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (isError) {
-    return <div>Failed to load books. Please try again later.</div>;
-  }
 
   const toggleMenu = (id) => {
     setOpenMenuId(openMenuId === id ? null : id);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import { Button } from "@/components/ui/button";
 import Image from 'next/image';
@@ -8,18 +8,18 @@ import BuyWithCoinButton from './BuyWithCoinButton';
 const StoreBookCard = ({ book }) => {
   return (
     <div className="w-full max-w-sm custom-glass rounded-xl relative cursor-pointer font-kalpurush">
-       {
-        book.discount > 0 ?  <div className='absolute -top-4 -left-4'>
-        <div className='bg-red-500 text-center text-xs flex justify-center items-center h-[50px] w-[50px] text-white px-2 py-1 rounded-full shadow-2xl'>{book.discount}% off</div>
-        </div>: null
-       }
+      {book.discount > 0 ? (
+        <div className="absolute -top-4 -left-4">
+          <div className="bg-red-500 text-center text-xs flex justify-center items-center h-[50px] w-[50px] text-white px-2 py-1 rounded-full shadow-2xl">
+            {book.discount}% off
+          </div>
+        </div>
+      ) : null}
 
       <Link href={`/store/${book.id}`}><div>
         <div className='flex justify-center w-full'>
         <Image height={150} width={100} src={book.cover} alt={book.title} className="border h-[150px] mb-4" />
         </div>
-        <div className='font-semibold text-sm line-clamp-1'>{book.title}</div>
-        <div className='font-semibold text-sm text-muted-foreground line-clamp-1'>{book.author}</div>
       </div>
       </Link>
      <div className='mt-2'>
