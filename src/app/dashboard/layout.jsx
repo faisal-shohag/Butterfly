@@ -59,8 +59,8 @@ const Layout = ({ children }) => {
       icon: <ShoppingCart className="h-4 w-4" />,
     },
     {
-      href: "/dashboard/hivePostReport",
-      label: "Post Reports",
+      href: "/dashboard/reports",
+      label: "Reports",
       icon: <Package2 className="h-4 w-4" />,
     },
     {
