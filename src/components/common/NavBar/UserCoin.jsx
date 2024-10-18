@@ -7,7 +7,7 @@ import formatTimeAgo from '@/app/(routes)/forum/TimeAgo';
 import Image from 'next/image';
 
 const UserCoin = ({ user }) => {
-    const { totalCoins, isLoading, error, coins } = useCoins(user.id);
+    const { remainingCoins, isLoading, error, coins } = useCoins(user.id);
 
     const CoinDisplay = () => (
         <>
@@ -17,7 +17,7 @@ const UserCoin = ({ user }) => {
             <div className="flex items-center gap-2 bg-white rounded-xl dark:bg-zinc-900">
                 <div className='pl-1'><Image height={15} width={15} src={"/bcoin.png"} alt='coin'/></div>
                 <div className="text-sm font-bold pr-2">
-                    {isLoading ? <Loader size={15} className='animate-spin'/> : totalCoins}
+                    {isLoading ? <Loader size={15} className='animate-spin'/> : remainingCoins}
                 </div>
             </div>
         </div>
