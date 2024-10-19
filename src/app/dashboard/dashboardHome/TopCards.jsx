@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "react-query";
 import { PiBookOpenTextThin, PiFileImageThin, PiStorefrontThin, PiUsersLight } from "react-icons/pi";
+import { Skeleton } from "@/components/ui/skeleton";
+import SkeletonCard from "./Skeleton";
 
 export default function TopCards() {
 
@@ -16,7 +18,7 @@ export default function TopCards() {
     return res.data;
   });
 
-  if (isLoading) return <p>Loading ...</p>;
+  if (isLoading) return <SkeletonCard/>;
   if (error) return <p>Error loading ...</p>;
 
   const cardData = [
