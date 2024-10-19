@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import SkeletonCard from "./Skeleton";
 
 export default function TopCards() {
-
+  // total count for fatch api
   const axiosSecure = useAxiosSecure();
   const {
     data: total,
@@ -19,7 +19,7 @@ export default function TopCards() {
   });
 
   if (isLoading) return <SkeletonCard/>;
-  if (error) return <p>Error loading ...</p>;
+  if (error) return <p>Failed to load cards. Please try again later.</p>;
 
   const cardData = [
     {
