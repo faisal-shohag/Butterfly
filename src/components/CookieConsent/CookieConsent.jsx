@@ -12,7 +12,7 @@ import {
   } from "@/components/ui/alert-dialog"
 import Cookies from "js-cookie"
 import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
+
 
 const CookieConsent = () => {
     const [open, setOpen] = useState(false)
@@ -20,8 +20,16 @@ const CookieConsent = () => {
     useEffect(()=>{
         const consent = Cookies.get('cookie_consent')
         if(!consent){
-            setOpen(true)
+          const timeOut =  setTimeout(()=>{
+                setOpen(true)
+            }, 1 * 60 * 1000 )
+            
+            return ()=>{
+                clearTimeout(timeOut)
+            }
         }
+
+       
     }, [])
 
     const acceptCookies = ()=>{

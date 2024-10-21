@@ -27,13 +27,14 @@ export default function Home() {
   return (
     <>
       <div className="section">
+      <CookieConsent/>
       <Banner bannerContent={bannerContent} className="h-[400px]"/>
       <LatestStoreBooks/>
       <MostCoinedUser/>
       <LatestExchangePosts/>
       <HiveHunters/>
       <PopularPosts/>
-      <CookieConsent/>
+      
      
       </div>
     </>
