@@ -47,7 +47,17 @@ const FAQ = () => {
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
-                
+                <Accordion type="single" collapsible>
+                    <AccordionItem value="item-2">
+                        <div className="border-t border-gray-200 dark:border-gray-700 w-full md:w-[600px] mt-3"></div>
+                        <AccordionTrigger className='py-3 text-lg md:text-xl font-normal'>
+                        How can I ensure the condition of the book I am receiving?
+                        </AccordionTrigger>
+                        <AccordionContent className='text-base md:text-lg font-light'>
+                        Before finalizing the exchange, both parties are encouraged to provide details <br /> and photos of the book’s condition to avoid any misunderstandings.
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
 
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-3">
