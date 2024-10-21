@@ -4,6 +4,7 @@ import MostCoinedUser from "@/components/home/MostCoinedUser";
 import HiveHunters from "@/components/home/HiveHunters";
 import LatestExchangePosts from "@/components/home/LatestExchangePosts";
 import LatestStoreBooks from "@/components/home/LatestStoreBooks";
+import CookieConsent from "@/components/CookieConsent/CookieConsent";
 export default function Home() {
   const bannerContent = [
     {
@@ -32,7 +33,7 @@ export default function Home() {
       <LatestExchangePosts/>
       <HiveHunters/>
       <PopularPosts/>
-    
+      <CookieConsent/>
      
       </div>
     </>
