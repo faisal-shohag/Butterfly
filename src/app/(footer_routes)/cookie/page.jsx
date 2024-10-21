@@ -105,6 +105,47 @@ const CookiePolicy = () => {
 
                 
             </div>
+
+
+            {/* Changing your cookie preferences */}
+            <div className="mb-6">
+                <h5 className="font-bold ">Changing your cookie preferences</h5>
+                <p className="text-sm">The "Help" menu in the toolbar of most web browsers will tell you how to change your browser's cookie settings, including how to have the browser notify you when you receive a new cookie, and how to disable cookies altogether. Below is some helpful guidance about how to make these changes.</p>
+
+                
+            </div>
+
+
+            {/* How to disable cookies? */}
+            <div className="mb-6">
+                <h5 className="font-bold ">How to disable cookies?</h5>
+                <p className="text-sm">If you are using Microsoft Internet Explorer and you wish to block Their Future Today’s website cookies, you can perform the following:</p>
+
+                <ol className="list-decimal text-sm pl-6">
+                    <li>On your browser tools menu, select 'Internet Options</li>
+                    <li>Click on the 'Privacy' tab and then on the 'Sites' button</li>
+                    <li>Type into the 'Address of website' field:</li>
+                    <li>
+                        <a className="underline" target="_blank"  href="http://www.theirfuturetoday.com/">www.theirfuturetoday.com</a>
+                    </li>
+                    <li>
+                    Click on the 'Block' button
+                    </li>
+                    <li>
+                    Click on the OK button
+                    </li>
+                    <li>
+                    Other browsers:
+                    <ul>
+                        <li> - Firefox cookie management</li>
+                        <li> - Chrome cookie management</li>
+                        <li> - Safari cookie management</li>
+                    </ul>
+                    </li>
+                </ol>
+
+                <p className="text-sm my-6">Find more detailed information on disabling cookies from <a className="underline" target="_blank" href="https://www.allaboutcookies.org.">www.allaboutcookies.org.</a></p>
+            </div>
         </div>
     );
 };
