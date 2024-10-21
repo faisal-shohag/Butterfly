@@ -36,7 +36,22 @@ const CookieConsent = () => {
 
     if(!open) return null
     return (
-       
+        <AlertDialog open={open}>
+      <AlertDialogTrigger/>
+        
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>We use cookies</AlertDialogTitle>
+          <AlertDialogDescription>
+           We use cookies to improve your experience on our site. Accept cookies for a better experience.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel onClick={declineCookies}>Decline</AlertDialogCancel>
+          <AlertDialogAction onClick={acceptCookies}>Accept</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
     );
 };
 
