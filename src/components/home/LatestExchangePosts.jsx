@@ -24,7 +24,7 @@ const LatestExchangePosts = () => {
     const { data: booksData, isLoading, isError } = useQuery(
         ['latestBooks', userId],
         async () => {
-            const response = await axiosSecure.get(`/latest-books/${userId || ''}`);
+            const response = await axiosSecure.get(`/latest-books/${userId || undefined}`);
             return response.data.books;
         },
         {
