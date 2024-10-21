@@ -12,7 +12,7 @@ const CookiePolicy = () => {
                 <h5 className="font-bold">What are cookies?</h5>
                 <p className="text-sm">Cookies are text files containing small amounts of information which are downloaded to your device when you visit a website. Cookies are then sent back to the originating website on each subsequent visit, or to another website that recognises that cookie. Cookies are useful because they allow a website to recognise a user’s device.</p>
 
-                <p className="text-sm">You can find more information about cookies at: <Link className="underline" target="_blank" href={"www.allaboutcookies.org"}>www.allaboutcookies.org</Link> and <Link className="underline" target="_blank" href="www.youronlinechoices.eu">www.youronlinechoices.eu</Link>.</p>
+                <p className="text-sm">You can find more information about cookies at: <a className="underline" target="_blank" href="http://www.allaboutcookies.org" rel="noopener noreferrer">www.allaboutcookies.org</a> and <a className="underline" target="_blank" href="https://youronlinechoices.eu/" rel="noopener noreferrer">www.youronlinechoices.eu</a>.</p>
             </div>
 
             {/* Do we use cookie */}
@@ -86,6 +86,23 @@ const CookiePolicy = () => {
 <p className="text-sm ">Although not through cookies, we do measure the success of the emails we send – so we know what subject lines and stories people liked the most. We receive this information anonymously, we don’t share this information.
 
 </p>
+                
+            </div>
+
+
+             {/* Third party cookies
+
+ */}
+             <div className="mb-6">
+                <h5 className="font-bold ">Third party cookies
+</h5>
+                <p className="text-sm">You may notice some cookies that are not related to the Their Future Today’s website whilst visiting <a className="underline" target="_blank" href="http://www.theirfuturetoday.com" rel="noopener noreferrer">www.theirfuturetoday.com</a> . Some of our pages contain embedded content such as YouTube video, Twitter feed, Facebook likes or Google plus share, and you may receive cookies delivered from these websites. Their Future Today does not govern the publication of 3rd party cookies. To understand more about their cookies and privacy statements, please visit the relevant sites.</p>
+
+
+                <p className="text-sm mt-6">Some of our cookies will remind you about our work and how you can help after you have left the website. These are the targeting/advertising cookies we use. It is a useful tool for us to keep public awareness of our campaigns and how they can be supported.</p>
+
+                <p className="text-sm ">If you do not want cookies to be stored on your PC it is possible to disable this function without affecting your navigation around the site.</p>
+
                 
             </div>
         </div>
