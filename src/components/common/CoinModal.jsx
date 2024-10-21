@@ -19,7 +19,7 @@ const CoinModal = ({
           <div className="shimmer">
             <Image height={200} width={200} src={"/bcoin.png"} alt="coin" />
           </div>
-          <div className=" text-3xl font-bold">You got Butterfly coin!</div>
+          <div className=" text-3xl font-bold">You got Butterfly coins!</div>
         </div>
       </DialogContent>
     </Dialog>

@@ -10,15 +10,8 @@ const Footer = () => {
   const currentPath = usePathname();
 
   if (
-    currentPath === "/dashboard" ||
-    currentPath === "/exchangesPostReport" ||
-    currentPath === "/features" ||
-    currentPath === "/hivePostReport" ||
-    currentPath === "/manageUsers" ||
-    currentPath === "/messages" ||
-    currentPath === "/books" ||
-    currentPath === "/ordersReport" ||
-    currentPath === "/userProfile"
+    /^\/dashboard/.test(currentPath) ||
+    /^\/userDashboard/.test(currentPath)
   ) {
     return null;
   }
@@ -59,10 +52,10 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/how-it-works"
+                  href="/sitemap"
                   className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
-                  How It Works
+                  Sitemap
                 </Link>
               </li>
               <li>
@@ -108,7 +101,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/cookie-policy"
+                  href="/cookie"
                   className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
                   Cookie Policy

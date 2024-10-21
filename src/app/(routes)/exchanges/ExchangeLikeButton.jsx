@@ -35,9 +35,9 @@ const ExchangeLikeButton = ({ book, userId }) => {
       variant="outline"
       className="flex items-center gap-2"
       onClick={handleLikeClick}
-      disabled={mutation.isLoading}
+      disabled={mutation.isLoading || book.user.id === userId}
     >
-      {isLoading ? <div className="animate-spin"><Loader2/></div> : <Heart className="text-red-500" size={16} fill={book.isLiked ? "red" : "none"} />}
+      {isLoading ? <div className="animate-spin"><Loader2 size={17}/></div> : <Heart className="text-red-500" size={16} fill={book.isLiked ? "red" : "none"} />}
       {book.likeCount || 0}
     </Button>
   );

@@ -6,11 +6,13 @@ import Link from "next/link";
 import { Button } from "../../../components/ui/button";
 import { Separator } from "../../../components/ui/separator";
 import ExchangeLikeButton from "./ExchangeLikeButton";
+import RequestButton from "./RequestButton";
 
 const BookCard = ({ book, userId }) => {
     return (
-        <div className="flex-shrink-0 space-y-1 custom-glass-2 rounded-xl p-3">
-            <Link href={`/exchanges/${book.id}`}>  
+        <div className=" custom-glass-2 rounded-md p-3">
+        <div>
+        <Link href={`/exchanges/${book.id}`}>  
                 <div className="flex items-center justify-center gap-1">
                     <Image
                         height={200}
@@ -31,6 +33,7 @@ const BookCard = ({ book, userId }) => {
                     />
                 </div>
             </Link>
+        </div>
             <div className="flex mt-4 items-center gap-1">
                 <Avatar>
                     <AvatarImage src={book.user.image} />
@@ -41,19 +44,22 @@ const BookCard = ({ book, userId }) => {
                 <div>
                     <h3 className="font-semibold text-sm truncate">{book.user.name}</h3>
                     <p className="text-xs text-gray-500 flex items-center gap-2">
-                        {book.genre.toUpperCase()} <Repeat size="12"/> {book.lookingFor.genre.toUpperCase()}
+                        <span className="line-clamp-1">{book.genre}</span> <Repeat size="12"/> 
+                        <span className="line-clamp-1">
+                        {book.lookingFor.genre}</span>
                     </p>
                 </div>
             </div>
             <Separator className="my-2"/>
             <div className="flex justify-between">
                 <ExchangeLikeButton book={book} userId={userId}/>
-                <Button
+                <RequestButton book={book} userId={userId}/>
+                {/* <Button
                     variant="outline"
                     className="flex items-center gap-2"
                 >
                     <Plus size={16}/> Request {book.likes || 0}
-                </Button>
+                </Button> */}
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 import Banner from "../components/home/Banner";
-import ButterflyAdvertisement from "@/components/home/ButterflyAdvertisement";
 import PopularPosts from "@/components/home/PopularPosts";
 import MostCoinedUser from "@/components/home/MostCoinedUser";
 import HiveHunters from "@/components/home/HiveHunters";
 import LatestExchangePosts from "@/components/home/LatestExchangePosts";
+import LatestStoreBooks from "@/components/home/LatestStoreBooks";
 export default function Home() {
   const bannerContent = [
     {
@@ -27,6 +27,7 @@ export default function Home() {
     <>
       <div className="section">
       <Banner bannerContent={bannerContent} className="h-[400px]"/>
+      <LatestStoreBooks/>
       <MostCoinedUser/>
       <LatestExchangePosts/>
       <HiveHunters/>
