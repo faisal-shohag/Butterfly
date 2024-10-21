@@ -3,7 +3,7 @@ import Link from "next/link";
 const CookiePolicy = () => {
     return (
         <div className="w-full my-7 px-6">
-            <div className="text-5xl font-thin text-center ">COOKIE POLICY</div>
+            <div className="text-3xl md:text-5xl font-thin text-center my-6  md:my-16">COOKIE POLICY</div>
 
             <div className="font-bold mb-6 text-[18px]">Cookies and how we use them</div>
 
@@ -146,6 +146,7 @@ const CookiePolicy = () => {
 
                 <p className="text-sm my-6">Find more detailed information on disabling cookies from <a className="underline" target="_blank" href="https://www.allaboutcookies.org.">www.allaboutcookies.org.</a></p>
             </div>
+
         </div>
     );
 };
