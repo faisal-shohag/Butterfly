@@ -3,28 +3,21 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@r
 const FAQ = () => {
     return (
         <div className='ml-80 mt-20'>
+            <div>
+                <h1>HAVE A QUESTION? START HERE</h1>
+                <h3>Answers to out most frequently asked questions</h3>
+            </div>
             <Accordion type="single" collapsible >
                 <AccordionItem value="item-1">
-                    <div className=" border-t border-gray-200 dark:border-gray-700 w-40"> </div>
-                    <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                    
+                    <div className=" border-t border-gray-200 dark:border-gray-700 w-[600px]"> </div>
+                    <AccordionTrigger className='py-3'>Is it accessible?</AccordionTrigger>
+
                     <AccordionContent>
                         Yes. It adheres to the WAI-ARIA design pattern.
                     </AccordionContent>
-                    <div className=" border-t border-gray-200 dark:border-gray-700 "> </div>
+                    <div className=" border-t border-gray-200 dark:border-gray-700 w-[600px]"> </div>
                 </AccordionItem>
-                <AccordionItem value="item-2">
-                    <AccordionTrigger>Is it styled?</AccordionTrigger>
-                    <AccordionContent>
-                        Yes. It comes with default styles that match the other components' aesthetic.
-                    </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-3">
-                    <AccordionTrigger>Is it animated?</AccordionTrigger>
-                    <AccordionContent>
-                        Yes. It's animated by default, but you can disable it if you prefer.
-                    </AccordionContent>
-                </AccordionItem>
+                
             </Accordion>
         </div>
     );
