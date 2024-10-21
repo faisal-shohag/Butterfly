@@ -56,6 +56,38 @@ const CookiePolicy = () => {
                 <p className="text-sm">The majority of our cookies fall into the first two categories. However, we also use cookies on our webpages which are in categories 3 and 4.</p>
                 
             </div>
+
+
+             {/* What information do we collect? */}
+             <div className="mb-6">
+                <h5 className="font-bold ">What information do we collect?</h5>
+                <p className="text-sm">We may collect some, or all, of this information when you visit our website, depending on how you use it. We monitor how people use our website so we can improve it. We collect this information anonymously.</p>
+
+                <p className="text-sm my-6">However, you can use our website anonymously without giving us any information.
+
+</p>
+
+                <p className="text-sm ">If you visit our website, we may record information about including (but not limited to):
+
+</p>
+<ul className="list-disc pl-8 text-sm">
+    <li>the areas of the website you visit</li>
+    <li>the amount of time you spend on the site</li>
+    <li>whether you are new to the site, or have visited it before</li>
+    <li>how you came to our website – for example, through an email link or a search engine</li>
+    <li>the type of device and browser you use.</li>
+    <li>how you use the website and the quality of your experience – for example we may track your bandwidth when viewing videos.</li>
+</ul>
+
+<p className="text-sm mt-6">We use cookies to track how donors come to our site. For example, we use approach codes in our internet addresses (URLs) to show us whether a donation came from and give us insight into the effectiveness of our marketing material. Some of this will be used by third party cookies to target you with relevant advertising (see below).
+
+</p>
+
+<p className="text-sm ">Although not through cookies, we do measure the success of the emails we send – so we know what subject lines and stories people liked the most. We receive this information anonymously, we don’t share this information.
+
+</p>
+                
+            </div>
         </div>
     );
 };
