@@ -1,8 +1,8 @@
 
 const CookiePolicy = () => {
     return (
-        <div>
-            Cookie Policy
+        <div className="w-full my-7">
+            <div className="text-5xl font-thin text-center">COOKIE POLICY</div>
         </div>
     );
 };
