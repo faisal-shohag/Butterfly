@@ -7,7 +7,7 @@ const SitemapRoutes = () => {
         <div className="w-full px-32 my-16">
             
 
-            <div className="grid grid-cols-2  md:grid-cols-3 gap-2">
+            <div className="grid grid-cols-2  md:grid-cols-3 gap-20">
 
             <div>
            <h3 className="text-[20px] italic font-bold mb-2 text-[#0A2B34] ">Get to know us</h3>
@@ -74,6 +74,28 @@ const SitemapRoutes = () => {
                 <ul className="mt-6 list-disc pl-6">
                     <li>
                         <Link className="hover:text-blue-500" href={"/faq"}>FAQ</Link>
+                    </li>
+                    
+                   
+                    
+                    </ul>        
+                        
+           </div>
+
+           {/* Policies */}
+            <div>
+           <h3 className="text-[20px]  italic font-bold mb-2 text-[#0A2B34] ">Policies</h3>
+           <hr className="h-[2px] w-1/2 bg-[#0A2B34] "></hr>
+
+                <ul className="mt-6 list-disc pl-6">
+                    <li>
+                        <Link className="hover:text-blue-500" href={"/terms"}>Terms of Service</Link>
+                    </li>
+                    <li>
+                        <Link className="hover:text-blue-500" href={"/privacy"}>Privacy Policy</Link>
+                    </li>
+                    <li>
+                        <Link className="hover:text-blue-500" href={"/cookie"}>Cookie Policy</Link>
                     </li>
                     
                    
