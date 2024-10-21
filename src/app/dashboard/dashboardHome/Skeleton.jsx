@@ -46,6 +46,13 @@ export function SkeletonTable() {
                     <Skeleton className="h-4 w-[250px]" />
                 </div>
             </div>
+            <div className="flex items-center mb-3 space-x-10">
+                <Skeleton className="h-24 w-16 " />
+                <div className="space-y-2">
+                    <Skeleton className="h-4 w-[300px]" />
+                    <Skeleton className="h-4 w-[250px]" />
+                </div>
+            </div>
         </div>
     )
 }
