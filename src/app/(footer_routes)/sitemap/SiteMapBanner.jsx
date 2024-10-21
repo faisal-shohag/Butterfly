@@ -13,7 +13,7 @@ const SiteMapBanner = () => {
         className="opacity-90"
       />
       <div className="absolute inset-0 flex items-center justify-center">
-        <h1 className="text-white text-4xl">Butterfly Sitemap</h1>
+        <h1 className="text-white text-2xl md:text-4xl">Butterfly Sitemap</h1>
       </div>
     </div>
     );

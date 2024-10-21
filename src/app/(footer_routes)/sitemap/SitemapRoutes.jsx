@@ -4,10 +4,10 @@ import Link from "next/link";
 
 const SitemapRoutes = () => {
     return (
-        <div className="w-full px-32 my-16">
+        <div className="w-full px-16 md:px-32 my-16">
             
 
-            <div className="grid grid-cols-2  md:grid-cols-3 gap-20">
+            <div className="grid grid-cols-1  md:grid-cols-3 gap-10 md:gap-20">
 
             <div>
            <h3 className="text-[20px] italic font-bold mb-2 text-[#0A2B34] ">Get to know us</h3>
