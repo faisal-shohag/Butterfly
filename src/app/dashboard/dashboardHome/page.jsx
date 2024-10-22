@@ -14,12 +14,8 @@ const page = () => {
       </div>
       <TopCards />
       <HiveAndExchangeChart />
-
       <div className="w-full">
-        <div className="w-full flex justify-between items-center ">
-          <h5 className="font-bold">Update Info:</h5>
-          <FiFilter />
-        </div>
+          <h5 className="font-bold">Store Books</h5>
         <UpdateDataTable />
       </div>
     </div>

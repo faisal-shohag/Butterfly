@@ -59,6 +59,7 @@
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^3.6.15",
     "nodemailer": "^6.9.15",
+    "pigeon-maps": "^0.21.6",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
