@@ -8,14 +8,21 @@ const Terms = () => {
             <h2 className="text-2xl font-bold">1. Acceptance of Terms</h2>
             <p>By accessing or using Butterfly Books, you agree to be bound by these terms. If you do not agree with any part of these terms, you should not use the platform.</p>
 
-            <h2 className="text-2xl font-bold">2. Account Responsibilities</h2>
-            <p>
+            <h2 className="text-2xl font-bold">2. Account Responsibilities</h2> 
                 <ul class="list-disc pl-5">
                     <li>You are responsible for the accuracy and security of your account information.</li>
                     <li>Make sure to keep your account information updated to ensure a smooth experience.</li>
                     <li>We encourage open and honest participation within the community and appreciate your cooperation in maintaining a positive atmosphere.</li>
                 </ul>
-            </p>
+
+                <h2 className="text-2xl font-bold">3. Posting Books for Exchange</h2> 
+                <ul class="list-disc pl-5">
+                    <li>Users are welcome to post books they wish to exchange. Ensure that your listings are clear and truthful, describing the condition and details of the books as accurately as possible.</li>
+                    <li>We encourage users to facilitate smooth and friendly exchanges, enhancing the overall experience for everyone in the community.</li>
+                    <li>In case of issues with any book listing, we are here to assist and resolve the matter in a fair and timely manner.</li> 
+                </ul>
+             
+
         </div>
     );
 };
