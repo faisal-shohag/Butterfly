@@ -21,7 +21,13 @@ const Terms = () => {
                     <li>We encourage users to facilitate smooth and friendly exchanges, enhancing the overall experience for everyone in the community.</li>
                     <li>In case of issues with any book listing, we are here to assist and resolve the matter in a fair and timely manner.</li> 
                 </ul>
-             
+
+                <h2 className="text-2xl font-bold">4. Buying and Selling Books</h2> 
+                <ul class="list-disc pl-5">
+                    <li>Users can browse and purchase books through our platform with ease. We encourage clear communication between buyers and sellers to make sure transactions are transparent and satisfactory.</li>
+                    <li>Payment transactions are managed through secure third-party gateways to ensure safety for all users.</li>
+                    <li>We recommend reviewing the details and condition of books before purchasing to ensure a successful transaction.</li> 
+                </ul>
 
         </div>
     );
