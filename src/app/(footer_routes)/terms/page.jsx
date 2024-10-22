@@ -43,6 +43,9 @@ const Terms = () => {
                     <li>We recommend resolving any transaction issues directly with the other party for a quick and amicable solution.</li> 
                 </ul>
 
+                <h2 className="text-2xl font-bold">7. Termination</h2>
+                <p>We aim to maintain a harmonious community, but we reserve the right to suspend or terminate your access to Butterfly Books if we believe that any activities are negatively affecting the platform. We will always communicate openly before taking any action.</p>
+
         </div>
     );
 };
