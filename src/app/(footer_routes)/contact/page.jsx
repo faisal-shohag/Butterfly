@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const ContactUs = () => {
     return (
@@ -16,17 +18,24 @@ const ContactUs = () => {
             </div>
         </div>
 
-        <div>
-            {/* side 1 */}
-            <div>
-                <Input type="email" placeholder="Email" />
+        <div className='grid grid-cols-2 mt-5'>
+                {/* side 1 */}
+                <Card>
+                    <div>
+                        <div className="flex gap-4 mb-4">
+                            <Input className='' type="text" placeholder="Fast Name" />
+                            <Input className='' type="text" placeholder="Last Name" />
+                        </div>
+                        <Input className='mb-4' type="email" placeholder="Email" />
+                        <Textarea className='mb-4' placeholder="Message" />
+                        <Button className='w-full'>Button</Button>
+                    </div>
+                </Card>
+                {/* side 2 */}
+                <div>
+                
+                </div>
             </div>
-
-            {/* side 2 */}
-            <div>
-
-            </div>
-        </div>
 
     </div>
     );
