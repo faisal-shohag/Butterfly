@@ -46,6 +46,9 @@ const Terms = () => {
                 <h2 className="text-2xl font-bold">7. Termination</h2>
                 <p>We aim to maintain a harmonious community, but we reserve the right to suspend or terminate your access to Butterfly Books if we believe that any activities are negatively affecting the platform. We will always communicate openly before taking any action.</p>
 
+                <h2 className="text-2xl font-bold">8. Changes to Terms</h2>
+                <p>From time to time, we may update these terms to improve the user experience. We will notify users of any significant changes, and by continuing to use the platform, you agree to the updated terms.</p>
+
         </div>
     );
 };
