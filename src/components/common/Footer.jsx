@@ -74,6 +74,15 @@ const Footer = () => {
                   Contact Us
                 </Link>
               </li>
+
+              <li>
+                <Link
+                  href="/how_it_works"
+                  className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                >
+                   How it works
+                </Link>
+              </li>
             </ul>
           </div>
 
