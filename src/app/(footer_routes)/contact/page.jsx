@@ -26,7 +26,7 @@ const ContactUs = () => {
         }}
       >
         <div className="bg-[#586DF2] z-10 lg:h-[400px] md:h-[300px] h-[300px] w-full bg-opacity-40"></div>
-        <div className="absolute inset-0 text-center flex items-center justify-center flex-col z-20">
+        <div className="absolute inset-0 text-center flex items-center justify-center flex-col ">
           <h3 className="text-4xl font-extrabold uppercase mt-2 text-black mb-2">
             Contact <span className="text-white">Us</span>
           </h3>
@@ -105,19 +105,19 @@ const ContactUs = () => {
      
       <Card className="mt-6 p-6 shadow-lg mx-auto text-center">
         <div className="text-2xl w-full font-bold mb-4 flex flex-col items-center">
-          <FaMapMarkerAlt className="mr-2 text-gray-700" size={36}/> {/* Location Icon */}
+          <FaMapMarkerAlt className="mr-2 text-gray-500" size={36}/> {/* Location Icon */}
           Our Location
         </div>
-        <p className="text-gray-700 mb-2">
+        <p className="text-gray-500 mb-2">
           Address: 123 Butterfly St, Dhaka, Bangladesh
         </p>
-        <p className="text-gray-700 mb-2">
+        <p className="text-gray-500 mb-2">
           Business Hours: Mon - Fri: 9 AM - 6 PM
         </p>
-        <p className="text-gray-700 mb-2">
+        <p className="text-gray-500 mb-2">
           Phone: +880 123 456 7890
         </p>
-        <p className="text-gray-700 mb-2">
+        <p className="text-gray-500 mb-2">
           Email: contact@butterfly.com
         </p>
       </Card>
