@@ -37,6 +37,12 @@ const Terms = () => {
                     <li>Keep conversations and exchanges friendly and supportive.</li> 
                 </ul>
 
+                <h2 className="text-2xl font-bold">6. Limitation of Liability</h2>
+                <ul class="list-disc pl-5">
+                    <li>While we strive to ensure a seamless experience, Butterfly Books is not responsible for any disputes or issues arising from transactions between users. However, we will do our best to mediate and resolve conflicts in a constructive manner.</li>
+                    <li>We recommend resolving any transaction issues directly with the other party for a quick and amicable solution.</li> 
+                </ul>
+
         </div>
     );
 };
