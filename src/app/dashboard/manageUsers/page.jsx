@@ -128,12 +128,12 @@ const Page = () => {
       <div className="flex justify-between items-center my-5 px-6">
         <h3 className="text-center">Total: {allUser.totalUsers} Users</h3>
         <h3 className="text-2xl font-bold text-center">Manage Users</h3>
-        <div className="flex gap-1 justify-end items-center mr-4 text-sm font-medium">
-          <p className="px-2 py-1">Show:</p>
+        <div className="flex gap-1 justify-center items-center mr-4 text-sm font-medium">
+          <p className="px-2 py-1">Show :</p>
           <select
             onChange={handleItemParPage}
             value={itemParPage}
-            className="border px-2 py-1"
+            className="border px-2  rounded-sm"
           >
             <option value="6">6</option>
             <option value="20">20</option>
@@ -171,9 +171,14 @@ const Page = () => {
                 </div>
               </TableCell>
               <TableCell>
-                <p className={user?.role === 'admin' ? 'text-green-500' : ''}>
-                  {user?.role || 'N/A'}
-                </p>
+                {
+                  user?.role === 'admin'?
+                   <p className="text-green-500">{user?.role}</p> :
+                    user?.role ==='restricted' ?
+                    <p className="text-red-500">{user?.role}</p>
+                    :<p>{user?.role || 'N/A'}</p>
+                }
+                 
               </TableCell>
               <TableCell>
                 <div className="flex gap-2 justify-center items-center">
@@ -191,9 +196,10 @@ const Page = () => {
                       <form onSubmit={handleRoleUpdate} className="grid gap-4 py-3">
                         <select name="role" className="border px-4 py-1 rounded-md w-full mb-2">
                           <option disabled selected>{user?.role || 'N/A'}</option>
-                          <option value="guest">guest</option>
+                          <option value={null}>N/A</option>
                           <option value="moderator">moderator</option>
                           <option value="admin">admin</option>
+                          <option value="restricted">restricted</option>
                         </select>
                         <div>
                           <DialogClose asChild>
