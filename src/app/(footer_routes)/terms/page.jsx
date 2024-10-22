@@ -29,6 +29,14 @@ const Terms = () => {
                     <li>We recommend reviewing the details and condition of books before purchasing to ensure a successful transaction.</li> 
                 </ul>
 
+                <h2 className="text-2xl font-bold">5. Community Guidelines</h2>
+                <p>We promote a positive, respectful, and engaging community where everyone can enjoy the book exchange experience. When using Butterfly Books, we encourage users to:</p>
+                <ul class="list-disc pl-5">
+                    <li>Contribute with kindness, respect, and integrity.</li>
+                    <li>Share valuable feedback and help others in the community.</li>
+                    <li>Keep conversations and exchanges friendly and supportive.</li> 
+                </ul>
+
         </div>
     );
 };
