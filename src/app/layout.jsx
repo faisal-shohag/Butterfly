@@ -8,6 +8,7 @@ import BottomNavBar from "@/components/common/BottomNavBar";
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 import localFont from "next/font/local";
+import CookieConsent from "@/components/CookieConsent/CookieConsent";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +31,7 @@ export default async function RootLayout({ children }) {
         <body
           className={`${geistSans.variable} ${geistMono.variable} bg-slate-100 dark:bg-zinc-950`}
         >
+          <CookieConsent/>
           <ThemeProvider attribute="class" defaultTheme="light">
             <NextTopLoader color="#F83859" />
             <ReactQueryProvider>
