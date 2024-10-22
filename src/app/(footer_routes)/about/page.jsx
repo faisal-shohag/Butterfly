@@ -40,14 +40,6 @@ const About = () => {
                     </Card>
                 </div>
             </Card>
-            <Card
-                className="lg:h-[250px] md:h-[250px] h-[200px] relative rounded-xl bg-fixed bg-cover bg-center"
-                style={{
-                    backgroundImage: `url('https://i.postimg.cc/hjzcgJcs/araix-rand-Xe46k-NRh-Xs-A-unsplash.jpg')`,
-                }}
-            >
-                
-            </Card>
         </div>
     );
 };
