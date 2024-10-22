@@ -28,6 +28,7 @@ const RequestButton = ({ book, userId }) => {
       userId,
       bookId: book.id,
       message,
+      requestTo: book.user.id,
     });
     setIsLoading(false);
     return response.data;
