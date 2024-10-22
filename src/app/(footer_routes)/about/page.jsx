@@ -28,7 +28,17 @@ const About = () => {
                     Our mission is to create a vibrant community of book lovers who can easily exchange and share their favorite reads, promoting sustainability and a love for literature. We value accessibility, community engagement, and the belief that every book can bring joy and insight to someone else.
                 </CardDescription>
 
-               
+                <div className="flex justify-center space-x-8 mt-8 animate-fadeIn">
+                    <Card className="transition transform hover:scale-110 p-4">
+                        <h3 className="text-xl font-bold">1000+</h3>
+                        <p className="text-gray-700">Books Exchanged</p>
+                    </Card>
+
+                    <Card className="transition transform hover:scale-110 p-4">
+                        <h3 className="text-xl font-bold">3+</h3>
+                        <p className="text-gray-700">Years of Community Building</p>
+                    </Card>
+                </div>
             </Card>
         </div>
     );
