@@ -62,7 +62,7 @@ const Terms = () => {
             </ul>
 
             <Card className='p-3 md:flex gap-4 my-4'>
-                <div>
+                <div className='md:border-r-2'>
                     <h2 className="text-xl font-bold opacity-75 mb-2">7. Termination</h2>
                     <p>We aim to maintain a harmonious community, but we reserve the right to suspend or terminate your access to Butterfly Books if we believe that any activities are negatively affecting the platform. We will always communicate openly before taking any action.</p>
                 </div>
