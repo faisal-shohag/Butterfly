@@ -50,17 +50,15 @@ const StoreBookDetailsPage = ({ bookId }) => {
   }
 
   return (
-    <div className="w-full grid grid-cols-3 font-kalpurush lg:grid-cols-4 mx-auto mt-8 custom-glass rounded-xl">
+    <div className=" grid grid-cols-4 lg:grid-cols-5  lg:gap-2 gap-5 font-kalpurush  mx-auto mt-8 custom-glass rounded-xl">
         <div className='col-span-1'>
             <Image height={280} width={220} alt='book' src={storeBook.cover}/>
         </div>
-        <div className='col-span-2 lg:grid-cols-3'>
-            <div className='font-semibold text-xl'>{storeBook.title}</div>
+        <div className='col-span-3 lg:grid-cols-4'>
+            <div className='font-semibold text-2xl'>{storeBook.title}</div>
             <div className=''>Writer: {storeBook.author}</div>
             <div className=''>Published: {new Date(storeBook.publishedDate).toLocaleDateString()}</div>
             <div className=''>Language: {storeBook.language}</div>
-            <div className='custom-glass rounded-xl mt-2'>{storeBook.description}</div>
-       
             <div className='mt-2 flex gap-5 items-center'>
      {
         storeBook.discount > 0 ? <Button variant='outline' className='font-semibold text-muted-foreground text-sm flex gap-1 w-full'>Buy 
@@ -73,6 +71,9 @@ const StoreBookDetailsPage = ({ bookId }) => {
       <Button className="w-full flex gap-1 items-center" variant="outline"><span>Buy with  {storeBook.coin}</span> <Image height={15} width={15} src='/bcoin.png' alt='coin'/></Button>
       
      </div>
+            <div className='custom-glass rounded-xl mt-2'>{storeBook.description}</div>
+       
+          
         </div>
 
       
