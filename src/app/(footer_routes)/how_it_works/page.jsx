@@ -60,7 +60,7 @@ const HowItWorks = () => {
             <h2 className="text-xl font-bold opacity-75 mb-2">4. Exchange or Buy Books</h2>
             <p className='mb-2'>Found something you like? Great! Here’s how you can get the book:</p>
             <div className='md:flex gap-6'>
-                <div className='max-sm:mb-3'>
+                <div className='max-sm:mb-3 border-r-2'>
                 <h2 className="text-lg font-bold opacity-75">For Exchanges:</h2>
                     <ul class="list-disc pl-5 space-y-2">
                         <li>Once you’ve found a book you want to exchange, click Request Exchange.</li>
