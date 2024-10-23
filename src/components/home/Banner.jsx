@@ -62,9 +62,18 @@ const Banner = ({ bannerContent, className }) => {
               {
                 current === 0 ? <Link href="/add">
                 <Button size="lg">
-                  Exchange
+                  Create Exchange
                   </Button>
-                </Link> : current === 1 ? 'masud' : 'poor'
+                </Link> : current === 1 ? 
+                <Link href="/forum">
+                <Button size="lg">
+                Join our community
+                  </Button>
+                </Link> : <Link href="/store">
+                <Button size="lg">
+                ButterFly Store
+                  </Button>
+                </Link>
               }
             </div>
           </div>
