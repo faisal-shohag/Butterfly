@@ -36,6 +36,13 @@ const HowItWorks = () => {
 
             <h2 className="text-xl font-bold opacity-75">4. Exchange or Buy Books</h2>
             <p>Found something you like? Great! Here’s how you can get the book:</p>
+            <h2 className="text-lg font-bold opacity-75">For Exchanges:</h2>
+            <ul class="list-disc pl-5 space-y-2">
+                <li>Once you’ve found a book you want to exchange, click Request Exchange.</li>
+                <li>Select one of your own books that you’re willing to trade.</li>
+                <li>The other user will be notified and can choose to accept, decline, or propose a different book..</li> 
+            </ul>
+
 
         </div>
     );
