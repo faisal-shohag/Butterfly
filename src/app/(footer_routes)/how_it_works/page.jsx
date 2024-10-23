@@ -34,6 +34,9 @@ const HowItWorks = () => {
                 <li>Click on a book to see more details and options for exchange or purchase.</li> 
             </ul>
 
+            <h2 className="text-xl font-bold opacity-75">4. Exchange or Buy Books</h2>
+            <p>Found something you like? Great! Here’s how you can get the book:</p>
+
         </div>
     );
 };
