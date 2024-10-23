@@ -23,7 +23,7 @@ export default function NotFound() {
           </div>
           <div className="flex flex-col justify-center items-center py-5 gap-5">
             <h3 className="text-center text-xl font-bold text-gray-500">
-              Request pace does not exist!
+              Request page does not exist!
             </h3>
             <Link
               href={"/"}
