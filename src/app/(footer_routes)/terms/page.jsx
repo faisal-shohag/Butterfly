@@ -1,9 +1,26 @@
+import { Card, CardDescription, CardTitle } from '@/components/ui/card'
 
 const Terms = () => {
     return (
         <div className="px-3 space-y-2">
-            <h2 className="text-2xl font-bold opacity-75">ButterFly Terms and Service</h2>
-            <p> Welcome to Butterfly Books! We are delighted to provide a platform where users can exchange, sell, and buy books. By using our services, you agree to the following terms and conditions. Please review them carefully to understand your rights and responsibilities.</p>
+
+<Card
+                className="lg:h-[400px] md:h-[300px] h-[300px] relative rounded-xl bg-fixed bg-cover bg-center"
+                style={{
+                    backgroundImage: `url('https://i.postimg.cc/hjzcgJcs/araix-rand-Xe46k-NRh-Xs-A-unsplash.jpg')`,
+                }}
+            >
+                <div className="bg-black z-10 lg:h-[400px] md:h-[300px] rounded-xl h-[300px] w-full bg-opacity-50"></div>
+                <div className="absolute inset-0 text-center flex items-center justify-center flex-col ">
+                    <CardTitle className="text-3xl font-bold uppercase mt-2 text-white mb-2">
+                    ButterFly Terms and Service
+                    </CardTitle>
+                    <CardDescription className="text-white ">
+                    Welcome to Butterfly Books! We are delighted to provide a platform where users can exchange, sell, and buy books. <br /> By using our services, you agree to the following terms and conditions. Please review them carefully to understand your rights and responsibilities.
+                    </CardDescription>
+                </div>
+            </Card>  
+             
 
             <h2 className="text-xl font-bold opacity-75">1. Acceptance of Terms</h2>
             <p>By accessing or using Butterfly Books, you agree to be bound by these terms. If you do not agree with any part of these terms, you should not use the platform.</p>
@@ -43,14 +60,21 @@ const Terms = () => {
                 <li>We recommend resolving any transaction issues directly with the other party for a quick and amicable solution.</li>
             </ul>
 
-            <h2 className="text-xl font-bold opacity-75">7. Termination</h2>
-            <p>We aim to maintain a harmonious community, but we reserve the right to suspend or terminate your access to Butterfly Books if we believe that any activities are negatively affecting the platform. We will always communicate openly before taking any action.</p>
+            <Card className='p-3 md:flex gap-4'>
+                <div>
+                <h2 className="text-xl font-bold opacity-75 mb-2">7. Termination</h2>
+            <p>We aim to maintain a harmonious community, but we reserve the right to suspend or terminate your access to Butterfly Books if we believe that any activities are negatively affecting the platform. We will always communicate openly before taking any action.</p> 
+                </div>
+                <div>
+                <h2 className="text-xl font-bold opacity-75 mb-2">8. Changes to Terms</h2>
+                <p>From time to time, we may update these terms to improve the user experience. We will notify users of any significant changes, and by continuing to use the platform, you agree to the updated terms.</p>
+                </div>
+            </Card>
 
-            <h2 className="text-xl font-bold opacity-75">8. Changes to Terms</h2>
-            <p>From time to time, we may update these terms to improve the user experience. We will notify users of any significant changes, and by continuing to use the platform, you agree to the updated terms.</p>
-
-            <h2 className="text-xl font-bold opacity-75">Contact Information</h2>
+            <Card className='p-3  '>
+            <h2 className="text-xl font-bold opacity-75 mb-2">Contact Information</h2>
             <p>We value your feedback and are here to help! If you have any questions or concerns regarding these terms, feel free to contact us at <span className="font-bold">butterfly@gmail.com</span></p>
+            </Card>
 
             <div className="space-y-4 pt-4">
                 <div className="divider border-b-2"></div>

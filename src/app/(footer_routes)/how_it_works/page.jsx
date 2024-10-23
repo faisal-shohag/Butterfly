@@ -12,7 +12,7 @@ const HowItWorks = () => {
             >
                 <div className="bg-black z-10 lg:h-[400px] md:h-[300px] rounded-xl h-[300px] w-full bg-opacity-50"></div>
                 <div className="absolute inset-0 text-center flex items-center justify-center flex-col ">
-                    <CardTitle className="text-3xl font-extrabold uppercase mt-2 text-white mb-2">
+                    <CardTitle className="text-3xl font-bold uppercase mt-2 text-white mb-2">
                         How ButterFly Work
                     </CardTitle>
                     <CardDescription className="text-white ">
