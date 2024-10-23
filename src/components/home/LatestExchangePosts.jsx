@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/carousel"
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useSession } from "next-auth/react";
+import ExchangeLikeButton from '@/app/(routes)/exchanges/ExchangeLikeButton';
+import RequestButton from '@/app/(routes)/exchanges/RequestButton';
 
 const LatestExchangePosts = () => {
     const axiosSecure = useAxiosSecure();
@@ -88,13 +90,8 @@ const LatestExchangePosts = () => {
                                         </div>
                                         <Separator className="my-4"/>
                                         <div className="flex text-sm justify-between">
-                                            <div className="flex items-center gap-2 custom-glass-2 rounded-xl px-2">
-                                                <Heart className={`${book.isLiked ? 'text-red-600' : 'text-gray-400'}`} size={16}/>
-                                                <span className="font-semibold">{book.likeCount || 0}</span>
-                                            </div>
-                                            <div className="flex items-center gap-2 custom-glass-2 rounded-xl px-2">
-                                                <Plus size={16}/> Request <span className="font-semibold">{book.requestCount || 0}</span>
-                                            </div>
+                                            <ExchangeLikeButton book={book} userId={userId}/>
+                                            <RequestButton book={book} userId={userId}/>
                                         </div>
                                     </div>
                                 </CarouselItem>
