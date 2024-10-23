@@ -59,7 +59,7 @@ const Banner = ({ bannerContent, className }) => {
                 {slide.description}
               </p> 
               
-              {
+              {/* {
                 current === 0 ? <Link href="/add">
                 <Button size="lg">
                   Create Exchange
@@ -74,7 +74,7 @@ const Banner = ({ bannerContent, className }) => {
                 ButterFly Store
                   </Button>
                 </Link>
-              }
+              } */}
             </div>
           </div>
         </div>
