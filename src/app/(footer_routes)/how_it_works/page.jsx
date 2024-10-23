@@ -15,7 +15,7 @@ const HowItWorks = () => {
                 <li>You’re all set to explore the platform.</li>
             </ul>
              
-            <h2 className="text-xl font-bold opacity-75">2. Post Your Books for Exchange or Sale</h2>
+            <h2 className="text-xl font-bold opacity-75">2. Post Your Books for Exchange</h2>
             <p>Have books you’d like to give a new home? Post them on our platform so others can find and request them.</p>
             <h2 className="text-lg font-bold opacity-75">Steps:</h2>
             <ul class="list-disc pl-5 space-y-2">
@@ -24,6 +24,9 @@ const HowItWorks = () => {
                 <li>Add a photo of the book to make it more appealing to potential buyers or exchangers.</li>
                 <li>Hit <span className="font-medium">Add Book</span>, and your listing will go live!</li>
             </ul>
+
+            <h2 className="text-xl font-bold opacity-75">3. Browse and Discover Books</h2>
+            <p>Looking for a specific book? Or just browsing for something new? Our platform allows you to easily search for and discover books available for exchange or purchase.</p>
 
         </div>
     );
