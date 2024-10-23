@@ -27,6 +27,12 @@ const HowItWorks = () => {
 
             <h2 className="text-xl font-bold opacity-75">3. Browse and Discover Books</h2>
             <p>Looking for a specific book? Or just browsing for something new? Our platform allows you to easily search for and discover books available for exchange or purchase.</p>
+            <h2 className="text-lg font-bold opacity-75">Steps:</h2>
+            <ul class="list-disc pl-5 space-y-2">
+                <li>Use the Search Bar at the top to find a specific book, author, or genre.</li>
+                <li>Explore the Categories to discover books by genre or theme.</li>
+                <li>Click on a book to see more details and options for exchange or purchase.</li> 
+            </ul>
 
         </div>
     );
