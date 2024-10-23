@@ -40,7 +40,13 @@ const HowItWorks = () => {
             <ul class="list-disc pl-5 space-y-2">
                 <li>Once you’ve found a book you want to exchange, click Request Exchange.</li>
                 <li>Select one of your own books that you’re willing to trade.</li>
-                <li>The other user will be notified and can choose to accept, decline, or propose a different book..</li> 
+                <li>The other user will be notified and can choose to accept, decline, or propose a different book.</li> 
+            </ul>
+            <h2 className="text-lg font-bold opacity-75">For Purchases:</h2>
+            <ul class="list-disc pl-5 space-y-2">
+                <li>If you prefer to buy a book, click Buy Now.</li>
+                <li>Complete the payment using our secure system.</li>
+                <li>Once the payment is processed, you and the seller can arrange delivery.</li> 
             </ul>
 
 
