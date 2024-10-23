@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { IoHomeOutline } from "react-icons/io5";
+// import { TbError404 } from "react-icons/tb";
 
 export default function NotFound() {
   return (
@@ -22,6 +23,8 @@ export default function NotFound() {
             </div>
           </div>
           <div className="flex flex-col justify-center items-center py-5 gap-5">
+            {/* <TbError404 className="text-5xl -my-7 sm:text-[70px]" /> */}
+            <h2 className="text-[70px] -my-10 font-bold">404</h2>
             <h3 className="text-center text-xl font-bold text-gray-500">
               Request page does not exist!
             </h3>
