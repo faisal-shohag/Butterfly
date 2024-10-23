@@ -12,17 +12,14 @@ const HowItWorks = () => {
             >
                 <div className="bg-black z-10 lg:h-[400px] md:h-[300px] rounded-xl h-[300px] w-full bg-opacity-50"></div>
                 <div className="absolute inset-0 text-center flex items-center justify-center flex-col ">
-                    <CardTitle className="text-4xl font-extrabold uppercase mt-2 text-white mb-2">
+                    <CardTitle className="text-3xl font-extrabold uppercase mt-2 text-white mb-2">
                         How ButterFly Work
                     </CardTitle>
                     <CardDescription className="text-white ">
                         Welcome to Butterfly Books, where book lovers can exchange and buy books from one another. <br /> Whether you are here to give your books a new home or find your next great read, we make the process simple and enjoyable. Here's how it works
                     </CardDescription>
                 </div>
-            </Card>
-
-            {/* <h2 className="text-2xl font-bold opacity-75">How ButterFly Work</h2>
-            <p> Welcome to Butterfly Books, where book lovers can exchange and buy books from one another. Whether you are here to give your books a new home or find your next great read, we make the process simple and enjoyable. Here's how it works: </p> */}
+            </Card> 
 
             <div>
             <h2 className="text-xl font-bold opacity-75 mb-2">1. Create an Account</h2>
@@ -63,7 +60,7 @@ const HowItWorks = () => {
             <h2 className="text-xl font-bold opacity-75 mb-2">4. Exchange or Buy Books</h2>
             <p className='mb-2'>Found something you like? Great! Here’s how you can get the book:</p>
             <div className='md:flex gap-6'>
-                <div>
+                <div className='max-sm:mb-3'>
                 <h2 className="text-lg font-bold opacity-75">For Exchanges:</h2>
                     <ul class="list-disc pl-5 space-y-2">
                         <li>Once you’ve found a book you want to exchange, click Request Exchange.</li>
@@ -80,14 +77,7 @@ const HowItWorks = () => {
                     </ul>
                 </div>
             </div> 
-            </Card>
-                 
-                 
-                 
-             
-
-
-
+            </Card> 
         </div>
     );
 };
