@@ -9,14 +9,14 @@ export default function MobileScreenButtons() {
     <div className="w-[40px] md:hidden h-[96px] fixed bottom-20 right-3 grid grid-cols-1 gap-4">
       <Link
         href={"#"}
-        className="w-full h-full rounded-full shadow-md bg-zinc-900 flex text-white justify-center items-center dark:bg-gray-200 dark:text-gray-600"
+        className="w-full h-full cursor-pointer rounded-full shadow-md bg-zinc-900 flex text-white justify-center items-center dark:bg-gray-200 dark:text-gray-600"
       >
         {/* <FaPlus /> */}
         <FiSearch className="text-xl" />
       </Link>
       <Link
-        href={"#"}
-        className="w-full h-full rounded-full shadow-md bg-zinc-900 text-white flex justify-center items-center dark:bg-gray-200 dark:text-gray-600"
+        href={"/add"}
+        className="w-full h-full cursor-pointer rounded-full shadow-md bg-zinc-900 text-white flex justify-center items-center dark:bg-gray-200 dark:text-gray-600"
       >
         <LuPlus className="text-2xl" />
       </Link>
