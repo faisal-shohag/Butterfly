@@ -1,8 +1,15 @@
+import SiteMapBanner from "./SiteMapBanner";
+import SitemapRoutes from "./SitemapRoutes";
+
+
 
 const SiteMap = () => {
     return (
-        <div>
-            Site Map
+        <div >
+           <SiteMapBanner/>
+
+          <SitemapRoutes/>
+           
         </div>
     );
 };
