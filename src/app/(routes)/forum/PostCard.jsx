@@ -144,7 +144,7 @@ const PostCard = ({ post, user, axiosSecure }) => {
 
   return (
     <div
-      className={`${post.type === "ai" ? "" : ""} bg-card mb-4 max-w-2xl mx-auto rounded-xl dark:bg-[#141414] py-6 border shadow-xl`}
+      className={`${post.type === "ai" ? "" : ""} bg-card mb-4 max-w-2xl mx-auto rounded-xl dark:bg-[#141414] py-6 border`}
     >
       <div className="flex flex-row justify-between items-start px-5">
         <div className="flex items-center space-x-2">

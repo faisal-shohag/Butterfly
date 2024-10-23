@@ -26,7 +26,7 @@ const PopularPosts = async () => {
 
   return (
     <div className="mb-10 custom-glass rounded-xl">
-      <Heading icon={<MdOutlineHive />} title={"Popular from HIVE"} />
+      <Heading icon={<MdOutlineHive />} title={"Popular from HIVE"} link='/hive'/>
 
       {/* <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4"> */}
       <Carousel

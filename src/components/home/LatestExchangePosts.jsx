@@ -38,7 +38,7 @@ const LatestExchangePosts = () => {
 
     return (
         <div className="mb-10 custom-glass rounded-xl overflow-hidden">
-            <Heading icon={<GiCardExchange />} title={"Latest Exchange Posts"} />
+            <Heading icon={<GiCardExchange />} title={"Latest Exchange Posts"} link="/exchanges"/>
             <div className="flex justify-center">
                 {booksData && booksData.length > 0 && (
                     <Carousel
