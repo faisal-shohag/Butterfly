@@ -17,6 +17,13 @@ const HowItWorks = () => {
              
             <h2 className="text-xl font-bold opacity-75">2. Post Your Books for Exchange or Sale</h2>
             <p>Have books you’d like to give a new home? Post them on our platform so others can find and request them.</p>
+            <h2 className="text-lg font-bold opacity-75">Steps:</h2>
+            <ul class="list-disc pl-5 space-y-2">
+                <li>Navigate to your <span className="font-medium">Exchange page</span> and click <span className="font-medium">Create Exchange</span>.</li>
+                <li>Fill out the book details, including title, author, condition, and whether it's for <span className="font-medium">Exchange</span>.</li>
+                <li>Add a photo of the book to make it more appealing to potential buyers or exchangers.</li>
+                <li>Hit <span className="font-medium">Add Book</span>, and your listing will go live!</li>
+            </ul>
 
         </div>
     );
