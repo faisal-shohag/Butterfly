@@ -92,16 +92,17 @@ const Terms = () => {
                     {/* <FaMapMarkerAlt className="mr-2 text-gray-500" size={36}/> Location Icon */}
                     Contact Information
                 </div>
-                <p className="text-gray-500 mb-2">
+                <p className="opacity-75 mb-2">We value your feedback and are here to help! If you have any questions or concerns regarding these terms, feel free to contact us at :</p>
+                <p className="opacity-75 mb-2">
                     Address: 123 Butterfly St, Dhaka, Bangladesh
                 </p>
-                <p className="text-gray-500 mb-2">
+                <p className="opacity-75 mb-2">
                     Business Hours: Mon - Fri: 9 AM - 6 PM
                 </p>
-                <p className="text-gray-500 mb-2">
+                <p className="opacity-75 mb-2">
                     Phone: +880 123 456 7890
                 </p>
-                <p className="text-gray-500 mb-2">
+                <p className="opacity-75 mb-2">
                     Email: contact@butterfly.com
                 </p>
             </Card>
