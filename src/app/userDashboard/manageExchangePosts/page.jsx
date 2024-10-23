@@ -14,8 +14,8 @@ const Page = () => {
   const axiosSecure = useAxiosSecure();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setEveryPageItem] = useState(2);
-  const {data: session} = useSession()
-  console.log(session?.user.id)
+  const { data: session } = useSession();
+  console.log(session?.user.id);
   const {
     data: responseData = {},
     isLoading,
@@ -37,7 +37,7 @@ const Page = () => {
   const numberOfPages = Math.ceil(totalBooks / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
 
-  console.log(myBooks)
+  console.log(myBooks);
   const handleItemParPage = (e) => {
     const value = parseInt(e.target.value);
     setEveryPageItem(value);
@@ -56,11 +56,23 @@ const Page = () => {
     return <Loading />;
   }
 
+  if (myBooks?.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-[calc(100vh-200px)]">
+        <h1 className="text-xl sm:text-3xl text-gray-500 font-bold text-center">
+          You don't have any exchange post
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <div className="p-4 my-6">
       <div className="flex justify-between items-center my-5 px-6">
         <h3 className="text-center">Total: {myBooks.length} Exchange Posts</h3>
-        <h3 className="text-2xl font-bold text-center">Manage Exchange Posts</h3>
+        <h3 className="text-2xl font-bold text-center">
+          Manage Exchange Posts
+        </h3>
         <div className="flex gap-1 justify-end items-center mr-4 text-sm font-medium">
           <p className="px-2 py-1">Show:</p>
           <select

@@ -40,6 +40,16 @@ export default function Page() {
     return <p>Please log in to manage exchange requests.</p>;
   }
 
+  if (responseData?.data.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-[calc(100vh-200px)]">
+        <h1 className="text-xl sm:text-3xl text-gray-500 font-bold text-center">
+          You don't have any Store Books
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full p-4">
       <div className="w-full flex justify-center items-center mb-6">
