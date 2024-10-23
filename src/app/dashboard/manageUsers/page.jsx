@@ -142,7 +142,6 @@ const Page = () => {
           </select>
         </div>
       </div>
-
       <Table>
         <TableHeader>
           <TableRow>
@@ -172,13 +171,12 @@ const Page = () => {
               </TableCell>
               <TableCell>
                 {
-                  user?.role === 'admin'?
-                   <p className="text-green-500">{user?.role}</p> :
-                    user?.role ==='restricted' ?
-                    <p className="text-red-500">{user?.role}</p>
-                    :<p>{user?.role || 'N/A'}</p>
+                  user?.role === 'admin' ?
+                    <p className="text-green-500">{user?.role}</p> :
+                    user?.role === 'restricted' ?
+                      <p className="text-red-500">{user?.role}</p>
+                      : <p>{user?.role || 'N/A'}</p>
                 }
-                 
               </TableCell>
               <TableCell>
                 <div className="flex gap-2 justify-center items-center">
@@ -215,7 +213,6 @@ const Page = () => {
           ))}
         </TableBody>
       </Table>
-
       <div className="md:w-1/2 mx-auto mt-10 mb-5 flex justify-center gap-3">
         <Button variant="outline" onClick={handlePrevPage} disabled={currentPage === 1}>
           <FaChevronLeft />
