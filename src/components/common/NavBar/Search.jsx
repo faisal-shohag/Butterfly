@@ -85,14 +85,14 @@ const SearchResults = ({ type, results }) => {
         {results.map((item) => (
         <Link key={item.id} href={`${type=="storebooks" ? `/store/${item.id}` :   `/exchanges/${item.id}`}`}>
           <div  className="grid mb-3 cursor-pointer grid-cols-8 custom-glass-2 rounded-xl w-full gap-2">
-            <div className="h-[100px] col-span-1 w-[80px] relative overflow-hidden rounded-md">
+            <div className="h-[100px] lg:col-span-1 col-span-2 md:col-span-1 w-[80px] relative overflow-hidden rounded-md">
               <img
                 src={item.cover || "/api/placeholder/200/300"}
                 alt={item.title}
                 className="object-cover w-full h-full hover:scale-105 transition-transform"
               />
             </div>
-            <div className=" col-span-7 py-1 px-2">
+            <div className="md:col-span-7 lg:col-span-7 col-span-6 py-1 px-2 font-kalpurush">
               <h3 className="font-medium text-sm truncate">{item.title}</h3>
               <p className="text-xs text-gray-500 truncate">{item.author}</p>
               {type === 'storebooks' && (
@@ -114,7 +114,7 @@ const SearchResults = ({ type, results }) => {
   
 
 // Search Modal Component
-const SearchModal = ({ open, onOpenChange }) => {
+export const SearchModal = ({ open, onOpenChange }) => {
     const [query, setQuery] = useState('');
     const [type, setType] = useState('books');
     const lastElementRef = useRef(null);
