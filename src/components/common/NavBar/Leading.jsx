@@ -1,15 +1,20 @@
 "use client";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import SearchField from "./Search";
+import { MobileSideBar } from "./MobileSideBar";
 const Leading = () => {
   const currentPath = usePathname();
   return (
     <>
       <div className="flex items-center gap-5">
+        <div className="flex gap-2 items-center">
+
+       <div className="lg:hidden md:hidden block">
+       <MobileSideBar/>
+       </div>
         <Link
           href="/"
           className="flex-shrink-0 shimmer flex items-center gap-2 font-bold text-xl"
@@ -33,16 +38,8 @@ const Leading = () => {
             )}
           </div>
         </Link>
-        <div className="lg:block md:block hidden">
-          <div className="flex items-center ">
-            <Search className="absolute ml-3 text-slate-400" size={20} />
-            <Input
-              type="text"
-              className="rounded-full pl-10"
-              placeholder="Search books"
-            />
-          </div>
         </div>
+        <SearchField/>
       </div>
     </>
   );

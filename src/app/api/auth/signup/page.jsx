@@ -20,6 +20,7 @@ import { CredentialSignUp } from "../actions/action";
 import { useQuery } from "react-query";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 const SignUpForm = () => {
   const axiosSecure = useAxiosSecure();
@@ -182,11 +183,11 @@ async function onSubmit(data) {
         <div className="w-1/2 h-[1px] bg-slate-400"></div>
         </div>
         <div className="space-y-2">
-        <Button variant="outline" className="w-full">
+        <Button onClick={()=> signIn("google")} variant="outline" className="w-full">
             <Mail className="mr-2 h-4 w-4" /> Sign in with Google
           </Button>
 
-          <Button variant="outline" className="w-full">
+          <Button onClick={()=> signIn("github")} variant="outline" className="w-full">
             <Github className="mr-2 h-4 w-4" /> Sign in with GitHub
           </Button>
          

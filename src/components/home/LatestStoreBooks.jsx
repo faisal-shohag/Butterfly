@@ -33,7 +33,7 @@ const LatestStoreBooks = () => {
 
     return (
         <div className="mb-10 custom-glass rounded-xl overflow-hidden">
-            <Heading icon={<GiBookshelf />} title={"Latest Store Books"} />
+            <Heading icon={<GiBookshelf />} title={"Latest Store Books"}  link='/store'/>
             <div className="flex justify-center">
                 {latestStoreBooks && latestStoreBooks.length > 0 && (
                     <Carousel
@@ -44,7 +44,7 @@ const LatestStoreBooks = () => {
                     >
                         <CarouselContent>
                             {latestStoreBooks.map((book) => (
-                                <CarouselItem key={book.id} className="md:basis-1/6 basis-1/3 lg:basis-1/8">
+                                <CarouselItem key={book.id} className="md:basis-1/6 basis-1/5 lg:basis-1/8">
                                     <StoreBookCard book={book} />
                                 </CarouselItem>
                             ))}
