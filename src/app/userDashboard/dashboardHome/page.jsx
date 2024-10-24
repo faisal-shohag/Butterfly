@@ -1,7 +1,6 @@
 "use server";
 
 import UserTopCards from "./UserTopCards";
-import UserActivityCart from "./UserActivityChart";
 import UserDashboardChart from "./UserDashboardChart";
 import CalenderComponent from "./CalenderComponent";
 
@@ -21,7 +20,6 @@ const page = () => {
           <CalenderComponent />
         </div>
       </div>
-      <UserActivityCart />
     </div>
   );
 };

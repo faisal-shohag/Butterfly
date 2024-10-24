@@ -7,7 +7,7 @@ export default function CalenderComponent() {
   const [date, setDate] = useState(new Date());
 
   return (
-    <div className="w-full h-full flex justify-center shadow-md items-center bg-white">
+    <div className="w-full h-full flex justify-center shadow-md rounded-md items-center bg-white">
       <div className="w-full h-full max-w-md">
         <Calendar
           mode="single"
