@@ -20,6 +20,7 @@ const StoreBookCard = ({ book }) => {
         <div className='flex justify-center w-full'>
         <Image height={150} width={100} src={book.cover} alt={book.title} className="border h-[150px] mb-4" />
         </div>
+        <div className="line-clamp-1 text-center">{book.title}</div>
       </div>
       </Link>
      <div className='mt-2'>

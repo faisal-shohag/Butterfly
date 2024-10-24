@@ -16,14 +16,14 @@ const Profile = async () => {
         {/* Pass userInfo to UserProfile component */}
         <UserProfile user={user} />
         <div className="block w-full mt-3 sm:hidden">
-          <UserSubInformation />
+          <UserSubInformation userId={user.id} isOwnProfile={true}/>
         </div>
         <PostSection />
       </div>
 
       {/* User additional information */}
       <div className="w-full font-kalpurush col-span-1 sm:col-span-2  hidden sm:block">
-        <UserSubInformation />
+        <UserSubInformation  userId={user.id} isOwnProfile={true}/>
       </div>
       
     </div>

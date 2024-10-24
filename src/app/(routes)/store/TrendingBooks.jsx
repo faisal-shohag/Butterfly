@@ -1,10 +1,9 @@
-"use client";
+"use client"
 
-import React from 'react';
-import { useQuery } from 'react-query';
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-import { GiBookshelf } from "react-icons/gi";
-import Heading from "../common/Heading";
+import { useQuery } from 'react-query';
+import { Skeleton } from "@/components/ui/skeleton";
+import StoreBookCard from "./StoreBookCard";
 import {
   Carousel,
   CarouselContent,
@@ -12,21 +11,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import StoreBookCard from '@/app/(routes)/store/StoreBookCard';
+import Heading from "@/components/common/Heading";
+import { TrendingUp } from "lucide-react";
 
-const LatestStoreBooks = () => {
+const TrendingBooks = () => {
     const axiosSecure = useAxiosSecure();
-
-    const { data: latestStoreBooks, isLoading, isError } = useQuery({
-        queryKey: ['latestStoreBooks'],
+    
+    const { data: trendingBooks, isLoading, error } = useQuery({
+        queryKey: ['trendingBooks'],
         queryFn: async () => {
-            const response = await axiosSecure.get('/latest_store_books');
-            return response.data.latestStoreBooks;
-        },
-        staleTime: 300000, // 5 minutes
-        refetchOnWindowFocus: false,
+            const response = await axiosSecure.get('/trending-books');
+            return response.data.data;
+        }
     });
 
     // Loading skeleton
@@ -53,36 +50,36 @@ const LatestStoreBooks = () => {
     }
 
     // Error state
-    if (isError) {
+    if (error) {
         return (
             <Alert variant="destructive" className="m-4">
                 <AlertDescription>
-                    Error fetching latest store books. Please try again later.
+                    Failed to load trending books. Please try again later.
                 </AlertDescription>
             </Alert>
         );
     }
 
     // No books found
-    if (!latestStoreBooks?.length) {
+    if (!trendingBooks?.length) {
         return (
             <Alert className="m-4">
                 <AlertDescription>
-                    No latest store books available at the moment.
+                    No trending books available at the moment.
                 </AlertDescription>
             </Alert>
         );
     }
 
     return (
-        <div className="w-full mt-4 custom-glass rounded-xl bg-blue-500">
-            <Heading icon={<GiBookshelf />} title="Latest Store Books" link="/store" />
+        <div className="w-full mt-4 custom-glass rounded-xl bg-red-500">
+        <Heading icon={<TrendingUp/>} title="Trending Right Now"/>
             <Carousel opts={{
-              align: "start",
-              loop: true,
-            }} className="w-full">
+          align: "start",
+          loop: true,
+        }} className="w-full">
                 <CarouselContent>
-                    {latestStoreBooks.map((book) => (
+                    {trendingBooks.map((book) => (
                         <CarouselItem key={book.id} className="md:basis-1/3 lg:basis-1/4 basis-1/2">
                             <div className="p-1">
                                 <StoreBookCard book={book} />
@@ -90,11 +87,11 @@ const LatestStoreBooks = () => {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="absolute left-0" />
-                <CarouselNext className="absolute right-0" />
+                <CarouselPrevious className="absolute left-0"/>
+                <CarouselNext className="absolute right-0"/>
             </Carousel>
         </div>
     );
 };
 
-export default LatestStoreBooks;
+export default TrendingBooks;
