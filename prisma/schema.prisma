@@ -9,29 +9,37 @@ datasource db {
 }
 
 model User {
-  id            String     @id @default(uuid())
-  name          String
-  email         String     @unique
-  password      String?
-  image         String?
-  coverPhoto    String?
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-  role          String?
-  username      String?    @unique
-  emailVerified DateTime?
-  books         Book[]
-  BookLike      BookLike[]
-  comments      Comment[]
-  likes         Like[]
-  posts         Post[]
-  replies       Reply[]
-  Request       Request[]
-  accounts      Account[]
-  coins         coins[]
-  following     Follows[]  @relation("follower")
-  followers     Follows[]  @relation("following")
-  sessions      Session[]
+  id                   String                 @id @default(uuid())
+  name                 String
+  email                String                 @unique
+  password             String?
+  image                String?
+  coverPhoto           String?
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  role                 String?
+  username             String?                @unique
+  emailVerified        DateTime?
+  address              String?
+  bio                  String?
+  phone                String?
+  books                Book[]
+  BookLike             BookLike[]
+  BookReview           BookReview[]
+  comments             Comment[]
+  likes                Like[]
+  Notifications        Notifications[]
+  posts                Post[]
+  replies              Reply[]
+  Report               Report[]
+  ReportReplies        ReportReplies[]
+  Request              Request[]
+  accounts             Account[]
+  coins                coins[]
+  following            Follows[]              @relation("follower")
+  followers            Follows[]              @relation("following")
+  sessions             Session[]
+  user_purchased_books user_purchased_books[]
 
   @@map("users")
 }
@@ -103,6 +111,7 @@ model Book {
   user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   BookLike      BookLike[]
   samplePhotos  BookSamplePhoto[]
+  Report        Report[]
   Request       Request[]
 
   @@index([userId])
@@ -128,6 +137,7 @@ model Post {
   images    Image[]   @relation("PostImages")
   likes     Like[]
   author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  Report    Report[]
 
   @@index([authorId])
 }
@@ -200,6 +210,7 @@ model Request {
   bookId      Int
   message     String?
   status      String
+  requestedTo String
   Book        Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
   users       User     @relation(fields: [requesterId], references: [id], onDelete: Cascade)
 
@@ -225,6 +236,80 @@ model BookLike {
   bookId    Int
   Book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
   users     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, bookId])
+  @@index([bookId])
+  @@index([userId])
+}
+
+model BookReview {
+  id        Int       @id @default(autoincrement())
+  bookId    Int
+  createdAt DateTime  @default(now())
+  rating    Float
+  review    String
+  userId    String
+  storebook storebook @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  users     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Notifications {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  link      String?
+  title     String
+  userId    String
+  users     User     @relation(fields: [userId], references: [id])
+}
+
+model Report {
+  id            Int             @id @default(autoincrement())
+  text          String
+  createdAt     DateTime        @default(now())
+  postId        Int?
+  bookId        Int?
+  userId        String
+  Book          Book?           @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  Post          Post?           @relation(fields: [postId], references: [id], onDelete: Cascade)
+  users         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ReportReplies ReportReplies[]
+}
+
+model ReportReplies {
+  id        Int      @id @default(autoincrement())
+  text      String
+  createdAt DateTime @default(now())
+  reportId  Int
+  userId    String
+  Report    Report   @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  users     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model storebook {
+  id                   Int                    @id @default(autoincrement())
+  title                String
+  description          String
+  author               String
+  publications         String?
+  publishedDate        DateTime?
+  price                Float                  @default(0)
+  coin                 Int                    @default(0)
+  discount             Float                  @default(0)
+  category             String
+  language             String
+  cover                String?
+  pdfURL               String?
+  BookReview           BookReview[]
+  user_purchased_books user_purchased_books[]
+}
+
+model user_purchased_books {
+  id           String    @id
+  userId       String
+  bookId       Int
+  purchaseDate DateTime  @default(now())
+  storebook    storebook @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  users        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, bookId])
   @@index([bookId])

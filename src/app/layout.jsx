@@ -41,6 +41,7 @@ export default async function RootLayout({ children }) {
               <div className="lg:hidden md:block block">
                 <BottomNavBar />
               </div>
+              <div className="h-20 lg:hidden block"></div>
               <Footer />
             </ReactQueryProvider>
           </ThemeProvider>

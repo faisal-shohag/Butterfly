@@ -17,7 +17,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-zinc-100 dark:bg-zinc-900 pt-12 pb-8 mt-10">
+    <footer className="bg-zinc-100 dark:bg-zinc-900 pt-12 pb-8 mt-10  lg:block md:block hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 place-content-center text-center md:grid-cols-4 gap-8">
           {/* Logo and Motto */}
