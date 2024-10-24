@@ -1,65 +1,44 @@
-import { FaBook, FaUsers, FaRegEnvelope, FaClipboardList } from "react-icons/fa";
-import { MdCompareArrows, MdGroups2 } from "react-icons/md";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  PiBookOpenTextThin,
+  PiFileImageThin,
+  PiStorefrontThin,
+} from "react-icons/pi";
 
 const cardData = [
   {
     id: 1,
-    title: "My Total Posts",
-    count: "10 Posts",
-   
-    icon: <FaClipboardList size={28} />,
-    iconBg: "bg-green-500 dark:bg-green-600",
-   
-    description: "The total number of posts i've shared on the hive.",
+    title: "Total Exchanges Books",
+    icon: <PiBookOpenTextThin size={24} />,
+    totalCounts: 10,
   },
   {
     id: 2,
-    title: "My Exchange Posts",
-    count: "05 Exchanges",
-  
-    icon: <MdCompareArrows size={28} />,
-    iconBg: "bg-purple-500 dark:bg-purple-600",
-   
-    description: "The total number of exchange posts I've initiated.",
+    title: "Total Posts",
+    icon: <PiFileImageThin size={24} />,
+    totalCounts: 20,
   },
   {
     id: 3,
-    title: "My Followers",
-    count: "10 Followers",
-   
-    icon: <MdGroups2 size={28} />,
-    iconBg: "bg-blue-500 dark:bg-blue-600",
-  
-    description: "The total number of people currently following my activity. ",
+    title: "Total Store Books",
+    icon: <PiStorefrontThin size={24} />,
+    totalCounts: 50,
   },
 ];
 
 export default function UserTopCards() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-      {cardData.map((card) => (
-        <div
-          key={card.id}
-          className="w-full p-6 custom-glass dark:bg-zinc-800 rounded-lg shadow-lg flex items-center justify-between"
-        >
-          <div className="flex flex-col items-start">
-            <div className="flex items-center mb-2">
-              <div
-                className={`p-4 ${card.iconBg} rounded-lg text-white shadow-lg`}
-              >
-                {card.icon}
-              </div>
-              <div className="ml-4">
-                <h4 className="font-bold text-lg">{card.title}</h4>
-                <p className="text-gray-600 dark:text-gray-400">{card.count}</p>
-              </div>
-            </div>
-            <span className="text-xs  text-gray-500 dark:text-gray-400">
-              {card.description}
-            </span>
-          </div>
-         
-        </div>
+    <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
+      {cardData.map((item) => (
+        <Card key={item.id}>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-lg font-medium">{item.title}</CardTitle>
+            <div className="h-4 w-4 text-muted-foreground">{item.icon}</div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">+{item.totalCounts}</div>
+          </CardContent>
+        </Card>
       ))}
     </div>
   );
