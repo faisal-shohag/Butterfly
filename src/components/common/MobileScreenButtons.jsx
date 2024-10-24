@@ -1,9 +1,10 @@
 "use client"
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
-import { LuPlus } from "react-icons/lu";
+// import { LuPlus } from "react-icons/lu";
 import { SearchModal } from "./NavBar/Search";
 import { useState } from "react";
+import { GiCardExchange } from "react-icons/gi";
 
 export default function MobileScreenButtons() {
   const [open, setOpen] = useState(false);
@@ -21,7 +22,7 @@ export default function MobileScreenButtons() {
         href={"/add"}
         className="w-full h-[50px] cursor-pointer rounded-full shadow-md bg-zinc-900 text-white flex justify-center items-center dark:bg-gray-200 dark:text-gray-600"
       >
-        <LuPlus className="text-2xl" />
+       <GiCardExchange className="text-xl"/>
       </Link>
       <SearchModal open={open} onOpenChange={setOpen} />
     </div>
