@@ -185,7 +185,7 @@ const AddBook = () => {
     <div className="container mx-auto p-4">
      <CoinModal isOpen={isModalOpen}
         onClose={closeModal}/>
-     <h1 className="text-2xl font-bold mb-4">Add a New Book</h1>
+     <h1 className="text-2xl font-bold mb-4">Add book to exchange</h1>
       <div className="lg:flex lg:space-x-4">
         <div className="lg:w-1/2">
           <form

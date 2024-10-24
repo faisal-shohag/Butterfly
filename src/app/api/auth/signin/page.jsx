@@ -100,7 +100,7 @@ const SignInForm = () => {
         <Button onClick={()=> signIn("google")} variant="outline" className="w-full">
           <Mail className="mr-2 h-4 w-4" /> Sign in with Google
         </Button>
-        <Button  variant="outline" className="w-full">
+        <Button onClick={()=> signIn("github")} variant="outline" className="w-full">
           <Github className="mr-2 h-4 w-4" /> Sign in with GitHub
         </Button>
       </div>

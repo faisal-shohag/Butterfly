@@ -3,9 +3,6 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import Image from 'next/image';
-import { FaBookMedical } from "react-icons/fa";
-
-import { FaBookmark, FaShare } from 'react-icons/fa6';
 import Loading from '@/components/common/Loading';
 import UserAvatar from '@/components/common/UserAvatar';
 import RequestButton from '../RequestButton';

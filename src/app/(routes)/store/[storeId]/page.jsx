@@ -1,13 +1,15 @@
 "use server"
 
+import { auth } from "@/auth";
 import StoreBookDetailsPage from "./StoreBookDetailsPage";
 
 const StoreBookDetails = async ({params}) => {
-    // console.log(params);
+    let user = await auth();
+    user = user?.user;
     const id = params.storeId
     return (
         <div className="section">
-            <StoreBookDetailsPage bookId={id}/>
+            <StoreBookDetailsPage bookId={id} userId={user.id}/>
         </div>
     );
 };

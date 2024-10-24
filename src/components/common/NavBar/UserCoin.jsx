@@ -8,6 +8,7 @@ import Image from 'next/image';
 
 const UserCoin = ({ user }) => {
     const { remainingCoins, isLoading, error, coins } = useCoins(user.id);
+    // console.log(coins);
 
     const CoinDisplay = () => (
         <>

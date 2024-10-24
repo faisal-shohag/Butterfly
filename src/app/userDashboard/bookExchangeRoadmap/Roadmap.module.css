@@ -1,0 +1,59 @@
+.waterLayer {
+  transform: rotateX(110deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: waterMoving 3s infinite linear;
+}
+@keyframes waterMoving {
+  0% {
+    transform: rotateX(100deg);
+  }
+  50% {
+    transform: rotateX(115deg);
+  }
+  100% {
+    transform: rotateX(100deg);
+  }
+}
+.water {
+  animation: waterAnimate 2s infinite linear;
+  border-radius: 100%;
+}
+@keyframes waterAnimate {
+  0% {
+    width: 0%;
+    height: 0%;
+    border: 3px solid rgba(255, 255, 255, 0.342);
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(255, 255, 255, 0.342);
+  }
+}
+.DropLine {
+  width: 10px;
+  height: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 5px);
+}
+.DropWater {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border-radius: 0px 25px 25px 25px;
+  background: rgba(255, 255, 255, 0.473);
+  animation: DropingWater 2s infinite linear;
+  transform: rotate(45deg);
+}
+@keyframes DropingWater {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}

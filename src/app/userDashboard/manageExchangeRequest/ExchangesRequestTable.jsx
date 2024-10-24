@@ -9,7 +9,7 @@ import {
   TableHead,
   TableBody,
   TableCell,
-} from "@/components/ui/table"; // Assuming your table component import path from shadcnui
+} from "@/components/ui/table";
 
 export default function ExchangesRequestTable({ request }) {
   const [openMenuId, setOpenMenuId] = useState(null);
@@ -55,14 +55,14 @@ export default function ExchangesRequestTable({ request }) {
                       "https://i.postimg.cc/44FccD29/cover-default-item.jpg"
                     }
                     alt="Requester’s Book Cover"
-                    className="w-[50px]"
+                    className="w-[50px] h-auto object-cover"
                   />
                   <div>
                     <p className="text-sm font-medium text-zinc-900 dark:text-zinc-200">
-                      {item?.book?.title}
+                      {item?.book?.title || "Untitled"}
                     </p>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                      by {item?.book?.author}
+                      by {item?.book?.author || "Unknown"}
                     </p>
                   </div>
                 </div>
@@ -77,14 +77,14 @@ export default function ExchangesRequestTable({ request }) {
                       "https://i.postimg.cc/44FccD29/cover-default-item.jpg"
                     }
                     alt="Looking For Book Cover"
-                    className="w-[50px]"
+                    className="w-[50px] h-auto object-cover"
                   />
                   <div>
                     <p className="text-sm font-medium text-zinc-900 dark:text-zinc-200">
-                      {item?.book?.lookingFor?.title}
+                      {item?.book?.lookingFor?.title || "Untitled"}
                     </p>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                      by {item?.book?.lookingFor?.author}
+                      by {item?.book?.lookingFor?.author || "Unknown"}
                     </p>
                   </div>
                 </div>
@@ -93,7 +93,7 @@ export default function ExchangesRequestTable({ request }) {
               {/* Status */}
               <TableCell>
                 <p className="text-sm font-medium text-zinc-900 dark:text-zinc-200">
-                  {item?.status}
+                  {item?.status || "Pending"}
                 </p>
                 <p className="text-sm text-zinc-500 dark:text-zinc-400">
                   {formatDate(item?.updatedAt)}
@@ -102,7 +102,7 @@ export default function ExchangesRequestTable({ request }) {
 
               {/* Message */}
               <TableCell className="p-3 text-sm text-zinc-500 dark:text-zinc-400">
-                {item?.message}
+                {item?.message || "No message"}
               </TableCell>
 
               {/* Action */}
@@ -114,7 +114,7 @@ export default function ExchangesRequestTable({ request }) {
                   <BsThreeDotsVertical className="text-zinc-600 dark:text-zinc-300" />
                 </div>
                 {openMenuId === item.id && (
-                  <div className="absolute top-2/3 mt-2 right-1/2 border w-40 flex flex-col p-2 rounded-lg bg-white dark:bg-zinc-800 shadow-lg z-10">
+                  <div className="absolute top-full mt-2 right-0 border w-40 flex flex-col p-2 rounded-lg bg-white dark:bg-zinc-800 shadow-lg z-10">
                     <Link
                       href={`#`}
                       className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded"
