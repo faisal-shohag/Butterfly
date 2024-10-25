@@ -28,6 +28,8 @@ export default function Page() {
     }
   );
 
+  console.log(responseData?.data);
+
   if (status === "loading" || isLoading) {
     return <Loading />;
   }
