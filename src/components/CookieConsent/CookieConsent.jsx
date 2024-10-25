@@ -11,6 +11,7 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import Cookies from "js-cookie"
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
@@ -45,9 +46,11 @@ const CookieConsent = () => {
         
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>We use cookies</AlertDialogTitle>
+          <AlertDialogTitle>We value your privacy</AlertDialogTitle>
           <AlertDialogDescription>
-           We use cookies to improve your experience on our site. Accept cookies for a better experience.
+           We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic, By clicking "Accept" you consent to our use of cookies. 
+           
+           <Link href="/cookie" target="_blank" className=" text-blue-400 underline">  Cookie policy</Link>
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
