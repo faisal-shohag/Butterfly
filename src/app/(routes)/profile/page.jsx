@@ -18,7 +18,7 @@ const Profile = async () => {
         <div className="block w-full mt-3 sm:hidden">
           <UserSubInformation userId={user.id} isOwnProfile={true}/>
         </div>
-        <PostSection />
+        <PostSection user={user}/>
       </div>
 
       {/* User additional information */}
