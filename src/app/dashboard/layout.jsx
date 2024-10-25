@@ -84,7 +84,7 @@ const Layout = ({ children }) => {
             <div className="">
               <div className="flex items-center gap-5">
                 <Link
-                  href="/dashboard"
+                  href="/"
                   className="flex-shrink-0 shimmer flex items-center gap-2 font-bold text-xl"
                 >
                   <Image
