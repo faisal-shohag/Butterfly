@@ -4,6 +4,7 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useSession } from "next-auth/react";
 import { useQuery } from "react-query";
 import ExchangesRequestTable from "./ExchangesRequestTable";
+import RequestHandlingTable from "./RequestHandleingTable";
 
 export default function Page() {
   const axiosSecure = useAxiosSecure();
@@ -42,15 +43,15 @@ export default function Page() {
     return <p>Please log in to manage exchange requests.</p>;
   }
 
-  if (responseData?.data.length === 0) {
-    return (
-      <div className="flex justify-center items-center h-[calc(100vh-200px)]">
-        <h1 className="text-xl sm:text-3xl text-gray-500 font-bold text-center">
-          You don't have any exchange request
-        </h1>
-      </div>
-    );
-  }
+  // if (responseData?.data.length === 0) {
+  //   return (
+  //     <div className="flex justify-center items-center h-[calc(100vh-200px)]">
+  //       <h1 className="text-xl sm:text-3xl text-gray-500 font-bold text-center">
+  //         You don't have any exchange request
+  //       </h1>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="w-full p-4">
@@ -60,7 +61,8 @@ export default function Page() {
         </h4>
       </div>
 
-      <ExchangesRequestTable request={responseData?.data || []} />
+      <RequestHandlingTable />
+      {/* <ExchangesRequestTable request={responseData?.data || []} /> */}
     </div>
   );
 }
