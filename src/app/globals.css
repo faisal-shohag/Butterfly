@@ -279,3 +279,19 @@
     transform: rotateY(360deg);
   }
 }
+
+@media screen and (max-width: 1468px) {
+  .manage-responsive {
+    width: 230px !important;
+  }
+}
+@media screen and (max-width: 1350px) {
+  .manage-responsive {
+    right: 16px !important;
+  }
+}
+@media screen and (max-width: 1130px) {
+  .manage-responsive {
+    display: none !important;
+  }
+}
