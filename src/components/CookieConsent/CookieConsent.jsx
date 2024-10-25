@@ -20,13 +20,9 @@ const CookieConsent = () => {
     useEffect(()=>{
         const consent = Cookies.get('cookie_consent')
         if(!consent){
-          const timeOut =  setTimeout(()=>{
+         
                 setOpen(true)
-            }, 2 * 60 * 1000 )
-            
-            return ()=>{
-                clearTimeout(timeOut)
-            }
+         
         }
 
        
