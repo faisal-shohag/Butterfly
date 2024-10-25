@@ -64,6 +64,7 @@
     "nodemailer": "^6.9.15",
     "pigeon-maps": "^0.21.6",
     "react": "^18",
+    "react-advanced-cropper": "^0.20.0",
     "react-apexcharts": "^1.4.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",

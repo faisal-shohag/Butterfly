@@ -1,10 +1,14 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Camera, Flag, Plus } from "lucide-react";
+import { Flag, Plus } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import PhotoUpload from "./PhotoUpload";
+import { useSession } from "next-auth/react";
 export default function UserProfile({ user }) {
+  const { data: session, status, update } = useSession();
+  
 
   return (
     <div className="w-full rounded-md bg-white dark:bg-zinc-900 shadow-md overflow-hidden">
@@ -21,21 +25,21 @@ export default function UserProfile({ user }) {
       <div className=" flex -mt-[65px] justify-center items-center sm:justify-start px-5">
         <div className="relative">
          <Avatar className="h-[100px] w-[100px] border-2">
-          <AvatarImage src={user.image}></AvatarImage>
+          <AvatarImage src={session?.user.image}></AvatarImage>
           <AvatarFallback className="bg-zinc-950 text-red-500 text-bold text-xl">
-            <span className="text-white text-6xl">{user.name.charAt(0).toUpperCase()}</span>
+            <span className="text-white text-6xl">{session?.user.name.charAt(0).toUpperCase()}</span>
           </AvatarFallback>
          </Avatar>
-          <div className="custom-glass-2 absolute right-0 bottom-3 px-1 py-1 rounded-full overflow-hidden cursor-pointer">
-            <Camera size={15} className="" />
-          </div>
+          <button className=" absolute right-0 bottom-3 px-1 py-1 rounded-full overflow-hidden cursor-pointer">
+          <PhotoUpload aspectRatio={1/1} type="profile-photo" user={session?.user}/>
+          </button>
         </div>
       </div>
 
       <div className="px-3 py-3">
         <div>
           <div className="text-xl font-semibold text-gray-900 dark:text-white">
-            {user.name}
+            {session?.user.name}
           </div>
           <div className="text-sm">{user.email}</div>
         </div>
