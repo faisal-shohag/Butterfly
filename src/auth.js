@@ -60,6 +60,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if(trigger === "update" && session?.name) {
                 token.name = session.name;
                 token.username = session.username;
+                token.image = session.image;
             }
 
             //
@@ -70,6 +71,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     role: user.role,
                     coverPhoto: user.coverPhoto,
                     username: user.username,
+                    image: user.image,
                 }
             }
             // console.log(token)
@@ -89,6 +91,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     name: token.name,
                     coverPhoto: token.coverPhoto,
                     username: token.username,
+                    image: token.image
                 }
             }
         },

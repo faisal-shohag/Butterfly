@@ -41,9 +41,9 @@ export default function BooksTable({ books, refetch }) {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-auto">
       <Toaster />
-      <Table className="w-full">
+      <Table className="w-full min-w-[750px]">
         <TableHeader>
           <TableRow>
             <TableHead className="p-3">#</TableHead>

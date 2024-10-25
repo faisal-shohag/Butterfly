@@ -19,7 +19,7 @@ export default async function Hive() {
       </div> */}
 
       <div className="lg:block hidden">
-        <TrendsSidebar className="fixed  right-[5.25rem] top-[5.25rem] hidden h-fit flex-none  sm:block lg:px-5 xl:w-80" />
+        <TrendsSidebar className="fixed manage-responsive right-[5.25rem] top-[5.25rem] hidden h-fit flex-none  sm:block lg:px-5 xl:w-80" />
       </div>
 
       {/* <div className="block md:hidden lg:hidden">
@@ -29,20 +29,20 @@ export default async function Hive() {
 
       {/* <WhoToFollow currentUser={user}/> */}
 
-     <div className="max-w-2xl mx-auto">
-     <Tabs defaultValue="foryou" >
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="foryou">For you</TabsTrigger>
-          <TabsTrigger value="following">Following</TabsTrigger>
-        </TabsList>
-        <TabsContent value="foryou">
-          <PostList user={user} />
-        </TabsContent>
-        <TabsContent value="following">
-         <FollowingPostList user={user}/>
-        </TabsContent>
-      </Tabs>
-     </div>
+      <div className="max-w-2xl mx-auto">
+        <Tabs defaultValue="foryou">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="foryou">For you</TabsTrigger>
+            <TabsTrigger value="following">Following</TabsTrigger>
+          </TabsList>
+          <TabsContent value="foryou">
+            <PostList user={user} />
+          </TabsContent>
+          <TabsContent value="following">
+            <FollowingPostList user={user} />
+          </TabsContent>
+        </Tabs>
+      </div>
     </>
   );
 }

@@ -3,12 +3,13 @@ import { useQuery } from "react-query";
 import UserPostCard from "./UserPostCard";
 import PostLoading from "../forum/PostLoading";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
+import PostCard from "../forum/PostCard";
 
 export default function UserPostList({ user }) {
   const axiosSecure = useAxiosSecure();
 
   const { data, isLoading, isError, error } = useQuery("posts", async () => {
-    const response = await axiosSecure.get("/posts");
+    const response = await axiosSecure.get(`/my-posts/${user.id}`);
     // console.log(response.data);
     return response.data;
   });
@@ -115,14 +116,9 @@ export default function UserPostList({ user }) {
   return (
     <div>
       {posts.map((post) => (
-        <UserPostCard
-          key={post.id}
-          post={post}
-          user={user}
-          handleLikeClick={handleLikeClick}
-          handleDeletePost={handleDeletePost}
-          handleShare={handleShare}
-        />
+        <div key={post.id}>
+          <PostCard post={post} user={user} axiosSecure={axiosSecure}/>
+        </div>
       ))}
     </div>
   );

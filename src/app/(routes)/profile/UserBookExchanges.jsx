@@ -13,7 +13,7 @@ export default function UserBookExchanges({ userId }) {
 
   const fetchBooks = async ({ pageParam = 1 }) => {
     const response = await axiosSecure.get(
-      `/all_books/${userId}?page=${pageParam}&limit=10`
+      `/my-books/${userId}?page=${pageParam}&limit=10`
     );
     return response.data;
   };
@@ -48,7 +48,6 @@ export default function UserBookExchanges({ userId }) {
 
   return (
     <div className="w-full flex flex-col p-4">
-      <h2 className="text-xl font-semibold mb-4">User Book Exchanges</h2>
       <div className="flex flex-col">
         {data && data.pages ? (
           data.pages.map((page, i) => (

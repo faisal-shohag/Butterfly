@@ -24,11 +24,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
 
 export default function UserSubInformation({ userId, isOwnProfile }) {
   const [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const { data: session, status, update } = useSession();
 
   const { data: user, isLoading } = useQuery({
     queryKey: ["user", userId],
@@ -41,6 +43,7 @@ export default function UserSubInformation({ userId, isOwnProfile }) {
   const updateUserMutation = useMutation({
     mutationFn: async (updateData) => {
       const response = await axiosSecure.patch(`/user-update/${userId}`, updateData);
+      
       return response.data;
     },
     onSuccess: () => {
@@ -56,15 +59,17 @@ export default function UserSubInformation({ userId, isOwnProfile }) {
     },
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const updateData = {
+      name: formData.get("name"),
       bio: formData.get("bio"),
       phone: formData.get("phone"),
       address: formData.get("address"),
       username: formData.get("username"),
     };
+    await update({...session.user, name: updateData.name})
     updateUserMutation.mutate(updateData);
   };
 
@@ -103,6 +108,16 @@ export default function UserSubInformation({ userId, isOwnProfile }) {
                   <DialogTitle>Edit Profile Information</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                    <label>Name</label>
+                    <Input
+                      name="name"
+                      defaultValue={user?.name}
+                      placeholder="Name"
+                      
+                    />
+                  </div>
+
                   <div className="space-y-2">
                     <label>Username</label>
                     <Input

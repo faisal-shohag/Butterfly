@@ -23,11 +23,26 @@ export default function RunningExchangeDetails() {
 
   return (
     <div className="w-full py-4 mb-5">
-      <div className="custom-glass py-4 mb-4 rounded-md">
-        <h1 className="text-3xl text-center font-bold">
-          Running Exchangeing Details
-        </h1>
+      <div className="custom-glass py-6 px-4 mb-6 rounded-lg shadow-lg bg-gradient-to-r from-purple-500 to-indigo-600 ">
+        <div className="flex items-center justify-center space-x-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            className="w-8 h-8 text-yellow-400 animate-bounce transition duration-1000 ease-in-out"
+            viewBox="0 0 24 24"
+          >
+            <path d="M4 2h12a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2zm1.5 4v12h11V6h-11zm1 1h9v2h-9V7zm0 3h9v2h-9v-2zm0 3h9v2h-9v-2zM19 5v16h2V5h-2z" />
+          </svg>
+
+          <h1 className="text-4xl font-extrabold tracking-wider uppercase text-center">
+            Running Exchange Details
+          </h1>
+        </div>
+        <p className="mt-4 text-center text-lg font-medium opacity-90">
+          Keep up-to-date with the latest exchange rates and trading details.
+        </p>
       </div>
+
       <div className="grid grid-cols-2 px-2 gap-4 sm:gap-6">
         {/* User's book exchange steps */}
         <div className="w-full grid grid-cols-1">

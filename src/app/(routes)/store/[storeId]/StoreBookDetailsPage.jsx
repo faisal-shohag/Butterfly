@@ -24,12 +24,23 @@ import {
 } from "@/components/ui/select";
 import UserAvatar from "@/components/common/UserAvatar";
 import BuyWithCoinButton from "../BuyWithCoinButton";
+import { useCoins } from "@/hooks/useCoins";
+import toast from "react-hot-toast";
+import CoinModal from "@/components/common/CoinModal";
 
 const StoreBookDetailsPage = ({ bookId, userId }) => {
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState("");
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+
+  const {addCoin} = useCoins(userId)
+
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const {
     data: storeBook,
@@ -52,6 +63,14 @@ const StoreBookDetailsPage = ({ bookId, userId }) => {
       queryClient.invalidateQueries(["storeBook", bookId]);
       setReviewText("");
       setRating("");
+      toast.success("Review added successfully!")
+      setIsModalOpen(true)
+      addCoin({
+        type: 'silver',
+        reason: 'For adding review',
+        value: 20,
+        userId: user.id,
+      })
     },
   });
 
@@ -120,6 +139,8 @@ const StoreBookDetailsPage = ({ bookId, userId }) => {
   return (
     <>
       <div className="grid grid-cols-4 lg:grid-cols-5 lg:gap-2 gap-5 font-kalpurush mx-auto mt-8 custom-glass-2 p-5 rounded-xl">
+      <CoinModal isOpen={isModalOpen}
+        onClose={closeModal}/>
         <div className="col-span-1">
           <Image height={280} width={220} alt="book" src={storeBook.cover} />
         </div>
