@@ -1,10 +1,21 @@
 "use client"
 import { useState } from 'react';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Upload, ImagePlus } from 'lucide-react';
+import { Upload, ImagePlus, RotateCcw } from 'lucide-react';
+import { Skeleton } from "@/components/ui/skeleton";
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
+
+const LoadingSkeleton = () => (
+  <div className="space-y-3">
+    <Skeleton className="h-4 w-full" />
+    <Skeleton className="h-4 w-[90%]" />
+    <Skeleton className="h-4 w-[95%]" />
+    <Skeleton className="h-4 w-[85%]" />
+  </div>
+);
 
 const GeminiVisionPage = () => {
   const [image, setImage] = useState(null);
@@ -25,11 +36,20 @@ const GeminiVisionPage = () => {
     }
   };
 
+  const handleReset = () => {
+    setImage(null);
+    setPreview('');
+    setPrompt('');
+    setResult('');
+    setLoading(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!image || !prompt) return;
 
     setLoading(true);
+    setResult('');
     try {
       const formData = new FormData();
       formData.append('image', image);
@@ -54,68 +74,105 @@ const GeminiVisionPage = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 max-w-2xl">
-      <Card>
-        <CardHeader>
-          <CardTitle>Gemini Vision Analysis</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid w-full gap-4">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="image-upload" className="cursor-pointer">
-                  <div className="border-2 border-dashed rounded-lg p-4 flex flex-col items-center justify-center min-h-[200px] bg-gray-50">
-                    {preview ? (
-                      <img src={preview} alt="Preview" className="max-h-[200px] object-contain" />
-                    ) : (
-                      <>
-                        <ImagePlus className="h-8 w-8 mb-2 text-gray-400" />
-                        <p className="text-sm text-gray-500">Click to upload image</p>
-                      </>
-                    )}
-                  </div>
-                  <Input
-                    id="image-upload"
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleImageChange}
-                  />
-                </label>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <Textarea
-                  placeholder="Enter your prompt..."
-                  value={prompt}
-                  onChange={(e) => setPrompt(e.target.value)}
-                  rows={3}
-                />
-              </div>
-
-              <Button type="submit" disabled={!image || !prompt || loading}>
-                {loading ? (
-                  <span className="flex items-center gap-2">
-                    <Upload className="h-4 w-4 animate-spin" />
-                    Analyzing...
-                  </span>
-                ) : (
-                  'Analyze Image'
-                )}
+    <div className="container mx-auto">
+      <div  className='custom-glass-2 p-5 rounded-xl'>
+        <div>
+          <div className="flex justify-between items-center">
+            <div className='mb-5 text-xl'>Wing Repair</div>
+            {(result || loading) && (
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={handleReset}
+                className="flex items-center gap-2"
+              >
+                <RotateCcw className="h-4 w-4" />
+                Reset
               </Button>
-            </div>
-          </form>
+            )}
+          </div>
+        </div>
+        <div>
+          {!result ? (
+            <div className="grid gap-5 lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
+              <form onSubmit={handleSubmit}>
+                <div className="grid w-full gap-4">
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="image-upload" className="cursor-pointer">
+                      <div className="border-2 border-dashed rounded-lg p-4 flex flex-col items-center justify-center min-h-[200px] bg-gray-50">
+                        {preview ? (
+                          <img src={preview} alt="Preview" className="max-h-[200px] object-contain" />
+                        ) : (
+                          <>
+                            <ImagePlus className="h-8 w-8 mb-2 text-gray-400" />
+                            <p className="text-sm text-gray-500">Click to upload image</p>
+                          </>
+                        )}
+                      </div>
+                      <Input
+                        id="image-upload"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleImageChange}
+                      />
+                    </label>
+                  </div>
 
-          {result && (
-            <div className="mt-6">
-              <h3 className="font-semibold mb-2">Analysis Result:</h3>
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <p className="whitespace-pre-wrap">{result}</p>
+                  <div className="flex flex-col gap-2">
+                    <Textarea
+                      placeholder="Enter your prompt..."
+                      value={prompt}
+                      onChange={(e) => setPrompt(e.target.value)}
+                      rows={3}
+                    />
+                  </div>
+
+                  <Button type="submit" disabled={!image || !prompt || loading}>
+                    {loading ? (
+                      <span className="flex items-center gap-2">
+                        <Upload className="h-4 w-4 animate-spin" />
+                        Analyzing...
+                      </span>
+                    ) : (
+                      'Analyze Image'
+                    )}
+                  </Button>
+                </div>
+              </form>
+
+              <div>
+                {loading && <LoadingSkeleton />}
               </div>
+            </div>
+          ) : (
+            <div className=" grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5">
+                <div className="flex justify-center">
+                <div className="rounded-lg overflow-hidden max-w-2xl">
+                  <img 
+                    src={preview} 
+                    alt="Uploaded image" 
+                    className="w-full h-auto object-contain gap-2"
+                  />
+                </div>
+              </div>
+              
+              <div className="bg-gray-50 dark:bg-zinc-950 rounded-lg p-4">
+                <p className="whitespace-pre-wrap">
+                  {/* {result} */}
+                  <TextGenerateEffect
+        className="text-left font-kalpurush"
+        words={result}
+        duration={0.0001}
+      />
+                </p>
+              </div>
+              
+            
             </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { BadgeCheck, Github, Mail } from "lucide-react";
+import { BadgeCheck, FacebookIcon, Github, Mail } from "lucide-react";
 import { signUpSchema } from "@/lib/validation";
 import Link from "next/link";
 import { CredentialSignUp } from "../actions/action";
@@ -185,6 +185,10 @@ async function onSubmit(data) {
         <div className="space-y-2">
         <Button onClick={()=> signIn("google")} variant="outline" className="w-full">
             <Mail className="mr-2 h-4 w-4" /> Sign in with Google
+          </Button>
+
+          <Button onClick={()=> signIn("facebook")} variant="outline" className="w-full">
+            <FacebookIcon className="mr-2 h-4 w-4" /> Sign in with Facebook
           </Button>
 
           <Button onClick={()=> signIn("github")} variant="outline" className="w-full">
