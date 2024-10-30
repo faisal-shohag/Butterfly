@@ -2,6 +2,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter"
 import NextAuth, { AuthError } from "next-auth"
 import Google from 'next-auth/providers/google';
 import Github from 'next-auth/providers/github';
+import Facebook from 'next-auth/providers/facebook';
 import prisma from "./lib/prisma";
 import Credentials from 'next-auth/providers/credentials';
 
@@ -12,7 +13,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         logo: "/logo.png"
     },
     adapter: PrismaAdapter(prisma),
-    providers: [Google, Github, 
+    providers: [Google, Github, Facebook,
         Credentials({
             name: "Credentials",
             credentials: {
