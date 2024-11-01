@@ -21,6 +21,7 @@ import { useQuery } from "react-query";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
+import { FaGoogle } from "react-icons/fa6";
 
 const SignUpForm = () => {
   const axiosSecure = useAxiosSecure();
@@ -184,16 +185,16 @@ async function onSubmit(data) {
         </div>
         <div className="space-y-2">
         <Button onClick={()=> signIn("google")} variant="outline" className="w-full">
-            <Mail className="mr-2 h-4 w-4" /> Sign in with Google
+            <FaGoogle className="mr-2 h-4 w-4" /> Sign in with Google
           </Button>
 
           <Button onClick={()=> signIn("facebook")} variant="outline" className="w-full">
             <FacebookIcon className="mr-2 h-4 w-4" /> Sign in with Facebook
           </Button>
 
-          <Button onClick={()=> signIn("github")} variant="outline" className="w-full">
+          {/* <Button onClick={()=> signIn("github")} variant="outline" className="w-full">
             <Github className="mr-2 h-4 w-4" /> Sign in with GitHub
-          </Button>
+          </Button> */}
          
         </div>
         <div className="text-center space-y-2">

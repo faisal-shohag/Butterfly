@@ -1,12 +1,22 @@
 "use client"
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Upload, ImagePlus, RotateCcw } from 'lucide-react';
+import { Upload, ImagePlus, RotateCcw, Copy, Loader2 } from 'lucide-react';
 import { Skeleton } from "@/components/ui/skeleton";
+import { FaFilePdf } from 'react-icons/fa6';
+import { PiTornadoFill } from "react-icons/pi";
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import Image from 'next/image';
+import { GoArrowRight } from "react-icons/go";
+import { useSession } from "next-auth/react";
+import { useCoins } from "@/hooks/useCoins";
+import toast from 'react-hot-toast';
+import { useRef } from 'react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 const LoadingSkeleton = () => (
   <div className="space-y-3">
@@ -23,6 +33,12 @@ const GeminiVisionPage = () => {
   const [prompt, setPrompt] = useState('');
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const resultRef = useRef(null);
+
+  const session = useSession();
+  const user = session.data?.user;
+  const { remainingCoins, addCoin } = useCoins(user?.id);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -44,13 +60,71 @@ const GeminiVisionPage = () => {
     setLoading(false);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!image || !prompt) return;
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(result);
+      toast.success('Text copied to clipboard!');
+    } catch (error) {
+      toast.error('Failed to copy text.');
+      console.error('Copy failed:', error);
+    }
+  };
+
+  const handleDownloadPDF = async () => {
+    if (!resultRef.current) return;
+
+    try {
+      toast.loading('Generating PDF...', { id: 'pdf-generation' });
+      
+      // Create PDF
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      
+      // Add title
+      pdf.setFontSize(16);
+      pdf.text('Image Analysis Result', 20, 20);
+      
+      // Add timestamp
+      pdf.setFontSize(10);
+      pdf.text(`Generated on: ${new Date().toLocaleString()}`, 20, 30);
+      
+      // Add the image if it exists
+      if (preview) {
+        const imgData = preview;
+        pdf.addImage(imgData, 'JPEG', 20, 40, 170, 100);
+      }
+      
+      // Add the analysis text
+      pdf.setFontSize(12);
+      const splitText = pdf.splitTextToSize(result, 170);
+      pdf.text(splitText, 20, preview ? 150 : 40);
+      
+      // Save the PDF
+      pdf.save('image-analysis-result.pdf');
+      toast.success('PDF downloaded successfully!', { id: 'pdf-generation' });
+    } catch (error) {
+      console.error('PDF generation failed:', error);
+      toast.error('Failed to generate PDF.', { id: 'pdf-generation' });
+    }
+  };
+
+  const handleAnalyze = async () => {
+    if (remainingCoins < 100) {
+      toast.error('Insufficient coins. You need 100 coins to analyze an image.');
+      return;
+    }
 
     setLoading(true);
     setResult('');
+    
     try {
+      // Deduct coins first
+      await addCoin({
+        type: 'deduction',
+        reason: 'Image analysis',
+        value: 100,
+        userId: user.id,
+      });
+
       const formData = new FormData();
       formData.append('image', image);
       formData.append('prompt', prompt);
@@ -65,37 +139,66 @@ const GeminiVisionPage = () => {
         throw new Error(data.error);
       }
       setResult(data.text);
+      toast.success('Image analyzed successfully!');
     } catch (error) {
       console.error('Error:', error);
       setResult('Failed to analyze image. Please try again.');
+      toast.error('Failed to analyze image. Please try again.');
     } finally {
       setLoading(false);
+      setIsDialogOpen(false);
     }
   };
 
   return (
     <div className="container mx-auto">
-      <div  className='custom-glass-2 p-5 rounded-xl'>
+      <div className={`${loading? "g-card": "custom-glass-2 rounded-xl text-slate-500 dark:text-slate-300"}`}>
+        <div className='text-left flex items-center p-2 font-semibold text-xl'>
+          <PiTornadoFill size={20} className='mr-1'/> Restore Text(in seconds)
+        </div>
+      </div>
+      <div className='custom-glass-2 p-5 mb-2 rounded-xl mt-5'>
         <div>
-          <div className="flex justify-between items-center">
-            <div className='mb-5 text-xl'>Wing Repair</div>
+          <div className="flex justify-end items-center">
             {(result || loading) && (
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={handleReset}
-                className="flex items-center gap-2"
-              >
-                <RotateCcw className="h-4 w-4" />
-                Reset
-              </Button>
+              <div className='flex items-center gap-3'>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleCopy}
+                  className="flex items-center gap-2"
+                >
+                  <Copy className="h-4 w-4" />
+                  Copy
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleDownloadPDF}
+                  className="flex items-center gap-2"
+                >
+                  <FaFilePdf className="h-4 w-4" />
+                  PDF
+                </Button>
+
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleReset}
+                  className="flex items-center gap-2"
+                >
+                  <RotateCcw className="h-4 w-4" />
+                  Reset
+                </Button>
+              </div>
             )}
           </div>
         </div>
         <div>
           {!result ? (
             <div className="grid gap-5 lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
-              <form onSubmit={handleSubmit}>
+              <div>
                 <div className="grid w-full gap-4">
                   <div className="flex flex-col gap-2">
                     <label htmlFor="image-upload" className="cursor-pointer">
@@ -128,26 +231,65 @@ const GeminiVisionPage = () => {
                     />
                   </div>
 
-                  <Button type="submit" disabled={!image || !prompt || loading}>
-                    {loading ? (
-                      <span className="flex items-center gap-2">
-                        <Upload className="h-4 w-4 animate-spin" />
-                        Analyzing...
-                      </span>
-                    ) : (
-                      'Analyze Image'
-                    )}
+                  <Button 
+                    onClick={() => setIsDialogOpen(true)}
+                    disabled={!image || !prompt || loading}
+                  >
+                    Analyze Image with 100 coins
                   </Button>
+
+                  <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Confirm Analysis</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Are you sure you want to analyze this image? This will cost 100 coins.
+                          {remainingCoins < 100 && (
+                            <p className="text-red-500 mt-2">
+                              Warning: Insufficient coins. You need 100 coins to analyze an image.
+                            </p>
+                          )}
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={handleAnalyze}
+                          disabled={remainingCoins < 100}
+                        >
+                          Confirm
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </div>
-              </form>
+              </div>
 
               <div>
-                {loading && <LoadingSkeleton />}
+                {loading ? <LoadingSkeleton /> : 
+                  <div className=''>
+                    <div className='custom-glass rounded-md'>
+                      <div className='flex justify-center items-center gap-5'>
+                        <Image className='shimmer' height={100} width={100} src="https://i.postimg.cc/BncVDQBb/photo-2024-10-30-18-47-35.jpg" alt='page'/>
+                        <GoArrowRight />
+                        <Image height={100} width={100} src="https://i.postimg.cc/52Mr6FvD/photo-2024-10-30-18-47-35-2.jpg" alt='page'/>
+                      </div>
+                    </div>
+
+                    <div className='custom-glass mt-2 rounded-md'>
+                      <div className='flex items-center justify-center gap-5'>
+                        <Image className='shimmer' height={100} width={100} src="https://i.postimg.cc/Qx7P8qBp/photo-2024-10-30-18-47-36.jpg" alt='page'/>
+                        <GoArrowRight />
+                        <Image height={100} width={100} src="https://i.postimg.cc/gcQQb70z/photo-2024-10-30-18-47-36-2.jpg" alt='page'/>
+                      </div>
+                    </div>
+                  </div>
+                }
               </div>
             </div>
           ) : (
-            <div className=" grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5">
-                <div className="flex justify-center">
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5">
+              <div className="flex justify-center">
                 <div className="rounded-lg overflow-hidden max-w-2xl">
                   <img 
                     src={preview} 
@@ -157,18 +299,15 @@ const GeminiVisionPage = () => {
                 </div>
               </div>
               
-              <div className="bg-gray-50 dark:bg-zinc-950 rounded-lg p-4">
+              <div className="bg-gray-50 dark:bg-zinc-950 rounded-lg p-4" ref={resultRef}>
                 <p className="whitespace-pre-wrap">
-                  {/* {result} */}
                   <TextGenerateEffect
-        className="text-left font-kalpurush"
-        words={result}
-        duration={0.0001}
-      />
+                    className="text-left font-kalpurush"
+                    words={result}
+                    duration={0.00000001}
+                  />
                 </p>
               </div>
-              
-            
             </div>
           )}
         </div>

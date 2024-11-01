@@ -20,6 +20,7 @@ import { signIn, useSession } from 'next-auth/react'
 import { CredentialSignIn } from '../actions/action'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
+import { FaGoogle } from 'react-icons/fa6'
 
 const SignInForm = () => {
 
@@ -98,14 +99,14 @@ const SignInForm = () => {
       <div className="space-y-2">
         
         <Button onClick={()=> signIn("google")} variant="outline" className="w-full">
-          <Mail className="mr-2 h-4 w-4" /> Sign in with Google
+          <FaGoogle className="mr-2 h-4 w-4" /> Sign in with Google
         </Button>
         <Button onClick={()=> signIn("facebook")} variant="outline" className="w-full">
           <FacebookIcon className="mr-2 h-4 w-4" /> Sign in with Facebook
         </Button>
-        <Button onClick={()=> signIn("github")} variant="outline" className="w-full">
+        {/* <Button onClick={()=> signIn("github")} variant="outline" className="w-full">
           <Github className="mr-2 h-4 w-4" /> Sign in with GitHub
-        </Button>
+        </Button> */}
       </div>
       <div className="text-center space-y-2">
         <a href="#" className="text-sm text-blue-600 hover:underline">Forgot password?</a>
