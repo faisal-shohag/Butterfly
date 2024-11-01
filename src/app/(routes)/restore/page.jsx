@@ -150,6 +150,8 @@ const GeminiVisionPage = () => {
     }
   };
 
+  // console.log(result)
+
   return (
     <div className="container mx-auto">
       <div className={`${loading? "g-card": "custom-glass-2 rounded-xl text-slate-500 dark:text-slate-300"}`}>
