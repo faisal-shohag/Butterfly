@@ -5,6 +5,7 @@ import HiveHunters from "@/components/home/HiveHunters";
 import LatestExchangePosts from "@/components/home/LatestExchangePosts";
 import LatestStoreBooks from "@/components/home/LatestStoreBooks";
 import MobileScreenButtons from "@/components/common/MobileScreenButtons";
+import RestoreSection from "@/components/home/RestoreSection";
 
 export default function Home() {
   const bannerContent = [
@@ -30,8 +31,10 @@ export default function Home() {
     <>
       <div className="section">
         <Banner bannerContent={bannerContent} className="h-[400px]" />
+      
         <LatestStoreBooks />
         <MostCoinedUser />
+        <RestoreSection/>
         <LatestExchangePosts />
         <HiveHunters />
         <PopularPosts />
