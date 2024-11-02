@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI('AIzaSyB8V-OiZxgrx2BchZaoHU-UlmE1t-hd2dE');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const text = `
   - CHAPTER ONE -
 
